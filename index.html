@@ -1,177 +1,251 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Gerador de Contas - TXT</title>
+<meta charset="UTF-8">
+<link rel="icon" href="favicon.png" type="image/png">
+<title>Gerador de Contas - TXT</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+<style>
+*{
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: linear-gradient(135deg, #010518, rgb(2, 22, 68));
-      color: #e5e7eb;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+body{
+margin:0;
+min-height:100vh;
+background:linear-gradient(135deg,#010518,rgb(2,22,68));
+color:#e5e7eb;
+display:flex;
+justify-content:center;
+align-items:center;
+}
 
-    .wrapper {
-      width: 900px;
-      background: #020617a1;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 40px rgba(0,0,0,0.6);
-    }
+.wrapper{
+width:1000px;
+background:#020617a1;
+padding:30px;
+border-radius:12px;
+box-shadow:0 0 40px rgba(0,0,0,0.6);
+}
 
-    h2 {
-      text-align: center;
-      margin-bottom: 25px;
-      color: #38bdf8;
-    }
+h2{
+text-align:center;
+margin-bottom:10px;
+color:#38bdf8;
+}
 
-    .container {
-      display: flex;
-      gap: 25px;
-    }
+#contador{
+text-align:center;
+color:#7dd3fc;
+margin-bottom:20px;
+}
 
-    .card {
-      flex: 1;
-      background: #020617;
-      border: 1px solid #1e293b;
-      border-radius: 10px;
-      padding: 20px;
-    }
+.container{
+display:flex;
+gap:25px;
+flex-wrap:wrap;
+}
 
-    .card h3 {
-      margin-top: 0;
-      margin-bottom: 15px;
-      color: #7dd3fc;
-      font-size: 16px;
-    }
+.card{
+flex:1;
+min-width:280px;
+background:#020617;
+border:1px solid #1e293b;
+border-radius:10px;
+padding:20px;
+}
 
-    textarea {
-      width: 100%;
-      height: 220px;
-      background: #020617;
-      border: 1px solid #1e293b;
-      border-radius: 8px;
-      padding: 12px;
-      color: #e5e7eb;
-      resize: none;
-      font-size: 14px;
-    }
+.card h3{
+margin-top:0;
+margin-bottom:15px;
+color:#7dd3fc;
+font-size:16px;
+}
 
-    textarea::placeholder {
-      color: #64748b;
-    }
+textarea{
+width:100%;
+height:220px;
+background:#020617;
+border:1px solid #1e293b;
+border-radius:8px;
+padding:12px;
+color:#e5e7eb;
+resize:none;
+font-size:14px;
+}
 
-    button {
-      width: 100%;
-      margin-top: 15px;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
-      color: #020617;
-      font-weight: bold;
-      font-size: 14px;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+textarea::placeholder{
+color:#64748b;
+}
 
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(56,189,248,0.4);
-    }
+button{
+width:100%;
+margin-top:10px;
+padding:12px;
+border:none;
+border-radius:8px;
+background:linear-gradient(135deg,#38bdf8,#0ea5e9);
+color:#020617;
+font-weight:bold;
+font-size:14px;
+cursor:pointer;
+transition:transform .2s, box-shadow .2s;
+}
 
-    button:active {
-      transform: translateY(0);
-      box-shadow: none;
-    }
+button:hover{
+transform:translateY(-2px);
+box-shadow:0 8px 20px rgba(56,189,248,.4);
+}
 
-    @media (max-width: 900px) {
-      .wrapper {
-        width: 95%;
-      }
-      .container {
-        flex-direction: column;
-      }
-    }
-  </style>
+button:active{
+transform:translateY(0);
+box-shadow:none;
+}
+
+/* POPUP */
+
+.popup{
+position:fixed;
+top:20px;
+right:20px;
+padding:14px 22px;
+border-radius:8px;
+font-weight:bold;
+box-shadow:0 10px 25px rgba(0,0,0,.6);
+opacity:0;
+transform:translateX(40px);
+transition:all .3s;
+z-index:999;
+color:white;
+}
+
+.popup.show{
+opacity:1;
+transform:translateX(0);
+}
+
+.popup.sucesso{
+background:#22c55e;
+}
+
+.popup.erro{
+background:#ef4444;
+}
+
+@media(max-width:900px){
+.wrapper{
+width:95%;
+}
+.container{
+flex-direction:column;
+}
+}
+</style>
 </head>
 
 <body>
 
 <div class="wrapper">
-  <h2>Organizador de Contas</h2>
 
-  <div class="container">
+<h2>Organizador de Contas</h2>
+<p id="contador">Contas geradas: 0</p>
 
-    <!-- MÉTODO 1 -->
-    <div class="card">
-      <h3>Método 1 • 3 linhas</h3>
-      <textarea id="inputContasLinhas" placeholder="chave&#10;usuario&#10;senha"></textarea>
-      <button onclick="gerarTxtLinhas()">Baixar TXT</button>
-    </div>
+<div class="container">
 
-    <!-- MÉTODO 2 -->
-    <div class="card">
-      <h3>Método 2 • nome:senha:codigo</h3>
-      <textarea id="inputContasDoisPontos" placeholder="nome:senha:codigo"></textarea>
-      <button onclick="gerarTxtDoisPontos()">Baixar TXT</button>
-    </div>
+<div class="card">
+<h3>Método 1 • 3 linhas</h3>
 
-  </div>
+<textarea id="inputContasLinhas" placeholder="chave
+usuario
+senha"></textarea>
+
+<button onclick="baixarLinhas()">Baixar TXT</button>
+<button onclick="copiarLinhas()">Copiar</button>
 </div>
 
+<div class="card">
+<h3>Método 2 • nome:senha:codigo</h3>
+
+<textarea id="inputContasDoisPontos" placeholder="nome:senha:codigo"></textarea>
+
+<button onclick="baixarDoisPontos()">Baixar TXT</button>
+<button onclick="copiarDoisPontos()">Copiar</button>
+</div>
+
+<div class="card">
+<h3>Unir Código 2FA</h3>
+
+<textarea id="input2fa" placeholder="codigo
+usuario
+senha"></textarea>
+
+<button onclick="copiar2FA()">Copiar</button>
+</div>
+
+</div>
+</div>
+
+<div id="popup" class="popup"></div>
+
 <script>
-  function OrganizaContaLinhas(texto) {
-    const linhas = texto.trim().split(/\s+/);
-    const resultado = [];
 
-    for (let i = 0; i < linhas.length; i += 3) {
-      if (linhas[i] && linhas[i + 1] && linhas[i + 2]) {
-        resultado.push({
-          codigo: linhas[i],
-          usuario: linhas[i + 1],
-          senha: linhas[i + 2]
-        });
-      }
-    }
-    return resultado;
-  }
+function mostrarPopup(msg,tipo){
 
-  function gerarTxtLinhas() {
-    const texto = document.getElementById("inputContasLinhas").value;
-    if (!texto.trim()) return alert("Preencha o campo.");
-    gerarArquivo(OrganizaContaLinhas(texto));
-  }
+const popup=document.getElementById("popup")
 
-  function OrganizaContaDoisPontos(texto) {
-    return texto
-      .trim()
-      .split(/\n+/)
-      .map(l => l.split(":"))
-      .filter(l => l.length === 3)
-      .map(([usuario, senha, codigo]) => ({ usuario, senha, codigo }));
-  }
+popup.textContent=msg
 
-  function gerarTxtDoisPontos() {
-    const texto = document.getElementById("inputContasDoisPontos").value;
-    if (!texto.trim()) return alert("Preencha o campo.");
-    gerarArquivo(OrganizaContaDoisPontos(texto));
-  }
+popup.classList.remove("sucesso","erro")
 
-  function gerarArquivo(contas) {
-    let conteudo = "";
+if(tipo==="erro"){
+popup.classList.add("erro")
+}else{
+popup.classList.add("sucesso")
+}
 
-    contas.forEach(c => {
-      conteudo += `
+popup.classList.add("show")
+
+setTimeout(()=>{
+popup.classList.remove("show")
+},2500)
+
+}
+
+function atualizarContador(total){
+document.getElementById("contador").innerText="Contas geradas: "+total
+}
+
+function organizarLinhas(texto){
+const linhas=texto.trim().split(/\s+/)
+const resultado=[]
+
+for(let i=0;i<linhas.length;i+=3){
+if(linhas[i]&&linhas[i+1]&&linhas[i+2]){
+resultado.push({
+codigo:linhas[i],
+usuario:linhas[i+1],
+senha:linhas[i+2]
+})
+}
+}
+return resultado
+}
+
+function organizarDoisPontos(texto){
+return texto.trim()
+.split(/\n+/)
+.map(l=>l.split(":"))
+.filter(l=>l.length===3)
+.map(([usuario,senha,codigo])=>({usuario,senha,codigo}))
+}
+
+function gerarConteudo(contas){
+
+let conteudo=""
+
+contas.forEach(c=>{
+conteudo+=`
 Codigo: https://2fa.fb.tools/${c.codigo}
 Usuário: ${c.usuario}
 Senha: ${c.senha}
@@ -183,15 +257,123 @@ O recomendado é entrar via 4G.
 ATENÇÃO! se o cliente fizer alterações antes do periodo de 24 horas, que foram orientados a não fazer, não haverar reposição de contas!
 
 ---
-`;
-    });
+`
+})
 
-    const blob = new Blob([conteudo], { type: "text/plain" });
-    const link = document.createElement("a");
-    link.href = URL.createObjectURL(blob);
-    link.download = "contas.txt";
-    link.click();
-  }
+return conteudo
+}
+
+function baixarArquivo(conteudo){
+
+navigator.clipboard.writeText(conteudo)
+
+const blob=new Blob([conteudo],{type:"text/plain"})
+const link=document.createElement("a")
+
+link.href=URL.createObjectURL(blob)
+link.download="contas.txt"
+link.click()
+
+mostrarPopup("TXT gerado e copiado!","sucesso")
+}
+
+function copiarTexto(conteudo){
+navigator.clipboard.writeText(conteudo)
+mostrarPopup("Conteúdo copiado!","sucesso")
+}
+
+function baixarLinhas(){
+
+const texto=document.getElementById("inputContasLinhas").value
+if(!texto.trim()){mostrarPopup("Preencha o campo.","erro");return}
+
+const contas=organizarLinhas(texto)
+atualizarContador(contas.length)
+
+const conteudo=gerarConteudo(contas)
+baixarArquivo(conteudo)
+}
+
+function copiarLinhas(){
+
+const texto=document.getElementById("inputContasLinhas").value
+if(!texto.trim()){mostrarPopup("Preencha o campo.","erro");return}
+
+const contas=organizarLinhas(texto)
+atualizarContador(contas.length)
+
+const conteudo=gerarConteudo(contas)
+copiarTexto(conteudo)
+}
+
+function baixarDoisPontos(){
+
+const texto=document.getElementById("inputContasDoisPontos").value
+if(!texto.trim()){mostrarPopup("Preencha o campo.","erro");return}
+
+const contas=organizarDoisPontos(texto)
+atualizarContador(contas.length)
+
+const conteudo=gerarConteudo(contas)
+baixarArquivo(conteudo)
+}
+
+function copiarDoisPontos(){
+
+const texto=document.getElementById("inputContasDoisPontos").value
+if(!texto.trim()){mostrarPopup("Preencha o campo.","erro");return}
+
+const contas=organizarDoisPontos(texto)
+atualizarContador(contas.length)
+
+const conteudo=gerarConteudo(contas)
+copiarTexto(conteudo)
+}
+
+function copiar2FA(){
+
+const input=document.getElementById("input2fa").value
+
+if(!input.trim()){
+mostrarPopup("Preencha o campo.","erro")
+return
+}
+
+const linhas=input
+.split("\n")
+.map(l=>l.trim())
+.filter(l=>l!=="")
+
+let resultado=""
+
+for(let i=0;i<linhas.length;i+=3){
+
+let codigo=(linhas[i]||"").replace(/\s+/g,"")
+let usuario=linhas[i+1]||""
+let senha=linhas[i+2]||""
+
+resultado+=codigo+"\n"+usuario+"\n"+senha+"\n\n"
+}
+
+resultado=resultado.trim()
+
+navigator.clipboard.writeText(resultado)
+
+atualizarContador(linhas.length/3)
+
+mostrarPopup("Conteúdo copiado!","sucesso")
+}
+
+document.getElementById("inputContasLinhas").addEventListener("input",function(){
+const contas=organizarLinhas(this.value)
+atualizarContador(contas.length)
+})
+
+document.getElementById("inputContasDoisPontos").addEventListener("input",function(){
+const contas=organizarDoisPontos(this.value)
+atualizarContador(contas.length)
+})
+
 </script>
 
 </body>
