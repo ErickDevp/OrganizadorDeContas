@@ -1,380 +1,4515 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<link rel="icon" href="favicon.png" type="image/png">
-<title>Gerador de Contas - TXT</title>
 
-<style>
-*{
-box-sizing:border-box;
-font-family:Arial, Helvetica, sans-serif;
-}
+    <meta charset="UTF-8">
 
-body{
-margin:0;
-min-height:100vh;
-background:linear-gradient(135deg,#010518,rgb(2,22,68));
-color:#e5e7eb;
-display:flex;
-justify-content:center;
-align-items:center;
-}
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-.wrapper{
-width:1000px;
-background:#020617a1;
-padding:30px;
-border-radius:12px;
-box-shadow:0 0 40px rgba(0,0,0,0.6);
-}
+    <!-- =====================================================
+         FAVICON — LOGO OC
+    ====================================================== -->
 
-h2{
-text-align:center;
-margin-bottom:10px;
-color:#38bdf8;
-}
+    <link
+        rel="icon"
+        type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2338bdf8'/%3E%3Cstop offset='1' stop-color='%230ea5e9'/%3E%3C/linearGradient%3E%3Cfilter id='s'%3E%3CfeDropShadow dx='0' dy='5' stdDeviation='6' flood-opacity='.35'/%3E%3C/filter%3E%3C/defs%3E%3Crect x='7' y='7' width='114' height='114' rx='28' fill='%23020817'/%3E%3Crect x='12' y='12' width='104' height='104' rx='24' fill='url(%23g)' filter='url(%23s)'/%3E%3Cpath d='M42 38c-7 0-12 5-12 12v28c0 7 5 12 12 12h13c7 0 12-5 12-12V70c0-7-5-12-12-12H47v12h8v8h-9V50h19V38H42z' fill='white'/%3E%3Cpath d='M77 38h-8v12h8v28h-8v12h8c7 0 12-5 12-12V50c0-7-5-12-12-12z' fill='white' opacity='.92'/%3E%3C/svg%3E"
+    >
 
-#contador{
-text-align:center;
-color:#7dd3fc;
-margin-bottom:20px;
-}
+    <title>Organizador de Contas</title>
 
-.container{
-display:flex;
-gap:25px;
-flex-wrap:wrap;
-}
 
-.card{
-flex:1;
-min-width:280px;
-background:#020617;
-border:1px solid #1e293b;
-border-radius:10px;
-padding:20px;
-}
+    <style>
 
-.card h3{
-margin-top:0;
-margin-bottom:15px;
-color:#7dd3fc;
-font-size:16px;
-}
+        /* =====================================================
+           RESET
+        ===================================================== */
 
-textarea{
-width:100%;
-height:220px;
-background:#020617;
-border:1px solid #1e293b;
-border-radius:8px;
-padding:12px;
-color:#e5e7eb;
-resize:none;
-font-size:14px;
-}
+        * {
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-textarea::placeholder{
-color:#64748b;
-}
 
-button{
-width:100%;
-margin-top:10px;
-padding:12px;
-border:none;
-border-radius:8px;
-background:linear-gradient(135deg,#38bdf8,#0ea5e9);
-color:#020617;
-font-weight:bold;
-font-size:14px;
-cursor:pointer;
-transition:transform .2s, box-shadow .2s;
-}
+        :root {
 
-button:hover{
-transform:translateY(-2px);
-box-shadow:0 8px 20px rgba(56,189,248,.4);
-}
+            --accent: #64748b;
+            --accent-light: #cbd5e1;
+            --accent-dark: #334155;
+            --accent-rgb: 100, 116, 139;
 
-button:active{
-transform:translateY(0);
-box-shadow:none;
-}
+        }
 
-/* POPUP */
 
-.popup{
-position:fixed;
-top:20px;
-right:20px;
-padding:14px 22px;
-border-radius:8px;
-font-weight:bold;
-box-shadow:0 10px 25px rgba(0,0,0,.6);
-opacity:0;
-transform:translateX(40px);
-transition:all .3s;
-z-index:999;
-color:white;
-}
+        html,
+        body {
 
-.popup.show{
-opacity:1;
-transform:translateX(0);
-}
+            margin: 0;
+            padding: 0;
 
-.popup.sucesso{
-background:#22c55e;
-}
+            min-height: 100%;
+        }
 
-.popup.erro{
-background:#ef4444;
-}
 
-@media(max-width:900px){
-.wrapper{
-width:95%;
-}
-.container{
-flex-direction:column;
-}
-}
-</style>
+        body {
+
+            min-height: 100vh;
+
+            color: #e5e7eb;
+
+            background:
+
+                radial-gradient(
+                    circle at 50% -15%,
+                    rgba(
+                        var(--accent-rgb),
+                        .12
+                    ),
+                    transparent 42%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #010518,
+                    #021644
+                );
+
+            transition:
+                background .35s ease;
+        }
+
+
+        /* =====================================================
+           HEADER PRINCIPAL
+        ===================================================== */
+
+        .main-header {
+
+            width: 100%;
+
+            background:
+                rgba(2, 6, 23, .96);
+
+            border-bottom:
+                1px solid
+                rgba(
+                    var(--accent-rgb),
+                    .18
+                );
+
+            box-shadow:
+                0 8px 30px
+                rgba(0, 0, 0, .35);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+            transition:
+                border-color .3s;
+        }
+
+
+        .header-top {
+
+            width: 100%;
+
+            max-width: 1400px;
+
+            margin: auto;
+
+            padding:
+                18px 25px 15px;
+        }
+
+
+        /* =====================================================
+           MARCA
+        ===================================================== */
+
+        .brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .brand-icon {
+
+            width: 42px;
+            height: 42px;
+
+            flex-shrink: 0;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 11px;
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    var(--accent),
+                    var(--accent-dark)
+                );
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: 900;
+
+            box-shadow:
+
+                0 0 22px
+                rgba(
+                    var(--accent-rgb),
+                    .28
+                );
+
+            transition: .3s;
+        }
+
+
+        .brand-text h1 {
+
+            margin: 0;
+
+            color: #f8fafc;
+
+            font-size: 19px;
+        }
+
+
+        .brand-text span {
+
+            display: block;
+
+            margin-top: 3px;
+
+            color: #64748b;
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           HEADER — PLATAFORMAS
+        ===================================================== */
+
+        .platform-nav {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .platform-btn {
+
+            appearance: none;
+
+            border:
+                1px solid #1e293b;
+
+            background:
+                #0b1225;
+
+            color:
+                #94a3b8;
+
+            padding:
+                10px 15px;
+
+            min-height:
+                38px;
+
+            border-radius:
+                8px;
+
+            cursor:
+                pointer;
+
+            font-size:
+                13px;
+
+            font-weight:
+                700;
+
+            white-space:
+                nowrap;
+
+            transition:
+                .2s;
+        }
+
+
+        .platform-btn:hover {
+
+            background:
+                #111c35;
+
+            color:
+                #e2e8f0;
+
+            border-color:
+                rgba(
+                    var(--accent-rgb),
+                    .35
+                );
+
+            transform:
+                translateY(-1px);
+        }
+
+
+        .platform-btn.active {
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    var(--accent),
+                    var(--accent-dark)
+                );
+
+            color:
+                white;
+
+            border-color:
+                var(--accent);
+
+            box-shadow:
+
+                0 0 18px
+                rgba(
+                    var(--accent-rgb),
+                    .25
+                );
+        }
+
+
+        /* =====================================================
+           SUB HEADER
+        ===================================================== */
+
+        .sub-header {
+
+            background:
+                rgba(1, 7, 20, .94);
+
+            border-bottom:
+                1px solid
+                rgba(
+                    var(--accent-rgb),
+                    .16
+                );
+        }
+
+
+        .sub-header-content {
+
+            width: 100%;
+
+            max-width: 1400px;
+
+            margin: auto;
+
+            padding:
+                12px 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                20px;
+        }
+
+
+        .selected-platform {
+
+            flex-shrink: 0;
+
+            color:
+                #cbd5e1;
+
+            font-size:
+                14px;
+
+            font-weight:
+                700;
+        }
+
+
+        .selected-platform span {
+
+            color:
+                var(--accent-light);
+
+            transition:
+                color .3s;
+        }
+
+
+        /* =====================================================
+           DESTINOS
+        ===================================================== */
+
+        .destination-nav {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .destination-btn {
+
+            appearance: none;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-height:
+                36px;
+
+            padding:
+                9px 17px;
+
+            border-radius:
+                8px;
+
+            font-size:
+                13px;
+
+            font-weight:
+                700;
+
+            line-height:
+                1;
+
+            white-space:
+                nowrap;
+
+            cursor:
+                pointer;
+
+            outline:
+                none;
+
+            transition:
+                .25s;
+        }
+
+
+        .destination-btn:hover {
+
+            transform:
+                translateY(-1px);
+
+            filter:
+                brightness(1.08);
+        }
+
+
+        /* =====================================================
+           DEFAULT
+        ===================================================== */
+
+        .dest-default {
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    rgba(71,85,105,.18),
+                    rgba(30,41,59,.22)
+                );
+
+            border:
+                1px solid #475569;
+
+            color:
+                #cbd5e1;
+        }
+
+
+        .dest-default.active {
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    #64748b,
+                    #334155
+                );
+
+            border-color:
+                #94a3b8;
+
+            color:
+                #ffffff;
+
+            box-shadow:
+
+                0 0 18px
+                rgba(
+                    100,
+                    116,
+                    139,
+                    .32
+                );
+        }
+
+
+        /* =====================================================
+           GG MAX
+        ===================================================== */
+
+        .ggmax {
+
+            background:
+                rgba(56,189,248,.14);
+
+            border:
+                1px solid #38bdf8;
+
+            color:
+                #7dd3fc;
+        }
+
+
+        .ggmax.active {
+
+            background:
+                #38bdf8;
+
+            color:
+                #02111f;
+
+            box-shadow:
+                0 0 18px
+                rgba(56,189,248,.35);
+        }
+
+
+        /* =====================================================
+           BASIFY
+        ===================================================== */
+
+        .basify {
+
+            background:
+                rgba(167,139,250,.14);
+
+            border:
+                1px solid #a78bfa;
+
+            color:
+                #c4b5fd;
+        }
+
+
+        .basify.active {
+
+            background:
+                #a78bfa;
+
+            color:
+                #160b2b;
+
+            box-shadow:
+                0 0 18px
+                rgba(167,139,250,.35);
+        }
+
+
+        /* =====================================================
+           GAME MARKET
+        ===================================================== */
+
+        .gamemarket {
+
+            background:
+                rgba(124,58,237,.16);
+
+            border:
+                1px solid #7c3aed;
+
+            color:
+                #a78bfa;
+        }
+
+
+        .gamemarket.active {
+
+            background:
+                #7c3aed;
+
+            color:
+                white;
+
+            box-shadow:
+                0 0 18px
+                rgba(124,58,237,.40);
+        }
+
+
+        /* =====================================================
+           DFG
+        ===================================================== */
+
+        .dfg {
+
+            background:
+                rgba(37,99,235,.16);
+
+            border:
+                1px solid #2563eb;
+
+            color:
+                #60a5fa;
+        }
+
+
+        .dfg.active {
+
+            background:
+                #2563eb;
+
+            color:
+                white;
+
+            box-shadow:
+                0 0 18px
+                rgba(37,99,235,.40);
+        }
+
+
+        /* =====================================================
+           CONTEÚDO
+        ===================================================== */
+
+        .wrapper {
+
+            width:
+                100%;
+
+            max-width:
+                1000px;
+
+            margin:
+                35px auto;
+
+            padding:
+                0 20px 50px;
+        }
+
+
+        .page-title {
+
+            margin-bottom:
+                22px;
+        }
+
+
+        .page-title h2 {
+
+            margin:
+                0;
+
+            color:
+                var(--accent-light);
+
+            font-size:
+                25px;
+
+            transition:
+                color .3s;
+        }
+
+
+        .page-title p {
+
+            margin:
+                7px 0 0;
+
+            color:
+                #64748b;
+
+            font-size:
+                13px;
+        }
+
+
+        .selection-badge {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                7px;
+
+            margin-top:
+                12px;
+
+            padding:
+                7px 11px;
+
+            border-radius:
+                7px;
+
+            background:
+                rgba(
+                    var(--accent-rgb),
+                    .07
+                );
+
+            border:
+                1px solid
+                rgba(
+                    var(--accent-rgb),
+                    .25
+                );
+
+            color:
+                #94a3b8;
+
+            font-size:
+                12px;
+        }
+
+
+        .selection-badge strong {
+
+            color:
+                var(--accent-light);
+        }
+
+
+        /* =====================================================
+           CARD PADRÃO
+        ===================================================== */
+
+        .organizer-card {
+
+            background:
+
+                linear-gradient(
+                    145deg,
+                    rgba(
+                        var(--accent-rgb),
+                        .045
+                    ),
+                    rgba(
+                        2,
+                        6,
+                        23,
+                        .95
+                    )
+                );
+
+            border:
+                1px solid
+                rgba(
+                    var(--accent-rgb),
+                    .20
+                );
+
+            border-radius:
+                14px;
+
+            padding:
+                20px;
+
+            box-shadow:
+                0 15px 40px
+                rgba(0,0,0,.25);
+
+            transition:
+                .3s;
+        }
+
+
+        .organizer-card:hover {
+
+            border-color:
+                rgba(
+                    var(--accent-rgb),
+                    .35
+                );
+        }
+
+
+        /* =====================================================
+           CABEÇALHO DO CARD
+        ===================================================== */
+
+        .organizer-header {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                15px;
+
+            margin-bottom:
+                14px;
+        }
+
+
+        .organizer-title {
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            gap:
+                5px;
+        }
+
+
+        .organizer-title h3 {
+
+            margin:
+                0;
+
+            color:
+                var(--accent-light);
+
+            font-size:
+                16px;
+        }
+
+
+        .organizer-title span {
+
+            color:
+                #64748b;
+
+            font-size:
+                12px;
+        }
+
+
+        .platform-indicator {
+
+            padding:
+                7px 10px;
+
+            border-radius:
+                7px;
+
+            background:
+                rgba(
+                    var(--accent-rgb),
+                    .08
+                );
+
+            border:
+                1px solid
+                rgba(
+                    var(--accent-rgb),
+                    .22
+                );
+
+            color:
+                var(--accent-light);
+
+            font-size:
+                11px;
+
+            font-weight:
+                700;
+        }
+
+
+        /* =====================================================
+           TEXTAREA PADRÃO
+        ===================================================== */
+
+        textarea {
+
+            display:
+                block;
+
+            width:
+                100%;
+
+            height:
+                330px;
+
+            margin:
+                0;
+
+            padding:
+                15px;
+
+            background:
+                rgba(1,5,20,.95);
+
+            border:
+                1px solid
+                rgba(
+                    var(--accent-rgb),
+                    .18
+                );
+
+            border-radius:
+                10px;
+
+            color:
+                #e5e7eb;
+
+            resize:
+                vertical;
+
+            outline:
+                none;
+
+            font-size:
+                14px;
+
+            line-height:
+                1.6;
+
+            transition:
+                .3s;
+        }
+
+
+        textarea:focus {
+
+            border-color:
+                var(--accent);
+
+            background:
+                rgba(
+                    var(--accent-rgb),
+                    .035
+                );
+
+            box-shadow:
+
+                0 0 0 3px
+                rgba(
+                    var(--accent-rgb),
+                    .08
+                );
+        }
+
+
+        textarea::placeholder {
+
+            color:
+                #475569;
+        }
+
+
+        /* =====================================================
+           BOTÕES PADRÃO
+        ===================================================== */
+
+        .button-group {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:
+                10px;
+
+            margin-top:
+                12px;
+        }
+
+
+        .action-btn {
+
+            width:
+                100%;
+
+            min-height:
+                42px;
+
+            border-radius:
+                8px;
+
+            padding:
+                11px 15px;
+
+            font-size:
+                13px;
+
+            font-weight:
+                700;
+
+            cursor:
+                pointer;
+
+            transition:
+                .2s;
+        }
+
+
+        .download-btn {
+
+            border:
+                1px solid
+                var(--accent);
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    var(--accent),
+                    var(--accent-dark)
+                );
+
+            color:
+                #020617;
+        }
+
+
+        .download-btn:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+
+                0 9px 22px
+                rgba(
+                    var(--accent-rgb),
+                    .30
+                );
+        }
+
+
+        .copy-btn {
+
+            border:
+                1px solid
+                rgba(
+                    var(--accent-rgb),
+                    .25
+                );
+
+            background:
+                #172033;
+
+            color:
+                var(--accent-light);
+        }
+
+
+        .copy-btn:hover {
+
+            transform:
+                translateY(-2px);
+
+            background:
+                rgba(
+                    var(--accent-rgb),
+                    .10
+                );
+
+            border-color:
+                var(--accent);
+        }
+
+
+        /* =====================================================
+           MÉTODOS ESPECÍFICOS
+        ===================================================== */
+
+        .method-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap:
+                15px;
+
+            width:
+                100%;
+        }
+
+
+        .method-card {
+
+            min-width:
+                0;
+
+            background:
+
+                linear-gradient(
+                    145deg,
+                    rgba(
+                        var(--accent-rgb),
+                        .045
+                    ),
+                    rgba(
+                        2,
+                        6,
+                        23,
+                        .96
+                    )
+                );
+
+            border:
+                1px solid
+                rgba(
+                    var(--accent-rgb),
+                    .20
+                );
+
+            border-radius:
+                14px;
+
+            padding:
+                18px;
+
+            box-shadow:
+                0 15px 35px
+                rgba(0,0,0,.22);
+
+            transition:
+                .3s;
+        }
+
+
+        .method-card:hover {
+
+            border-color:
+                rgba(
+                    var(--accent-rgb),
+                    .38
+                );
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 18px 40px
+                rgba(
+                    var(--accent-rgb),
+                    .08
+                );
+        }
+
+
+        .method-header {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            gap:
+                10px;
+
+            margin-bottom:
+                13px;
+        }
+
+
+        .method-header h3 {
+
+            margin:
+                0;
+
+            color:
+                var(--accent-light);
+
+            font-size:
+                15px;
+        }
+
+
+        .method-header span {
+
+            display:
+                block;
+
+            margin-top:
+                4px;
+
+            color:
+                #64748b;
+
+            font-size:
+                11px;
+        }
+
+
+        .method-number {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            width:
+                30px;
+
+            height:
+                30px;
+
+            flex-shrink:
+                0;
+
+            border-radius:
+                8px;
+
+            background:
+                rgba(
+                    var(--accent-rgb),
+                    .10
+                );
+
+            border:
+                1px solid
+                rgba(
+                    var(--accent-rgb),
+                    .22
+                );
+
+            color:
+                var(--accent-light);
+
+            font-size:
+                11px;
+
+            font-weight:
+                800;
+        }
+
+
+        .method-card textarea {
+
+            width:
+                100%;
+
+            height:
+                270px;
+
+            resize:
+                vertical;
+
+            padding:
+                13px;
+
+            border-radius:
+                9px;
+
+            background:
+                rgba(1,5,20,.95);
+
+            border:
+                1px solid
+                rgba(
+                    var(--accent-rgb),
+                    .16
+                );
+
+            color:
+                #e5e7eb;
+
+            outline:
+                none;
+
+            font-size:
+                12px;
+
+            line-height:
+                1.6;
+
+            transition:
+                .3s;
+        }
+
+
+        .method-card textarea:focus {
+
+            border-color:
+                var(--accent);
+
+            box-shadow:
+
+                0 0 0 3px
+                rgba(
+                    var(--accent-rgb),
+                    .07
+                );
+        }
+
+
+        .method-card textarea::placeholder {
+
+            color:
+                #475569;
+        }
+
+
+        .method-actions {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:
+                8px;
+
+            margin-top:
+                10px;
+        }
+
+
+        .method-actions button {
+
+            min-height:
+                38px;
+
+            border-radius:
+                8px;
+
+            padding:
+                9px;
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+            cursor:
+                pointer;
+
+            transition:
+                .2s;
+        }
+
+
+        .method-download {
+
+            border:
+                1px solid
+                var(--accent);
+
+            background:
+
+                linear-gradient(
+                    135deg,
+                    var(--accent),
+                    var(--accent-dark)
+                );
+
+            color:
+                #020617;
+        }
+
+
+        .method-download:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+
+                0 7px 18px
+                rgba(
+                    var(--accent-rgb),
+                    .25
+                );
+        }
+
+
+        .method-copy {
+
+            border:
+                1px solid
+                rgba(
+                    var(--accent-rgb),
+                    .25
+                );
+
+            background:
+                #172033;
+
+            color:
+                var(--accent-light);
+        }
+
+
+        .method-copy:hover {
+
+            transform:
+                translateY(-2px);
+
+            border-color:
+                var(--accent);
+
+            background:
+                rgba(
+                    var(--accent-rgb),
+                    .10
+                );
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .field-footer {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            margin-top:
+                12px;
+
+            color:
+                #475569;
+
+            font-size:
+                11px;
+        }
+
+
+        .field-footer strong {
+
+            color:
+                var(--accent-light);
+        }
+
+
+        /* =====================================================
+           POPUP
+        ===================================================== */
+
+        .popup {
+
+            position:
+                fixed;
+
+            top:
+                20px;
+
+            right:
+                20px;
+
+            z-index:
+                999;
+
+            padding:
+                14px 22px;
+
+            border-radius:
+                8px;
+
+            color:
+                white;
+
+            font-weight:
+                700;
+
+            box-shadow:
+                0 10px 25px
+                rgba(0,0,0,.6);
+
+            opacity:
+                0;
+
+            transform:
+                translateX(40px);
+
+            transition:
+                .3s;
+        }
+
+
+        .popup.show {
+
+            opacity:
+                1;
+
+            transform:
+                translateX(0);
+        }
+
+
+        .popup.sucesso {
+
+            background:
+                #22c55e;
+        }
+
+
+        .popup.erro {
+
+            background:
+                #ef4444;
+        }
+
+
+        /* =====================================================
+           RESPONSIVO
+        ===================================================== */
+
+        @media (max-width: 1000px) {
+
+            .method-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+        }
+
+
+        @media (max-width: 900px) {
+
+            .sub-header-content {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .header-top {
+
+                padding:
+                    15px;
+            }
+
+
+            .sub-header-content {
+
+                padding:
+                    12px 15px;
+            }
+
+
+            .wrapper {
+
+                margin:
+                    25px auto;
+
+                padding:
+                    0 15px 35px;
+            }
+
+
+            .page-title h2 {
+
+                font-size:
+                    21px;
+            }
+
+
+            .destination-nav {
+
+                width:
+                    100%;
+            }
+
+
+            .destination-btn {
+
+                flex:
+                    1;
+
+                min-width:
+                    90px;
+            }
+
+
+            .organizer-card {
+
+                padding:
+                    16px;
+            }
+
+
+            .organizer-header {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+            }
+
+
+            textarea {
+
+                height:
+                    250px;
+
+                font-size:
+                    13px;
+            }
+
+
+            .button-group {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .method-actions {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .field-footer {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+
+                gap:
+                    5px;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-<div class="wrapper">
 
-<h2>Organizador de Contas</h2>
-<p id="contador">Contas geradas: 0</p>
+    <!-- =====================================================
+         HEADER PRINCIPAL
+    ===================================================== -->
 
-<div class="container">
+    <header class="main-header">
 
-<div class="card">
-<h3>Método 1 • 3 linhas</h3>
 
-<textarea id="inputContasLinhas" placeholder="chave
-usuario
-senha"></textarea>
+        <div class="header-top">
 
-<button onclick="baixarLinhas()">Baixar TXT</button>
-<button onclick="copiarLinhas()">Copiar</button>
-</div>
 
-<div class="card">
-<h3>Método 2 • nome:senha:codigo</h3>
+            <!-- LOGO -->
 
-<textarea id="inputContasDoisPontos" placeholder="nome:senha:codigo"></textarea>
+            <div class="brand">
 
-<button onclick="baixarDoisPontos()">Baixar TXT</button>
-<button onclick="copiarDoisPontos()">Copiar</button>
-</div>
+                <div class="brand-icon">
+                    OC
+                </div>
 
-<div class="card">
-<h3>Unir Código 2FA</h3>
 
-<textarea id="input2fa" placeholder="codigo
-usuario
-senha"></textarea>
+                <div class="brand-text">
 
-<button onclick="copiar2FA()">Copiar</button>
-</div>
+                    <h1>
+                        Organizador de Contas
+                    </h1>
 
-</div>
-</div>
+                    <span>
+                        Central de organização e conversão
+                    </span>
 
-<div id="popup" class="popup"></div>
+                </div>
 
-<script>
+            </div>
 
-function mostrarPopup(msg,tipo){
 
-const popup=document.getElementById("popup")
+            <!-- =================================================
+                 PLATAFORMAS
+            ================================================= -->
 
-popup.textContent=msg
+            <nav class="platform-nav">
 
-popup.classList.remove("sucesso","erro")
+                <button type="button" class="platform-btn active" data-platform="Facebook">Facebook</button>
+                <button type="button" class="platform-btn" data-platform="TikTok">TikTok</button>
+                <button type="button" class="platform-btn" data-platform="Instagram">Instagram</button>
+                <button type="button" class="platform-btn" data-platform="Outlook">Outlook</button>
+                <button type="button" class="platform-btn" data-platform="Lovable">Lovable</button>
+                <button type="button" class="platform-btn" data-platform="ElevenLabs">ElevenLabs</button>
+                <button type="button" class="platform-btn" data-platform="Discord">Discord</button>
+                <button type="button" class="platform-btn" data-platform="Gmail">Gmail</button>
+                <button type="button" class="platform-btn" data-platform="Pinterest">Pinterest</button>
+                <button type="button" class="platform-btn" data-platform="Twitter">Twitter</button>
+                <button type="button" class="platform-btn" data-platform="Spotify">Spotify</button>
+                <button type="button" class="platform-btn" data-platform="Netflix">Netflix</button>
 
-if(tipo==="erro"){
-popup.classList.add("erro")
-}else{
-popup.classList.add("sucesso")
-}
+            </nav>
 
-popup.classList.add("show")
+        </div>
 
-setTimeout(()=>{
-popup.classList.remove("show")
-},2500)
 
-}
+        <!-- =====================================================
+             SUB HEADER
+        ===================================================== -->
 
-function atualizarContador(total){
-document.getElementById("contador").innerText="Contas geradas: "+total
-}
+        <div class="sub-header">
 
-function organizarLinhas(texto){
-const linhas=texto.trim().split(/\s+/)
-const resultado=[]
 
-for(let i=0;i<linhas.length;i+=3){
-if(linhas[i]&&linhas[i+1]&&linhas[i+2]){
-resultado.push({
-codigo:linhas[i],
-usuario:linhas[i+1],
-senha:linhas[i+2]
-})
-}
-}
-return resultado
-}
+            <div class="sub-header-content">
 
-function organizarDoisPontos(texto){
-return texto.trim()
-.split(/\n+/)
-.map(l=>l.split(":"))
-.filter(l=>l.length===3)
-.map(([usuario,senha,codigo])=>({usuario,senha,codigo}))
-}
 
-function gerarConteudo(contas){
+                <div class="selected-platform">
 
-let conteudo=""
+                    Plataforma:
 
-contas.forEach(c=>{
-conteudo+=`
-Codigo: https://2fa.fb.tools/${c.codigo}
-Usuário: ${c.usuario}
-Senha: ${c.senha}
+                    <span id="selectedPlatform">
+                        Facebook
+                    </span>
 
-Aguarde 1 dia ou mais para fazer alterações como senha. Username. Email Etc.
-Pois assim que entra com um novo IP o instagram ainda está analisando para ver se a conta não foi hackeada. E caso suspeite que sim ele bloqueia por segurança.
-Após fazer o login em seu IP aguarde 1 dia ou mais para fazer as alterações.
-O recomendado é entrar via 4G.
-ATENÇÃO! se o cliente fizer alterações antes do periodo de 24 horas, que foram orientados a não fazer, não haverar reposição de contas!
+                </div>
+
+
+                <nav class="destination-nav">
+
+                    <button type="button" class="destination-btn dest-default active" data-destination="Default">Default</button>
+                    <button type="button" class="destination-btn ggmax" data-destination="GG Max">GG Max</button>
+                    <button type="button" class="destination-btn gamemarket" data-destination="Game Market">Game Market</button>
+                    <button type="button" class="destination-btn basify" data-destination="Basify">Basify</button>
+                    <button type="button" class="destination-btn dfg" data-destination="DFG">DFG</button>
+
+                </nav>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         CONTEÚDO
+    ===================================================== -->
+
+    <main class="wrapper">
+
+
+        <div class="page-title">
+
+
+            <h2 id="pageTitle">
+                Facebook
+            </h2>
+
+
+            <p>
+                Organize suas contas para o formato selecionado.
+            </p>
+
+
+            <div class="selection-badge">
+
+                Configuração atual:
+
+                <strong id="currentSelection">
+                    Facebook → Default
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =================================================
+             ÁREA DE MÉTODOS
+        ================================================= -->
+
+        <section id="methodsArea">
+
+
+            <!-- =================================================
+                 FACEBOOK → GG MAX
+            ================================================= -->
+
+            <div
+                id="facebookGGMaxMethods"
+                class="method-grid"
+                style="display:none;"
+            >
+
+
+                <!-- =============================================
+                     CONTA NOVA
+                ============================================== -->
+
+                <div class="method-card">
+
+
+                    <div class="method-header">
+
+                        <div>
+
+                            <h3>
+                                Conta Nova
+                            </h3>
+
+                            <span>
+                                Facebook → GG Max
+                            </span>
+
+                        </div>
+
+
+                        <div class="method-number">
+                            01
+                        </div>
+
+                    </div>
+
+
+                    <textarea
+                        id="facebookGGMaxNova"
+                        placeholder="Codigo: https://exemplo.com/2fa/codigo
+Email: usuario@exemplo.com
+Senha: SENHA
 
 ---
-`
-})
 
-return conteudo
-}
+Codigo: https://exemplo.com/2fa/codigo
+Email: usuario@exemplo.com
+Senha: SENHA"
+                    ></textarea>
 
-function baixarArquivo(conteudo){
 
-navigator.clipboard.writeText(conteudo)
+                    <div class="method-actions">
 
-const blob=new Blob([conteudo],{type:"text/plain"})
-const link=document.createElement("a")
 
-link.href=URL.createObjectURL(blob)
-link.download="contas.txt"
-link.click()
+                        <button
+                            type="button"
+                            class="method-download"
+                            onclick="baixarFacebookGGMax('nova')"
+                        >
+                            Baixar TXT
+                        </button>
 
-mostrarPopup("TXT gerado e copiado!","sucesso")
-}
 
-function copiarTexto(conteudo){
-navigator.clipboard.writeText(conteudo)
-mostrarPopup("Conteúdo copiado!","sucesso")
-}
+                        <button
+                            type="button"
+                            class="method-copy"
+                            onclick="copiarFacebookGGMax('nova')"
+                        >
+                            Copiar
+                        </button>
 
-function baixarLinhas(){
 
-const texto=document.getElementById("inputContasLinhas").value
-if(!texto.trim()){mostrarPopup("Preencha o campo.","erro");return}
+                    </div>
 
-const contas=organizarLinhas(texto)
-atualizarContador(contas.length)
+                </div>
 
-const conteudo=gerarConteudo(contas)
-baixarArquivo(conteudo)
-}
 
-function copiarLinhas(){
+                <!-- =============================================
+                     CONTA ANTIGA
+                ============================================== -->
 
-const texto=document.getElementById("inputContasLinhas").value
-if(!texto.trim()){mostrarPopup("Preencha o campo.","erro");return}
+                <div class="method-card">
 
-const contas=organizarLinhas(texto)
-atualizarContador(contas.length)
 
-const conteudo=gerarConteudo(contas)
-copiarTexto(conteudo)
-}
+                    <div class="method-header">
 
-function baixarDoisPontos(){
+                        <div>
 
-const texto=document.getElementById("inputContasDoisPontos").value
-if(!texto.trim()){mostrarPopup("Preencha o campo.","erro");return}
+                            <h3>
+                                Conta Antiga
+                            </h3>
 
-const contas=organizarDoisPontos(texto)
-atualizarContador(contas.length)
+                            <span>
+                                Facebook → GG Max
+                            </span>
 
-const conteudo=gerarConteudo(contas)
-baixarArquivo(conteudo)
-}
+                        </div>
 
-function copiarDoisPontos(){
 
-const texto=document.getElementById("inputContasDoisPontos").value
-if(!texto.trim()){mostrarPopup("Preencha o campo.","erro");return}
+                        <div class="method-number">
+                            02
+                        </div>
 
-const contas=organizarDoisPontos(texto)
-atualizarContador(contas.length)
+                    </div>
 
-const conteudo=gerarConteudo(contas)
-copiarTexto(conteudo)
-}
 
-function copiar2FA(){
+                    <textarea
+                        id="facebookGGMaxAntiga"
+                        placeholder="Codigo: https://exemplo.com/2fa/codigo
+Email: usuario@exemplo.com
+Senha: SENHA
 
-const input=document.getElementById("input2fa").value
+---
 
-if(!input.trim()){
-mostrarPopup("Preencha o campo.","erro")
-return
-}
+Codigo: https://exemplo.com/2fa/codigo
+Email: usuario@exemplo.com
+Senha: SENHA"
+                    ></textarea>
 
-const linhas=input
-.split("\n")
-.map(l=>l.trim())
-.filter(l=>l!=="")
 
-let resultado=""
+                    <div class="method-actions">
 
-for(let i=0;i<linhas.length;i+=3){
 
-let codigo=(linhas[i]||"").replace(/\s+/g,"")
-let usuario=linhas[i+1]||""
-let senha=linhas[i+2]||""
+                        <button
+                            type="button"
+                            class="method-download"
+                            onclick="baixarFacebookGGMax('antiga')"
+                        >
+                            Baixar TXT
+                        </button>
 
-resultado+=codigo+"\n"+usuario+"\n"+senha+"\n\n"
-}
 
-resultado=resultado.trim()
+                        <button
+                            type="button"
+                            class="method-copy"
+                            onclick="copiarFacebookGGMax('antiga')"
+                        >
+                            Copiar
+                        </button>
 
-navigator.clipboard.writeText(resultado)
 
-atualizarContador(linhas.length/3)
+                    </div>
 
-mostrarPopup("Conteúdo copiado!","sucesso")
-}
+                </div>
 
-document.getElementById("inputContasLinhas").addEventListener("input",function(){
-const contas=organizarLinhas(this.value)
-atualizarContador(contas.length)
-})
 
-document.getElementById("inputContasDoisPontos").addEventListener("input",function(){
-const contas=organizarDoisPontos(this.value)
-atualizarContador(contas.length)
-})
+                <!-- =============================================
+                     CONTA COM NÚMERO
+                ============================================== -->
 
-</script>
+                <div class="method-card">
+
+
+                    <div class="method-header">
+
+                        <div>
+
+                            <h3>
+                                Conta com Número
+                            </h3>
+
+                            <span>
+                                Facebook → GG Max
+                            </span>
+
+                        </div>
+
+
+                        <div class="method-number">
+                            03
+                        </div>
+
+                    </div>
+
+
+                    <textarea
+                        id="facebookGGMaxNumero"
+                        placeholder="Link perfil: https://exemplo.com/perfil
+2fa: https://exemplo.com/2fa/CODIGO
+Número: 5511999999999
+Senha: SENHA
+
+---
+
+Link perfil: https://exemplo.com/perfil
+2fa: https://exemplo.com/2fa/CODIGO
+Número: 5511999999999
+Senha: SENHA"
+                    ></textarea>
+
+
+                    <div class="method-actions">
+
+
+                        <button
+                            type="button"
+                            class="method-download"
+                            onclick="baixarFacebookGGMax('numero')"
+                        >
+                            Baixar TXT
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="method-copy"
+                            onclick="copiarFacebookGGMax('numero')"
+                        >
+                            Copiar
+                        </button>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 DISCORD → GG MAX
+            ================================================== -->
+
+            <div
+                id="discordGGMaxMethods"
+                class="method-grid"
+                style="display:none;"
+            >
+
+                <div class="method-card">
+
+                    <div class="method-header">
+
+                        <div>
+
+                            <h3>
+                                Contas Discord
+                            </h3>
+
+                            <span>
+                                Discord → GG Max
+                            </span>
+
+                        </div>
+
+                        <div class="method-number">
+                            01
+                        </div>
+
+                    </div>
+
+                    <textarea
+                        id="discordGGMaxInput"
+                        placeholder="Email: usuario@exemplo.com
+Senha: SENHA
+
+---
+
+Email: usuario2@exemplo.com
+Senha: SENHA2"
+                    ></textarea>
+
+                    <div class="method-actions">
+
+                        <button
+                            type="button"
+                            class="method-download"
+                            onclick="baixarDiscordMetodo('ggmax')"
+                        >
+                            Baixar TXT
+                        </button>
+
+                        <button
+                            type="button"
+                            class="method-copy"
+                            onclick="copiarDiscordMetodo('ggmax')"
+                        >
+                            Copiar
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 DISCORD → GAME MARKET
+            ================================================== -->
+
+            <div
+                id="discordGameMarketMethods"
+                class="method-grid"
+                style="display:none;"
+            >
+
+                <div class="method-card">
+
+                    <div class="method-header">
+
+                        <div>
+
+                            <h3>
+                                Contas Discord
+                            </h3>
+
+                            <span>
+                                Discord → Game Market
+                            </span>
+
+                        </div>
+
+                        <div class="method-number">
+                            01
+                        </div>
+
+                    </div>
+
+                    <textarea
+                        id="discordGameMarketInput"
+                        placeholder="Email: usuario@exemplo.com
+Senha: SENHA
+
+---
+
+Email: usuario2@exemplo.com
+Senha: SENHA2"
+                    ></textarea>
+
+                    <div class="method-actions">
+
+                        <button
+                            type="button"
+                            class="method-download"
+                            onclick="baixarDiscordMetodo('gamemarket')"
+                        >
+                            Baixar TXT
+                        </button>
+
+                        <button
+                            type="button"
+                            class="method-copy"
+                            onclick="copiarDiscordMetodo('gamemarket')"
+                        >
+                            Copiar
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 CAMPO PADRÃO
+            ================================================== -->
+
+            <div
+                id="defaultMethodArea"
+                class="organizer-card"
+            >
+
+
+                <div class="organizer-header">
+
+
+                    <div class="organizer-title">
+
+                        <h3 id="organizerTitle">
+                            Contas de Facebook
+                        </h3>
+
+
+                        <span id="inputDescription">
+                            Cole abaixo as contas que deseja organizar.
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="platform-indicator"
+                        id="platformIndicator"
+                    >
+                        Facebook
+                    </div>
+
+
+                </div>
+
+
+                <textarea
+                    id="inputContas"
+                    placeholder="Cole suas contas aqui..."
+                ></textarea>
+
+
+                <div class="button-group">
+
+
+                    <button
+                        type="button"
+                        class="
+                            action-btn
+                            download-btn
+                        "
+                        onclick="baixarTXT()"
+                    >
+                        Baixar TXT
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="
+                            action-btn
+                            copy-btn
+                        "
+                        onclick="copiarTXT()"
+                    >
+                        Copiar
+                    </button>
+
+
+                </div>
+
+
+                <div class="field-footer">
+
+
+                    <span>
+
+                        Plataforma:
+
+                        <strong id="footerPlatform">
+                            Facebook
+                        </strong>
+
+                    </span>
+
+
+                    <span>
+
+                        Destino:
+
+                        <strong id="footerDestination">
+                            Default
+                        </strong>
+
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =====================================================
+         POPUP
+    ===================================================== -->
+
+    <div
+        id="popup"
+        class="popup"
+    ></div>
+
+
+    <script>
+
+        /* =====================================================
+           ESTADO
+        ===================================================== */
+
+        let plataformaAtual =
+            "Facebook";
+
+
+        let destinoAtual =
+            "Default";
+
+
+        /* =====================================================
+           ELEMENTOS
+        ===================================================== */
+
+        const inputContas =
+            document.getElementById(
+                "inputContas"
+            );
+
+
+        const selectedPlatform =
+            document.getElementById(
+                "selectedPlatform"
+            );
+
+
+        const pageTitle =
+            document.getElementById(
+                "pageTitle"
+            );
+
+
+        const currentSelection =
+            document.getElementById(
+                "currentSelection"
+            );
+
+
+        const organizerTitle =
+            document.getElementById(
+                "organizerTitle"
+            );
+
+
+        const platformIndicator =
+            document.getElementById(
+                "platformIndicator"
+            );
+
+
+        const footerPlatform =
+            document.getElementById(
+                "footerPlatform"
+            );
+
+
+        const footerDestination =
+            document.getElementById(
+                "footerDestination"
+            );
+
+
+        const inputDescription =
+            document.getElementById(
+                "inputDescription"
+            );
+
+
+        const facebookGGMaxMethods =
+            document.getElementById(
+                "facebookGGMaxMethods"
+            );
+
+
+        const discordGGMaxMethods =
+            document.getElementById(
+                "discordGGMaxMethods"
+            );
+
+
+        const discordGameMarketMethods =
+            document.getElementById(
+                "discordGameMarketMethods"
+            );
+
+
+        const defaultMethodArea =
+            document.getElementById(
+                "defaultMethodArea"
+            );
+
+
+        /* =====================================================
+           TEMAS
+        ===================================================== */
+
+        const temas = {
+
+
+            "Default": {
+
+                accent:
+                    "#64748b",
+
+                light:
+                    "#cbd5e1",
+
+                dark:
+                    "#334155",
+
+                rgb:
+                    "100, 116, 139"
+            },
+
+
+            "GG Max": {
+
+                accent:
+                    "#38bdf8",
+
+                light:
+                    "#7dd3fc",
+
+                dark:
+                    "#0ea5e9",
+
+                rgb:
+                    "56, 189, 248"
+            },
+
+
+            "Basify": {
+
+                accent:
+                    "#a78bfa",
+
+                light:
+                    "#c4b5fd",
+
+                dark:
+                    "#8b5cf6",
+
+                rgb:
+                    "167, 139, 250"
+            },
+
+
+            "Game Market": {
+
+                accent:
+                    "#7c3aed",
+
+                light:
+                    "#a78bfa",
+
+                dark:
+                    "#6d28d9",
+
+                rgb:
+                    "124, 58, 237"
+            },
+
+
+            "DFG": {
+
+                accent:
+                    "#2563eb",
+
+                light:
+                    "#60a5fa",
+
+                dark:
+                    "#1d4ed8",
+
+                rgb:
+                    "37, 99, 235"
+            }
+
+        };
+
+
+        /* =====================================================
+           CONFIGURAÇÕES DAS PLATAFORMAS
+        ===================================================== */
+
+        const configuracoes = {
+
+
+            Facebook: {
+
+                placeholder:
+                    "Email : senha",
+
+                descricao:
+                    "Cole as contas no formato correspondente."
+            },
+
+
+            TikTok: {
+
+                placeholder:
+                    "email : senha",
+
+                descricao:
+                    "Cole os dados do TikTok."
+            },
+
+
+            Instagram: {
+
+                placeholder:
+`[ CONTA 1 ]
+Usuário: usuario
+Senha: senha
+Código 2FA: codigo`,
+
+                descricao:
+                    "Cole os blocos de conta do Instagram."
+            },
+
+
+            Outlook: {
+
+                placeholder:
+                    "Email : senha",
+
+                descricao:
+                    "Email e senha separados por dois pontos."
+            },
+
+
+            Lovable: {
+
+                placeholder:
+                    "Email : senha",
+
+                descricao:
+                    "Email e senha separados por dois pontos."
+            },
+
+
+            ElevenLabs: {
+
+                placeholder:
+                    "Email : senha",
+
+                descricao:
+                    "Email e senha separados por dois pontos."
+            },
+
+
+            Gmail: {
+
+                placeholder:
+`Email: usuario
+Senha: senha
+
+---
+
+Email: usuario
+Senha: senha`,
+
+                descricao:
+                    "Cole os blocos de Email e Senha."
+            },
+
+
+            Pinterest: {
+
+                placeholder:
+                    "Email : senha",
+
+                descricao:
+                    "Email e senha separados por dois pontos."
+            },
+
+
+            Discord: {
+
+                placeholder:
+                    "Email : senha",
+
+                descricao:
+                    "Email e senha separados por dois pontos."
+            },
+
+
+            Twitter: {
+
+                placeholder:
+                    "Email : senha",
+
+                descricao:
+                    "Email e senha separados por dois pontos."
+            },
+
+
+            Spotify: {
+
+                placeholder:
+                    "Email : senha",
+
+                descricao:
+                    "Email e senha separados por dois pontos."
+            },
+
+
+            Netflix: {
+
+                placeholder:
+                    "Email : senha",
+
+                descricao:
+                    "Email e senha separados por dois pontos."
+            }
+
+        };
+
+
+        /* =====================================================
+           TEMA
+        ===================================================== */
+
+        function aplicarTema() {
+
+            const tema =
+                temas[destinoAtual];
+
+
+            if (!tema) {
+                return;
+            }
+
+
+            const root =
+                document.documentElement;
+
+
+            root.style.setProperty(
+                "--accent",
+                tema.accent
+            );
+
+
+            root.style.setProperty(
+                "--accent-light",
+                tema.light
+            );
+
+
+            root.style.setProperty(
+                "--accent-dark",
+                tema.dark
+            );
+
+
+            root.style.setProperty(
+                "--accent-rgb",
+                tema.rgb
+            );
+
+        }
+
+
+        /* =====================================================
+           ATUALIZAR INTERFACE
+        ===================================================== */
+
+        function atualizarInterface() {
+
+
+            selectedPlatform.textContent =
+                plataformaAtual;
+
+
+            pageTitle.textContent =
+                plataformaAtual;
+
+
+            currentSelection.textContent =
+                `${plataformaAtual} → ${destinoAtual}`;
+
+
+            organizerTitle.textContent =
+                `Contas de ${plataformaAtual}`;
+
+
+            platformIndicator.textContent =
+                plataformaAtual;
+
+
+            footerPlatform.textContent =
+                plataformaAtual;
+
+
+            footerDestination.textContent =
+                destinoAtual;
+
+
+            const config =
+                configuracoes[
+                    plataformaAtual
+                ];
+
+
+            if (config) {
+
+                inputContas.placeholder =
+                    config.placeholder;
+
+
+                inputDescription.textContent =
+                    config.descricao;
+
+            }
+
+
+            /* =================================================
+               MÉTODO ESPECÍFICO:
+               FACEBOOK → GG MAX
+            ================================================= */
+
+            const mostrarFacebookGGMax =
+                plataformaAtual === "Facebook" &&
+                destinoAtual === "GG Max";
+
+
+            const mostrarDiscordGGMax =
+                plataformaAtual === "Discord" &&
+                destinoAtual === "GG Max";
+
+
+            const mostrarDiscordGameMarket =
+                plataformaAtual === "Discord" &&
+                destinoAtual === "Game Market";
+
+
+            facebookGGMaxMethods.style.display =
+                mostrarFacebookGGMax ? "grid" : "none";
+
+
+            discordGGMaxMethods.style.display =
+                mostrarDiscordGGMax ? "grid" : "none";
+
+
+            discordGameMarketMethods.style.display =
+                mostrarDiscordGameMarket ? "grid" : "none";
+
+
+            defaultMethodArea.style.display =
+                (mostrarFacebookGGMax ||
+                 mostrarDiscordGGMax ||
+                 mostrarDiscordGameMarket)
+                    ? "none"
+                    : "block";
+
+
+            aplicarTema();
+
+        }
+
+
+        /* =====================================================
+           SEPARAR BLOCOS
+        ===================================================== */
+
+        function separarBlocos(texto) {
+
+            return texto
+                .split(
+                    /\n\s*---+\s*\n/
+                )
+                .map(
+                    bloco =>
+                        bloco.trim()
+                )
+                .filter(Boolean);
+
+        }
+
+
+        /* =====================================================
+           PARSER FACEBOOK
+        ===================================================== */
+
+        function parseFacebookEmail(bloco) {
+
+
+            const codigo =
+                bloco.match(
+                    /Codigo\s*:\s*(.*)/i
+                )?.[1]
+                ?.trim() || "";
+
+
+            const email =
+                bloco.match(
+                    /Email\s*:\s*(.*)/i
+                )?.[1]
+                ?.trim() || "";
+
+
+            const senha =
+                bloco.match(
+                    /Senha\s*:\s*(.*)/i
+                )?.[1]
+                ?.trim() || "";
+
+
+            return {
+
+                codigo,
+                email,
+                senha
+
+            };
+
+        }
+
+
+        /* =====================================================
+           FACEBOOK → GG MAX → CONTA NOVA
+        ===================================================== */
+
+        function processarFacebookGGMaxNova(
+            texto
+        ) {
+
+
+            const contas =
+                separarBlocos(
+                    texto
+                );
+
+
+            return contas
+                .map(conta => {
+
+
+                    const dados =
+                        parseFacebookEmail(
+                            conta
+                        );
+
+
+                    return [
+
+                        "🎉 Pedido entregue!",
+
+                        "",
+
+                        "Olá! Sua conta Facebook já está pronta para uso. 💙",
+
+                        "",
+
+                        "📩 Dados de acesso:",
+
+                        `🔐 Código: ${dados.codigo}`,
+
+                        `📧 Email: ${dados.email}`,
+
+                        `🔑 Senha: ${dados.senha}`,
+
+                        "",
+
+                        "🚨 ATENÇÃO — CONTA NOVA!",
+
+                        "",
+
+                        "📱 Primeiro acesso: recomendado via 4G/5G.",
+
+                        "⏳ Aguarde 24h ou mais antes de alterar senha, username, e-mail etc.",
+
+                        "🔥 Aqueça a conta por alguns dias antes de anunciar.",
+
+                        "",
+
+                        "⚠️ Alterações ou anúncios imediatos podem gerar verificações ou bloqueios de segurança."
+
+                    ].join("\n");
+
+
+                })
+                .join(
+                    "\n\n---\n\n"
+                );
+
+        }
+
+
+        /* =====================================================
+           FACEBOOK → GG MAX → CONTA ANTIGA
+        ===================================================== */
+
+        function processarFacebookGGMaxAntiga(
+            texto
+        ) {
+
+
+            const contas =
+                separarBlocos(
+                    texto
+                );
+
+
+            return contas
+                .map(conta => {
+
+
+                    const dados =
+                        parseFacebookEmail(
+                            conta
+                        );
+
+
+                    return [
+
+                        "🎉 Pedido entregue!",
+
+                        "",
+
+                        "Olá! Sua conta Facebook já está pronta para uso. 💙",
+
+                        "",
+
+                        "📩 Dados de acesso:",
+
+                        `🔐 Código: ${dados.codigo}`,
+
+                        `📧 Email: ${dados.email}`,
+
+                        `🔑 Senha: ${dados.senha}`,
+
+                        "",
+
+                        "📱 Primeiro acesso: recomendado via 4G/5G.",
+
+                        "⏳ Aguarde 24h ou mais antes de alterar senha, username, e-mail etc.",
+
+                        "🔥 Aqueça a conta por alguns dias antes de anunciar.",
+
+                        "",
+
+                        "⚠️ Alterações ou anúncios imediatos podem gerar verificações ou bloqueios de segurança."
+
+                    ].join("\n");
+
+
+                })
+                .join(
+                    "\n\n---\n\n"
+                );
+
+        }
+
+
+        /* =====================================================
+           PARSER FACEBOOK — NÚMERO
+        ===================================================== */
+
+        function parseFacebookNumero(
+            bloco
+        ) {
+
+
+            const numero =
+                bloco.match(
+                    /Número\s*:\s*(.*)/i
+                )?.[1]
+                ?.trim() || "";
+
+
+            const senha =
+                bloco.match(
+                    /Senha\s*:\s*(.*)/i
+                )?.[1]
+                ?.trim() || "";
+
+
+            const doisFa =
+                bloco.match(
+                    /(?:2fa|2FA)\s*:\s*(.*)/i
+                )?.[1]
+                ?.trim() || "";
+
+
+            const perfil =
+                bloco.match(
+                    /Link perfil\s*:\s*(.*)/i
+                )?.[1]
+                ?.trim() || "";
+
+
+            return {
+
+                numero,
+                senha,
+                doisFa,
+                perfil
+
+            };
+
+        }
+
+
+        /* =====================================================
+           FACEBOOK → GG MAX → NÚMERO
+        ===================================================== */
+
+        function processarFacebookGGMaxNumero(
+            texto
+        ) {
+
+
+            const contas =
+                separarBlocos(
+                    texto
+                );
+
+
+            return contas
+                .map(conta => {
+
+
+                    const dados =
+                        parseFacebookNumero(
+                            conta
+                        );
+
+
+                    return [
+
+                        "🎉 Pedido entregue!",
+
+                        "",
+
+                        "Olá! Sua conta Facebook já está pronta para uso. 💙",
+
+                        "",
+
+                        "📩 Dados de acesso:",
+
+                        `📱 Número: ${dados.numero}`,
+
+                        `🔑 Senha: ${dados.senha}`,
+
+                        `🔐 2FA: ${dados.doisFa}`,
+
+                        "",
+
+                        "🚨 ATENÇÃO!",
+
+                        "",
+
+                        "🔹 Conta NOVA — sem e-mail vinculado.",
+
+                        "📱 Recomendamos o primeiro acesso via 4G/5G.",
+
+                        "⏳ Após o login, aguarde 24 horas antes de alterar senha, username ou outros dados.",
+
+                        "🔥 Aqueça a conta por alguns dias antes de realizar anúncios ou atividades intensas.",
+
+                        "⚠️ Alterações imediatas podem gerar verificações ou bloqueios de segurança."
+
+                    ].join("\n");
+
+
+                })
+                .join(
+                    "\n\n---\n\n"
+                );
+
+        }
+
+
+        /* =====================================================
+           PROCESSADOR GG MAX
+        ===================================================== */
+
+        function processarFacebookGGMax(
+            tipo,
+            texto
+        ) {
+
+
+            switch (tipo) {
+
+
+                case "nova":
+
+                    return processarFacebookGGMaxNova(
+                        texto
+                    );
+
+
+                case "antiga":
+
+                    return processarFacebookGGMaxAntiga(
+                        texto
+                    );
+
+
+                case "numero":
+
+                    return processarFacebookGGMaxNumero(
+                        texto
+                    );
+
+
+                default:
+
+                    return "";
+
+            }
+
+        }
+
+
+        /* =====================================================
+           OBTER CAMPO
+        ===================================================== */
+
+        function obterCampoFacebookGGMax(
+            tipo
+        ) {
+
+
+            const ids = {
+
+
+                nova:
+                    "facebookGGMaxNova",
+
+
+                antiga:
+                    "facebookGGMaxAntiga",
+
+
+                numero:
+                    "facebookGGMaxNumero"
+
+            };
+
+
+            return document.getElementById(
+                ids[tipo]
+            );
+
+        }
+
+
+        /* =====================================================
+           COPIAR MÉTODO GG MAX
+        ===================================================== */
+
+        async function copiarFacebookGGMax(
+            tipo
+        ) {
+
+
+            const campo =
+                obterCampoFacebookGGMax(
+                    tipo
+                );
+
+
+            if (!campo) {
+                return;
+            }
+
+
+            const texto =
+                campo.value.trim();
+
+
+            if (!texto) {
+
+                mostrarPopup(
+                    "Cole os dados primeiro.",
+                    "erro"
+                );
+
+                return;
+            }
+
+
+            const resultado =
+                processarFacebookGGMax(
+                    tipo,
+                    texto
+                );
+
+
+            if (!resultado) {
+
+                mostrarPopup(
+                    "Nenhum dado válido encontrado.",
+                    "erro"
+                );
+
+                return;
+            }
+
+
+            try {
+
+
+                await navigator
+                    .clipboard
+                    .writeText(
+                        resultado
+                    );
+
+
+                mostrarPopup(
+                    "Conteúdo copiado!",
+                    "sucesso"
+                );
+
+
+            }
+
+            catch {
+
+
+                mostrarPopup(
+                    "Não foi possível copiar.",
+                    "erro"
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           BAIXAR MÉTODO GG MAX
+        ===================================================== */
+
+        function baixarFacebookGGMax(
+            tipo
+        ) {
+
+
+            const campo =
+                obterCampoFacebookGGMax(
+                    tipo
+                );
+
+
+            if (!campo) {
+                return;
+            }
+
+
+            const texto =
+                campo.value.trim();
+
+
+            if (!texto) {
+
+                mostrarPopup(
+                    "Cole os dados primeiro.",
+                    "erro"
+                );
+
+                return;
+            }
+
+
+            const resultado =
+                processarFacebookGGMax(
+                    tipo,
+                    texto
+                );
+
+
+            if (!resultado) {
+
+                mostrarPopup(
+                    "Nenhum dado válido encontrado.",
+                    "erro"
+                );
+
+                return;
+            }
+
+
+            const blob =
+                new Blob(
+                    [resultado],
+                    {
+                        type:
+                            "text/plain;charset=utf-8"
+                    }
+                );
+
+
+            const url =
+                URL.createObjectURL(
+                    blob
+                );
+
+
+            const link =
+                document.createElement(
+                    "a"
+                );
+
+
+            link.href =
+                url;
+
+
+            link.download =
+                `Facebook_GGMax_${tipo}.txt`;
+
+
+            document.body.appendChild(
+                link
+            );
+
+
+            link.click();
+
+
+            link.remove();
+
+
+            URL.revokeObjectURL(
+                url
+            );
+
+
+            mostrarPopup(
+                "TXT gerado com sucesso!",
+                "sucesso"
+            );
+
+        }
+
+
+        /* =====================================================
+           PARSER DEFAULT — EMAIL : SENHA
+        ===================================================== */
+
+        function parseEmailSenha(
+            texto
+        ) {
+
+
+            return texto
+                .split(/\r?\n/)
+                .map(
+                    linha =>
+                        linha.trim()
+                )
+                .filter(Boolean)
+                .map(linha => {
+
+
+                    const partes =
+                        linha.split(
+                            /\s*:\s*/
+                        );
+
+
+                    if (
+                        partes.length < 2
+                    ) {
+
+                        return null;
+
+                    }
+
+
+                    return {
+
+                        email:
+                            partes[0].trim(),
+
+                        senha:
+                            partes
+                                .slice(1)
+                                .join(":")
+                                .trim()
+
+                    };
+
+                })
+                .filter(Boolean);
+
+        }
+
+
+        /* =====================================================
+           DEFAULT — FACEBOOK
+        ===================================================== */
+
+        function organizarFacebook(
+            texto
+        ) {
+
+
+            const contas =
+                parseEmailSenha(
+                    texto
+                );
+
+
+            return contas
+                .map(conta => [
+
+                    "Codigo: ",
+
+                    `Email: ${conta.email}`,
+
+                    `Senha: ${conta.senha}`
+
+                ].join("\n"))
+                .join(
+                    "\n\n---\n\n"
+                );
+
+        }
+
+
+        /* =====================================================
+           DEFAULT — EMAIL SIMPLES
+        ===================================================== */
+
+        function organizarEmailSimples(
+            texto
+        ) {
+
+
+            const contas =
+                parseEmailSenha(
+                    texto
+                );
+
+
+            return contas
+                .map(conta => [
+
+                    `Email: ${conta.email}`,
+
+                    `Senha: ${conta.senha}`
+
+                ].join("\n"))
+                .join(
+                    "\n\n---\n\n"
+                );
+
+        }
+
+
+        /* =====================================================
+           DEFAULT — OUTLOOK / LOVABLE
+        ===================================================== */
+
+        function organizarComCodigo(
+            texto
+        ) {
+
+
+            const contas =
+                parseEmailSenha(
+                    texto
+                );
+
+
+            return contas
+                .map(conta => [
+
+                    "Codigo: ",
+
+                    `Email: ${conta.email}`,
+
+                    `Senha: ${conta.senha}`
+
+                ].join("\n"))
+                .join(
+                    "\n\n---\n\n"
+                );
+
+        }
+
+
+        /* =====================================================
+           DEFAULT — ELEVENLABS
+        ===================================================== */
+
+        function organizarElevenLabs(
+            texto
+        ) {
+
+
+            const contas =
+                parseEmailSenha(
+                    texto
+                );
+
+
+            return contas
+                .map(conta => [
+
+                    `Email: ${conta.email}`,
+
+                    `Senha Eleven: 1!${conta.senha}`,
+
+                    `Senha do Outlook: ${conta.senha}`
+
+                ].join("\n"))
+                .join(
+                    "\n\n---\n\n"
+                );
+
+        }
+
+
+        /* =====================================================
+           DEFAULT — GMAIL
+        ===================================================== */
+
+        function organizarGmail(
+            texto
+        ) {
+
+
+            const blocos =
+                texto
+                    .split(
+                        /\n\s*---+\s*\n/
+                    )
+                    .map(
+                        bloco =>
+                            bloco.trim()
+                    )
+                    .filter(Boolean);
+
+
+            const contas = [];
+
+
+            blocos.forEach(bloco => {
+
+
+                const emailMatch =
+                    bloco.match(
+                        /Email\s*:\s*(.+)/i
+                    );
+
+
+                const senhaMatch =
+                    bloco.match(
+                        /Senha\s*:\s*(.+)/i
+                    );
+
+
+                if (!emailMatch) {
+                    return;
+                }
+
+
+                let email =
+                    emailMatch[1].trim();
+
+
+                const senha =
+                    senhaMatch
+                        ? senhaMatch[1].trim()
+                        : "";
+
+
+                if (
+                    !email
+                        .toLowerCase()
+                        .includes("@")
+                ) {
+
+                    email +=
+                        "@gmail.com";
+
+                }
+
+
+                contas.push({
+
+                    email,
+                    senha
+
+                });
+
+            });
+
+
+            return contas
+                .map(conta => [
+
+                    `Email: ${conta.email}`,
+
+                    `Senha: ${conta.senha}`
+
+                ].join("\n"))
+                .join(
+                    "\n\n---\n\n"
+                );
+
+        }
+
+
+        /* =====================================================
+           DEFAULT — INSTAGRAM
+        ===================================================== */
+
+        function organizarInstagram(
+            texto
+        ) {
+
+
+            const blocos =
+                texto
+                    .split(
+                        /-{5,}/
+                    )
+                    .map(
+                        bloco =>
+                            bloco.trim()
+                    )
+                    .filter(Boolean);
+
+
+            const contas = [];
+
+
+            blocos.forEach(bloco => {
+
+
+                const usuario =
+                    bloco.match(
+                        /Usuário\s*:\s*(.+)/i
+                    )?.[1]
+                    ?.trim();
+
+
+                const senha =
+                    bloco.match(
+                        /Senha\s*:\s*(.+)/i
+                    )?.[1]
+                    ?.trim();
+
+
+                const codigo =
+                    bloco.match(
+                        /Código\s*2FA\s*:\s*(.+)/i
+                    )?.[1]
+                    ?.trim();
+
+
+                if (
+                    !usuario ||
+                    !senha ||
+                    !codigo
+                ) {
+
+                    return;
+
+                }
+
+
+                contas.push({
+
+                    usuario,
+                    senha,
+                    codigo
+
+                });
+
+            });
+
+
+            return contas
+                .map(conta => [
+
+                    `2fa: https://2fa.fb.tools/${conta.codigo}`,
+
+                    `Usuário: ${conta.usuario}`,
+
+                    `Senha: ${conta.senha}`
+
+                ].join("\n"))
+                .join(
+                    "\n\n---\n\n"
+                );
+
+        }
+
+
+        /* =====================================================
+           DEFAULT — TIKTOK
+        ===================================================== */
+
+        function organizarTikTok(
+            texto
+        ) {
+
+
+            const linhas =
+                texto
+                    .split(/\r?\n/)
+                    .map(
+                        linha =>
+                            linha.trim()
+                    )
+                    .filter(Boolean);
+
+
+            return linhas
+                .map(linha => {
+
+
+                    let email = "";
+                    let usuario = "";
+                    let senha = "";
+
+
+                    if (
+                        linha.includes("|")
+                    ) {
+
+
+                        const partes =
+                            linha
+                                .split("|")
+                                .map(
+                                    p =>
+                                        p.trim()
+                                );
+
+
+                        email =
+                            partes[0] || "";
+
+
+                        usuario =
+                            partes[1] || "";
+
+
+                        senha =
+                            partes[2] || "";
+
+                    }
+
+
+                    else if (
+                        linha.includes(":")
+                    ) {
+
+
+                        const partes =
+                            linha.split(
+                                /\s*:\s*/
+                            );
+
+
+                        email =
+                            partes
+                                .shift()
+                                ?.trim() || "";
+
+
+                        senha =
+                            partes
+                                .join(":")
+                                .trim();
+
+                    }
+
+
+                    else {
+
+                        email =
+                            linha;
+
+                    }
+
+
+                    if (!email) {
+                        return "";
+                    }
+
+
+                    const partesEmail =
+                        email.split("@");
+
+
+                    const username =
+                        partesEmail[0] || "";
+
+
+                    const dominio =
+                        partesEmail[1] || "";
+
+
+                    const inbox =
+                        dominio
+                            ? `https://${dominio}/${username}`
+                            : "";
+
+
+                    const saida = [
+
+                        "Código: https://2fa.fb.tools/",
+
+                        `User: ${usuario}`,
+
+                        `Email: ${email}`,
+
+                        `Senha: ${senha}`
+
+                    ];
+
+
+                    if (inbox) {
+
+                        saida.push(
+                            "",
+                            `Para acessar o inbox do email: ${inbox}`
+                        );
+
+                    }
+
+
+                    return saida.join(
+                        "\n"
+                    );
+
+                })
+                .filter(Boolean)
+                .join(
+                    "\n\n---\n\n"
+                );
+
+        }
+
+
+        /* =====================================================
+           DEFAULT — PROCESSADOR
+        ===================================================== */
+
+        function processarDefault(
+            texto
+        ) {
+
+
+            switch (
+                plataformaAtual
+            ) {
+
+
+                case "Facebook":
+
+                    return organizarFacebook(
+                        texto
+                    );
+
+
+                case "TikTok":
+
+                    return organizarTikTok(
+                        texto
+                    );
+
+
+                case "Instagram":
+
+                    return organizarInstagram(
+                        texto
+                    );
+
+
+                case "Outlook":
+
+                    return organizarEmailSimples(
+                        texto
+                    );
+
+
+                case "Lovable":
+
+                    return organizarComCodigo(
+                        texto
+                    );
+
+
+                case "ElevenLabs":
+
+                    return organizarElevenLabs(
+                        texto
+                    );
+
+
+                case "Gmail":
+
+                    return organizarGmail(
+                        texto
+                    );
+
+
+                case "Pinterest":
+
+                    return organizarEmailSimples(
+                        texto
+                    );
+
+
+                case "Discord":
+
+                    return organizarEmailSimples(
+                        texto
+                    );
+
+
+                case "Twitter":
+
+                    return organizarEmailSimples(
+                        texto
+                    );
+
+
+                case "Spotify":
+
+                    return organizarEmailSimples(
+                        texto
+                    );
+
+
+                case "Netflix":
+
+                    return organizarEmailSimples(
+                        texto
+                    );
+
+
+                default:
+
+                    return texto.trim();
+
+            }
+
+        }
+
+
+        /* =====================================================
+           DISCORD → GG MAX / GAME MARKET
+        ===================================================== */
+
+        function parseDiscordEspecial(bloco) {
+
+            const email =
+                bloco.match(
+                    /Email\s*:\s*(.*)/i
+                )?.[1]
+                ?.trim() || "";
+
+
+            const senha =
+                bloco.match(
+                    /Senha\s*:\s*(.*)/i
+                )?.[1]
+                ?.trim() || "";
+
+
+            return {
+                email,
+                senha
+            };
+
+        }
+
+
+        function formatarDiscordEspecial(conta) {
+
+            return [
+                "🎉 Pedido entregue!",
+                "",
+                "Olá! Sua conta Discord já está pronta para uso. 💜",
+                "",
+                "📩 Dados de acesso:",
+                `📧 Email: ${conta.email}`,
+                `🔑 Senha: ${conta.senha}`,
+                "",
+                "🚨 ATENÇÃO — LEIA!",
+                "",
+                "✅ Faça o login normalmente.",
+                "📩 O Discord pode solicitar verificação por e-mail. Se aparecer, acesse o e-mail e confirme.",
+                "⚠️ Evite alterações logo após o primeiro acesso.",
+                "🚨 Algum problema? Me avise antes de alterar a conta.",
+                "💙 Conseguiu entrar? Me avise!"
+            ].join("\n");
+
+        }
+
+
+        function processarDiscordMetodo(tipo, texto) {
+
+            const contas =
+                separarBlocos(texto)
+                    .map(parseDiscordEspecial)
+                    .filter(conta => conta.email || conta.senha);
+
+
+            if (!contas.length) {
+                throw new Error("Nenhuma conta válida encontrada.");
+            }
+
+
+            const separador =
+                tipo === "gamemarket"
+                    ? "\n\n===\n\n"
+                    : "\n\n---\n\n";
+
+
+            return contas
+                .map(formatarDiscordEspecial)
+                .join(separador);
+
+        }
+
+
+        async function copiarDiscordMetodo(tipo) {
+
+            const id =
+                tipo === "gamemarket"
+                    ? "discordGameMarketInput"
+                    : "discordGGMaxInput";
+
+
+            const campo =
+                document.getElementById(id);
+
+
+            if (!campo.value.trim()) {
+                mostrarPopup("Cole os dados primeiro.", "erro");
+                return;
+            }
+
+
+            try {
+
+                const resultado =
+                    processarDiscordMetodo(
+                        tipo,
+                        campo.value
+                    );
+
+
+                await copiarResultadoDiscord(resultado);
+
+            }
+
+            catch (erro) {
+
+                mostrarPopup(
+                    erro.message || "Não foi possível processar as contas.",
+                    "erro"
+                );
+
+            }
+
+        }
+
+
+        async function copiarResultadoDiscord(texto) {
+
+            try {
+                await navigator.clipboard.writeText(texto);
+            }
+            catch {
+                const area = document.createElement("textarea");
+                area.value = texto;
+                document.body.appendChild(area);
+                area.select();
+                document.execCommand("copy");
+                area.remove();
+            }
+
+            mostrarPopup("Conteúdo copiado!", "sucesso");
+
+        }
+
+
+        function baixarDiscordMetodo(tipo) {
+
+            const id =
+                tipo === "gamemarket"
+                    ? "discordGameMarketInput"
+                    : "discordGGMaxInput";
+
+
+            const campo =
+                document.getElementById(id);
+
+
+            if (!campo.value.trim()) {
+                mostrarPopup("Cole os dados primeiro.", "erro");
+                return;
+            }
+
+
+            try {
+
+                const resultado =
+                    processarDiscordMetodo(
+                        tipo,
+                        campo.value
+                    );
+
+
+                const blob =
+                    new Blob(
+                        [resultado],
+                        { type: "text/plain;charset=utf-8" }
+                    );
+
+
+                const url =
+                    URL.createObjectURL(blob);
+
+
+                const link =
+                    document.createElement("a");
+
+
+                link.href = url;
+                link.download =
+                    `Discord_${tipo}.txt`;
+
+
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+                URL.revokeObjectURL(url);
+
+
+                mostrarPopup(
+                    "TXT gerado com sucesso!",
+                    "sucesso"
+                );
+
+            }
+
+            catch (erro) {
+
+                mostrarPopup(
+                    erro.message || "Não foi possível processar as contas.",
+                    "erro"
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           PROCESSADOR GERAL
+        ===================================================== */
+
+        function processarConteudo(
+            texto
+        ) {
+
+
+            if (
+                plataformaAtual === "Discord" &&
+                destinoAtual === "GG Max"
+            ) {
+
+                return processarDiscordMetodo(
+                    "ggmax",
+                    texto
+                );
+
+            }
+
+
+            if (
+                plataformaAtual === "Discord" &&
+                destinoAtual === "Game Market"
+            ) {
+
+                return processarDiscordMetodo(
+                    "gamemarket",
+                    texto
+                );
+
+            }
+
+
+            if (
+                destinoAtual ===
+                "Default"
+            ) {
+
+                return processarDefault(
+                    texto
+                );
+
+            }
+
+
+            return texto.trim();
+
+        }
+
+
+        /* =====================================================
+           POPUP
+        ===================================================== */
+
+        function mostrarPopup(
+            mensagem,
+            tipo
+        ) {
+
+
+            const popup =
+                document.getElementById(
+                    "popup"
+                );
+
+
+            popup.textContent =
+                mensagem;
+
+
+            popup.classList.remove(
+                "sucesso",
+                "erro"
+            );
+
+
+            popup.classList.add(
+                tipo === "erro"
+                    ? "erro"
+                    : "sucesso"
+            );
+
+
+            popup.classList.add(
+                "show"
+            );
+
+
+            setTimeout(
+                () => {
+
+                    popup.classList.remove(
+                        "show"
+                    );
+
+                },
+                2500
+            );
+
+        }
+
+
+        /* =====================================================
+           BAIXAR PADRÃO
+        ===================================================== */
+
+        function baixarTXT() {
+
+
+            const texto =
+                inputContas.value;
+
+
+            if (!texto.trim()) {
+
+                mostrarPopup(
+                    "Cole os dados primeiro.",
+                    "erro"
+                );
+
+                return;
+            }
+
+
+            const resultado =
+                processarConteudo(
+                    texto
+                );
+
+
+            if (!resultado.trim()) {
+
+                mostrarPopup(
+                    "Nenhum dado válido encontrado.",
+                    "erro"
+                );
+
+                return;
+            }
+
+
+            const blob =
+                new Blob(
+                    [resultado],
+                    {
+                        type:
+                            "text/plain;charset=utf-8"
+                    }
+                );
+
+
+            const url =
+                URL.createObjectURL(
+                    blob
+                );
+
+
+            const link =
+                document.createElement(
+                    "a"
+                );
+
+
+            link.href =
+                url;
+
+
+            link.download =
+                `${plataformaAtual}_${destinoAtual}.txt`;
+
+
+            document.body.appendChild(
+                link
+            );
+
+
+            link.click();
+
+
+            link.remove();
+
+
+            URL.revokeObjectURL(
+                url
+            );
+
+
+            mostrarPopup(
+                "TXT gerado com sucesso!",
+                "sucesso"
+            );
+
+        }
+
+
+        /* =====================================================
+           COPIAR PADRÃO
+        ===================================================== */
+
+        async function copiarTXT() {
+
+
+            const texto =
+                inputContas.value;
+
+
+            if (!texto.trim()) {
+
+                mostrarPopup(
+                    "Cole os dados primeiro.",
+                    "erro"
+                );
+
+                return;
+            }
+
+
+            const resultado =
+                processarConteudo(
+                    texto
+                );
+
+
+            if (!resultado.trim()) {
+
+                mostrarPopup(
+                    "Nenhum dado válido encontrado.",
+                    "erro"
+                );
+
+                return;
+            }
+
+
+            try {
+
+
+                await navigator
+                    .clipboard
+                    .writeText(
+                        resultado
+                    );
+
+
+                mostrarPopup(
+                    "Conteúdo copiado!",
+                    "sucesso"
+                );
+
+
+            }
+
+            catch {
+
+
+                mostrarPopup(
+                    "Não foi possível copiar.",
+                    "erro"
+                );
+
+            }
+
+        }
+
+
+        /* =====================================================
+           TROCAR PLATAFORMA
+        ===================================================== */
+
+        document
+            .querySelectorAll(
+                ".platform-btn"
+            )
+            .forEach(button => {
+
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+
+                        document
+                            .querySelectorAll(
+                                ".platform-btn"
+                            )
+                            .forEach(btn => {
+
+                                btn.classList.remove(
+                                    "active"
+                                );
+
+                            });
+
+
+                        button.classList.add(
+                            "active"
+                        );
+
+
+                        plataformaAtual =
+                            button.dataset.platform;
+
+
+                        atualizarInterface();
+
+                    }
+                );
+
+            });
+
+
+        /* =====================================================
+           TROCAR DESTINO
+        ===================================================== */
+
+        document
+            .querySelectorAll(
+                ".destination-btn"
+            )
+            .forEach(button => {
+
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+
+                        document
+                            .querySelectorAll(
+                                ".destination-btn"
+                            )
+                            .forEach(btn => {
+
+                                btn.classList.remove(
+                                    "active"
+                                );
+
+                            });
+
+
+                        button.classList.add(
+                            "active"
+                        );
+
+
+                        destinoAtual =
+                            button.dataset.destination;
+
+
+                        atualizarInterface();
+
+                    }
+                );
+
+            });
+
+
+        /* =====================================================
+           INICIALIZAÇÃO
+        ===================================================== */
+
+        atualizarInterface();
+
+    </script>
 
 </body>
+
 </html>
