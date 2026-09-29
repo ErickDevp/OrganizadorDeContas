@@ -625,7 +625,7 @@
                 100%;
 
             max-width:
-                1000px;
+                1400px;
 
             margin:
                 35px auto;
@@ -1071,7 +1071,7 @@
                 grid;
 
             grid-template-columns:
-                repeat(3, 1fr);
+                1fr;
 
             gap:
                 15px;
@@ -1123,6 +1123,30 @@
                 .3s;
         }
 
+
+
+        .special-methods {
+            display: none;
+            grid-template-columns: 1fr;
+            width: 100%;
+        }
+
+        .special-methods .method-card {
+            width: 100%;
+            min-width: 0;
+        }
+
+        .method-limit {
+            margin-top: 5px;
+            color: #64748b;
+            font-size: 11px;
+        }
+
+        @media (max-width: 1000px) {
+            .method-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 
         .method-card:hover {
 
@@ -1649,7 +1673,187 @@
 
         }
 
-    </style>
+    
+
+/* =====================================================
+   HEADER — AJUSTE VISUAL RESPONSIVO
+   Mantém o header compacto e elegante sem criar overflow.
+===================================================== */
+.main-header {
+    width: 100%;
+    overflow: hidden;
+}
+
+.header-top {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 14px 16px 12px;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: 22px;
+}
+
+.brand {
+    margin: 0;
+    min-width: 210px;
+    gap: 11px;
+}
+
+.brand-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+    font-size: 17px;
+}
+
+.brand-text h1 {
+    font-size: 18px;
+    line-height: 1.15;
+    white-space: nowrap;
+}
+
+.brand-text span {
+    margin-top: 4px;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.platform-nav {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 7px;
+    flex-wrap: wrap;
+}
+
+.platform-btn {
+    flex: 0 1 auto;
+    min-width: 0;
+    min-height: 38px;
+    padding: 9px 14px;
+    border-radius: 9px;
+    font-size: 12px;
+}
+
+.sub-header {
+    width: 100%;
+    overflow: hidden;
+}
+
+.sub-header-content {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.selected-platform {
+    flex: 0 0 auto;
+    font-size: 13px;
+}
+
+.destination-nav {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.destination-btn {
+    flex: 0 1 auto !important;
+    min-width: 0 !important;
+    padding: 9px 18px;
+    min-height: 36px;
+    border-radius: 9px;
+}
+
+@media (max-width: 1100px) {
+    .header-top {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .brand {
+        min-width: 0;
+    }
+
+    .platform-nav {
+        justify-content: flex-start;
+    }
+
+    .sub-header-content {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .destination-nav {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 600px) {
+    .header-top {
+        padding: 12px;
+        gap: 10px;
+    }
+
+    .brand-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+    }
+
+    .brand-text h1 {
+        font-size: 17px;
+    }
+
+    .brand-text span {
+        font-size: 10px;
+    }
+
+    .platform-nav {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-bottom: 3px;
+        scrollbar-width: thin;
+    }
+
+    .platform-btn {
+        flex: 0 0 auto;
+        padding: 9px 14px;
+    }
+
+    .sub-header-content {
+        padding: 10px 12px;
+    }
+
+    .destination-nav {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding-bottom: 3px;
+        scrollbar-width: thin;
+    }
+
+    .destination-btn {
+        flex: 0 0 auto !important;
+    }
+}
+
+</style>
 
 </head>
 
@@ -1697,18 +1901,113 @@
 
             <nav class="platform-nav">
 
-                <button type="button" class="platform-btn active" data-platform="Facebook">Facebook</button>
-                <button type="button" class="platform-btn" data-platform="TikTok">TikTok</button>
-                <button type="button" class="platform-btn" data-platform="Instagram">Instagram</button>
-                <button type="button" class="platform-btn" data-platform="Outlook">Outlook</button>
-                <button type="button" class="platform-btn" data-platform="Lovable">Lovable</button>
-                <button type="button" class="platform-btn" data-platform="ElevenLabs">ElevenLabs</button>
-                <button type="button" class="platform-btn" data-platform="Discord">Discord</button>
-                <button type="button" class="platform-btn" data-platform="Gmail">Gmail</button>
-                <button type="button" class="platform-btn" data-platform="Pinterest">Pinterest</button>
-                <button type="button" class="platform-btn" data-platform="Twitter">Twitter</button>
-                <button type="button" class="platform-btn" data-platform="Spotify">Spotify</button>
-                <button type="button" class="platform-btn" data-platform="Netflix">Netflix</button>
+
+                <button
+                    type="button"
+                    class="platform-btn active"
+                    data-platform="Facebook"
+                >
+                    Facebook
+                </button>
+
+
+                <button
+                    type="button"
+                    class="platform-btn"
+                    data-platform="TikTok"
+                >
+                    TikTok
+                </button>
+
+
+                <button
+                    type="button"
+                    class="platform-btn"
+                    data-platform="Instagram"
+                >
+                    Instagram
+                </button>
+
+
+                <button
+                    type="button"
+                    class="platform-btn"
+                    data-platform="Outlook"
+                >
+                    Outlook
+                </button>
+
+
+                <button
+                    type="button"
+                    class="platform-btn"
+                    data-platform="Lovable"
+                >
+                    Lovable
+                </button>
+
+
+                <button
+                    type="button"
+                    class="platform-btn"
+                    data-platform="ElevenLabs"
+                >
+                    ElevenLabs
+                </button>
+
+                <button
+                    type="button"
+                    class="platform-btn"
+                    data-platform="Discord"
+                >
+                    Discord
+                </button>
+
+
+                <button
+                    type="button"
+                    class="platform-btn"
+                    data-platform="Gmail"
+                >
+                    Gmail
+                </button>
+
+
+                <button
+                    type="button"
+                    class="platform-btn"
+                    data-platform="Pinterest"
+                >
+                    Pinterest
+                </button>
+
+
+                <button
+                    type="button"
+                    class="platform-btn"
+                    data-platform="Twitter"
+                >
+                    Twitter
+                </button>
+
+
+                <button
+                    type="button"
+                    class="platform-btn"
+                    data-platform="Spotify"
+                >
+                    Spotify
+                </button>
+
+
+                <button
+                    type="button"
+                    class="platform-btn"
+                    data-platform="Netflix"
+                >
+                    Netflix
+                </button>
+
 
             </nav>
 
@@ -1738,11 +2037,66 @@
 
                 <nav class="destination-nav">
 
-                    <button type="button" class="destination-btn dest-default active" data-destination="Default">Default</button>
-                    <button type="button" class="destination-btn ggmax" data-destination="GG Max">GG Max</button>
-                    <button type="button" class="destination-btn gamemarket" data-destination="Game Market">Game Market</button>
-                    <button type="button" class="destination-btn basify" data-destination="Basify">Basify</button>
-                    <button type="button" class="destination-btn dfg" data-destination="DFG">DFG</button>
+
+                    <button
+                        type="button"
+                        class="
+                            destination-btn
+                            dest-default
+                            active
+                        "
+                        data-destination="Default"
+                    >
+                        Default
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="
+                            destination-btn
+                            ggmax
+                        "
+                        data-destination="GG Max"
+                    >
+                        GG Max
+                    </button>
+
+                    <button
+                        type="button"
+                        class="
+                            destination-btn
+                            gamemarket
+                        "
+                        data-destination="Game Market"
+                    >
+                        Game Market
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="
+                            destination-btn
+                            basify
+                        "
+                        data-destination="Basefy"
+                    >
+                        Basefy
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="
+                            destination-btn
+                            dfg
+                        "
+                        data-destination="DFG"
+                    >
+                        DFG
+                    </button>
+
 
                 </nav>
 
@@ -1975,14 +2329,14 @@ Senha: SENHA"
                     <textarea
                         id="facebookGGMaxNumero"
                         placeholder="Link perfil: https://exemplo.com/perfil
-2fa: https://exemplo.com/2fa/CODIGO
+Codigo: https://exemplo.com/2fa/CODIGO
 Número: 5511999999999
 Senha: SENHA
 
 ---
 
 Link perfil: https://exemplo.com/perfil
-2fa: https://exemplo.com/2fa/CODIGO
+Codigo: https://exemplo.com/2fa/CODIGO
 Número: 5511999999999
 Senha: SENHA"
                     ></textarea>
@@ -2017,141 +2371,499 @@ Senha: SENHA"
             </div>
 
 
+
             <!-- =================================================
-                 DISCORD → GG MAX
+                 FACEBOOK → GAME MARKET
             ================================================== -->
 
             <div
-                id="discordGGMaxMethods"
+                id="facebookGameMarketMethods"
                 class="method-grid"
                 style="display:none;"
             >
 
                 <div class="method-card">
-
                     <div class="method-header">
-
                         <div>
-
-                            <h3>
-                                Contas Discord
-                            </h3>
-
-                            <span>
-                                Discord → GG Max
-                            </span>
-
+                            <h3>Conta Nova</h3>
+                            <span>Facebook → Game Market</span>
                         </div>
-
-                        <div class="method-number">
-                            01
-                        </div>
-
+                        <div class="method-number">01</div>
                     </div>
 
                     <textarea
-                        id="discordGGMaxInput"
-                        placeholder="Email: usuario@exemplo.com
+                        id="facebookGameMarketNova"
+                        placeholder="Codigo: https://exemplo.com/codigo
+Email: usuario@exemplo.com
 Senha: SENHA
 
 ---
 
+Codigo: https://exemplo.com/codigo
 Email: usuario2@exemplo.com
 Senha: SENHA2"
                     ></textarea>
 
                     <div class="method-actions">
+                        <button type="button" class="method-download" onclick="baixarFacebookGameMarket('nova')">Baixar TXT</button>
+                        <button type="button" class="method-copy" onclick="copiarFacebookGameMarket('nova')">Copiar</button>
+                    </div>
+                </div>
 
-                        <button
-                            type="button"
-                            class="method-download"
-                            onclick="baixarDiscordMetodo('ggmax')"
-                        >
-                            Baixar TXT
-                        </button>
-
-                        <button
-                            type="button"
-                            class="method-copy"
-                            onclick="copiarDiscordMetodo('ggmax')"
-                        >
-                            Copiar
-                        </button>
-
+                <div class="method-card">
+                    <div class="method-header">
+                        <div>
+                            <h3>Conta Antiga</h3>
+                            <span>Facebook → Game Market</span>
+                        </div>
+                        <div class="method-number">02</div>
                     </div>
 
+                    <textarea
+                        id="facebookGameMarketAntiga"
+                        placeholder="Codigo: https://exemplo.com/codigo
+Email: usuario@exemplo.com
+Senha: SENHA
+
+---
+
+Codigo: https://exemplo.com/codigo
+Email: usuario2@exemplo.com
+Senha: SENHA2"
+                    ></textarea>
+
+                    <div class="method-actions">
+                        <button type="button" class="method-download" onclick="baixarFacebookGameMarket('antiga')">Baixar TXT</button>
+                        <button type="button" class="method-copy" onclick="copiarFacebookGameMarket('antiga')">Copiar</button>
+                    </div>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-header">
+                        <div>
+                            <h3>Conta com Número</h3>
+                            <span>Facebook → Game Market</span>
+                        </div>
+                        <div class="method-number">03</div>
+                    </div>
+
+                    <textarea
+                        id="facebookGameMarketNumero"
+                        placeholder="Link perfil: https://exemplo.com/perfil
+Codigo: https://exemplo.com/codigo
+Número: 5511999999999
+Senha: SENHA
+
+---
+
+Link perfil: https://exemplo.com/perfil
+Codigo: https://exemplo.com/codigo
+Número: 5511999999999
+Senha: SENHA2"
+                    ></textarea>
+
+                    <div class="method-actions">
+                        <button type="button" class="method-download" onclick="baixarFacebookGameMarket('numero')">Baixar TXT</button>
+                        <button type="button" class="method-copy" onclick="copiarFacebookGameMarket('numero')">Copiar</button>
+                    </div>
                 </div>
 
             </div>
 
 
             <!-- =================================================
-                 DISCORD → GAME MARKET
+                 TIKTOK → GG MAX
+            ================================================== -->
+            <div id="tiktokGGMaxMethods" class="method-grid special-methods">
+                <div class="method-card">
+                    <div class="method-header">
+                        <div><h3>TikTok — GG Max</h3><span>Entrada separada por ---</span></div>
+                        <div class="method-number">01</div>
+                    </div>
+                    <textarea id="tiktokGGMaxInput" placeholder="Código: https://exemplo.com/codigo
+User: usuario
+Email: usuario@exemplo.com
+Senha: SENHA
+
+---
+
+Código: https://exemplo.com/codigo
+User: usuario2
+Email: usuario2@exemplo.com
+Senha: SENHA2"></textarea>
+                    <div class="method-actions">
+                        <button type="button" class="method-download" onclick="baixarTikTokMetodo('ggmax')">Baixar TXT</button>
+                        <button type="button" class="method-copy" onclick="copiarTikTokMetodo('ggmax')">Copiar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- =================================================
+                 TIKTOK → GAME MARKET
+            ================================================== -->
+            <div id="tiktokGameMarketMethods" class="method-grid special-methods">
+                <div class="method-card">
+                    <div class="method-header">
+                        <div><h3>TikTok — Game Market</h3><span>Entrada separada por --- • saída por ===</span></div>
+                        <div class="method-number">01</div>
+                    </div>
+                    <textarea id="tiktokGameMarketInput" placeholder="Código: https://exemplo.com/codigo
+User: usuario
+Email: usuario@exemplo.com
+Senha: SENHA
+
+---
+
+Código: https://exemplo.com/codigo
+User: usuario2
+Email: usuario2@exemplo.com
+Senha: SENHA2"></textarea>
+                    <div class="method-actions">
+                        <button type="button" class="method-download" onclick="baixarTikTokMetodo('gamemarket')">Baixar TXT</button>
+                        <button type="button" class="method-copy" onclick="copiarTikTokMetodo('gamemarket')">Copiar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- =================================================
+                 INSTAGRAM → GG MAX
+            ================================================== -->
+            <div id="instagramGGMaxMethods" class="method-grid special-methods">
+                <div class="method-card">
+                    <div class="method-header">
+                        <div><h3>Instagram — GG Max</h3><span>Entrada separada por ---</span></div>
+                        <div class="method-number">01</div>
+                    </div>
+                    <textarea id="instagramGGMaxInput" placeholder="2fa: https://exemplo.com/codigo
+Usuário: usuario
+Senha: SENHA
+
+---
+
+2fa: https://exemplo.com/codigo2
+Usuário: usuario2
+Senha: SENHA2"></textarea>
+                    <div class="method-actions">
+                        <button type="button" class="method-download" onclick="baixarInstagramMetodo('ggmax')">Baixar TXT</button>
+                        <button type="button" class="method-copy" onclick="copiarInstagramMetodo('ggmax')">Copiar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- =================================================
+                 INSTAGRAM → GAME MARKET
+            ================================================== -->
+            <div id="instagramGameMarketMethods" class="method-grid special-methods">
+                <div class="method-card">
+                    <div class="method-header">
+                        <div><h3>Instagram — Game Market</h3><span>Entrada separada por --- • saída por ===</span></div>
+                        <div class="method-number">01</div>
+                    </div>
+                    <textarea id="instagramGameMarketInput" placeholder="2fa: https://exemplo.com/codigo
+Usuário: usuario
+Senha: SENHA
+
+---
+
+2fa: https://exemplo.com/codigo2
+Usuário: usuario2
+Senha: SENHA2"></textarea>
+                    <div class="method-actions">
+                        <button type="button" class="method-download" onclick="baixarInstagramMetodo('gamemarket')">Baixar TXT</button>
+                        <button type="button" class="method-copy" onclick="copiarInstagramMetodo('gamemarket')">Copiar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- =================================================
+                 OUTLOOK → GG MAX
+            ================================================== -->
+            <div id="outlookGGMaxMethods" class="method-grid special-methods">
+                <div class="method-card">
+                    <div class="method-header"><div><h3>1 Conta</h3><span>Outlook → GG Max</span><div class="method-limit">1 conta por bloco</div></div><div class="method-number">01</div></div>
+                    <textarea id="outlookGGMax1" placeholder="Email: usuario@exemplo.com
+Senha: SENHA"></textarea>
+                    <div class="method-actions"><button type="button" class="method-download" onclick="baixarOutlookMetodo('ggmax',1)">Baixar TXT</button><button type="button" class="method-copy" onclick="copiarOutlookMetodo('ggmax',1)">Copiar</button></div>
+                </div>
+                <div class="method-card">
+                    <div class="method-header"><div><h3>5 Contas</h3><span>Outlook → GG Max</span><div class="method-limit">Agrupamento de 5 contas</div></div><div class="method-number">02</div></div>
+                    <textarea id="outlookGGMax5" placeholder="Email: usuario1@exemplo.com
+Senha: SENHA1
+
+---
+
+Email: usuario2@exemplo.com
+Senha: SENHA2
+
+---
+
+Email: usuario3@exemplo.com
+Senha: SENHA3
+
+---
+
+Email: usuario4@exemplo.com
+Senha: SENHA4
+
+---
+
+Email: usuario5@exemplo.com
+Senha: SENHA5"></textarea>
+                    <div class="method-actions"><button type="button" class="method-download" onclick="baixarOutlookMetodo('ggmax',5)">Baixar TXT</button><button type="button" class="method-copy" onclick="copiarOutlookMetodo('ggmax',5)">Copiar</button></div>
+                </div>
+                <div class="method-card">
+                    <div class="method-header"><div><h3>10 Contas</h3><span>Outlook → GG Max</span><div class="method-limit">Agrupamento de 10 contas</div></div><div class="method-number">03</div></div>
+                    <textarea id="outlookGGMax10" placeholder="Email: usuario1@exemplo.com
+Senha: SENHA1
+
+---
+
+Email: usuario2@exemplo.com
+Senha: SENHA2
+
+---
+
+... até completar 10 contas"></textarea>
+                    <div class="method-actions"><button type="button" class="method-download" onclick="baixarOutlookMetodo('ggmax',10)">Baixar TXT</button><button type="button" class="method-copy" onclick="copiarOutlookMetodo('ggmax',10)">Copiar</button></div>
+                </div>
+            </div>
+
+            <!-- =================================================
+                 OUTLOOK → GAME MARKET
+            ================================================== -->
+            <div id="outlookGameMarketMethods" class="method-grid special-methods">
+                <div class="method-card">
+                    <div class="method-header"><div><h3>1 Conta</h3><span>Outlook → Game Market</span><div class="method-limit">1 conta por bloco</div></div><div class="method-number">01</div></div>
+                    <textarea id="outlookGameMarket1" placeholder="Email: usuario@exemplo.com
+Senha: SENHA"></textarea>
+                    <div class="method-actions"><button type="button" class="method-download" onclick="baixarOutlookMetodo('gamemarket',1)">Baixar TXT</button><button type="button" class="method-copy" onclick="copiarOutlookMetodo('gamemarket',1)">Copiar</button></div>
+                </div>
+                <div class="method-card">
+                    <div class="method-header"><div><h3>5 Contas</h3><span>Outlook → Game Market</span><div class="method-limit">Agrupamento de 5 contas</div></div><div class="method-number">02</div></div>
+                    <textarea id="outlookGameMarket5" placeholder="Email: usuario1@exemplo.com
+Senha: SENHA1
+
+---
+
+Email: usuario2@exemplo.com
+Senha: SENHA2
+
+---
+
+Email: usuario3@exemplo.com
+Senha: SENHA3
+
+---
+
+Email: usuario4@exemplo.com
+Senha: SENHA4
+
+---
+
+Email: usuario5@exemplo.com
+Senha: SENHA5"></textarea>
+                    <div class="method-actions"><button type="button" class="method-download" onclick="baixarOutlookMetodo('gamemarket',5)">Baixar TXT</button><button type="button" class="method-copy" onclick="copiarOutlookMetodo('gamemarket',5)">Copiar</button></div>
+                </div>
+                <div class="method-card">
+                    <div class="method-header"><div><h3>10 Contas</h3><span>Outlook → Game Market</span><div class="method-limit">Agrupamento de 10 contas</div></div><div class="method-number">03</div></div>
+                    <textarea id="outlookGameMarket10" placeholder="Email: usuario1@exemplo.com
+Senha: SENHA1
+
+---
+
+Email: usuario2@exemplo.com
+Senha: SENHA2
+
+---
+
+... até completar 10 contas"></textarea>
+                    <div class="method-actions"><button type="button" class="method-download" onclick="baixarOutlookMetodo('gamemarket',10)">Baixar TXT</button><button type="button" class="method-copy" onclick="copiarOutlookMetodo('gamemarket',10)">Copiar</button></div>
+                </div>
+            </div>
+
+            <!-- =================================================
+                 LOVABLE → GG MAX / GAME MARKET
             ================================================== -->
 
-            <div
-                id="discordGameMarketMethods"
-                class="method-grid"
-                style="display:none;"
-            >
-
+            <div id="lovableGGMaxMethods" class="method-grid special-methods" style="display:none;">
                 <div class="method-card">
+                    <div class="method-header"><div><h3>1 Conta</h3><span>Lovable → GG Max</span><div class="method-limit">Organização por unidade</div></div><div class="method-number">01</div></div>
+                    <textarea id="lovableGGMax1" placeholder="Codigo: https://exemplo.com/codigo
+Email: usuario@exemplo.com
+Senha: SENHA
 
+---
+
+Codigo: https://exemplo.com/codigo2
+Email: usuario2@exemplo.com
+Senha: SENHA2"></textarea>
+                    <div class="method-actions"><button type="button" class="method-download" onclick="baixarLovableMetodo('ggmax',1)">Baixar TXT</button><button type="button" class="method-copy" onclick="copiarLovableMetodo('ggmax',1)">Copiar</button></div>
+                </div>
+                <div class="method-card">
+                    <div class="method-header"><div><h3>2 Contas</h3><span>Lovable → GG Max</span><div class="method-limit">Agrupamento de 2 contas</div></div><div class="method-number">02</div></div>
+                    <textarea id="lovableGGMax2" placeholder="Cole quantas contas quiser. A saída será agrupada de 2 em 2.
+
+Codigo: https://exemplo.com/codigo
+Email: usuario@exemplo.com
+Senha: SENHA
+
+---
+
+Codigo: https://exemplo.com/codigo2
+Email: usuario2@exemplo.com
+Senha: SENHA2"></textarea>
+                    <div class="method-actions"><button type="button" class="method-download" onclick="baixarLovableMetodo('ggmax',2)">Baixar TXT</button><button type="button" class="method-copy" onclick="copiarLovableMetodo('ggmax',2)">Copiar</button></div>
+                </div>
+                <div class="method-card">
+                    <div class="method-header"><div><h3>5 Contas</h3><span>Lovable → GG Max</span><div class="method-limit">Agrupamento de 5 contas</div></div><div class="method-number">03</div></div>
+                    <textarea id="lovableGGMax5" placeholder="Cole quantas contas quiser. A saída será agrupada de 5 em 5."></textarea>
+                    <div class="method-actions"><button type="button" class="method-download" onclick="baixarLovableMetodo('ggmax',5)">Baixar TXT</button><button type="button" class="method-copy" onclick="copiarLovableMetodo('ggmax',5)">Copiar</button></div>
+                </div>
+                <div class="method-card">
+                    <div class="method-header"><div><h3>10 Contas</h3><span>Lovable → GG Max</span><div class="method-limit">Agrupamento de 10 contas</div></div><div class="method-number">04</div></div>
+                    <textarea id="lovableGGMax10" placeholder="Cole quantas contas quiser. A saída será agrupada de 10 em 10."></textarea>
+                    <div class="method-actions"><button type="button" class="method-download" onclick="baixarLovableMetodo('ggmax',10)">Baixar TXT</button><button type="button" class="method-copy" onclick="copiarLovableMetodo('ggmax',10)">Copiar</button></div>
+                </div>
+            </div>
+
+            <div id="lovableGameMarketMethods" class="method-grid special-methods" style="display:none;">
+                <div class="method-card">
+                    <div class="method-header"><div><h3>1 Conta</h3><span>Lovable → Game Market</span><div class="method-limit">Organização por unidade</div></div><div class="method-number">01</div></div>
+                    <textarea id="lovableGameMarket1" placeholder="Codigo: https://exemplo.com/codigo
+Email: usuario@exemplo.com
+Senha: SENHA
+
+---
+
+Codigo: https://exemplo.com/codigo2
+Email: usuario2@exemplo.com
+Senha: SENHA2"></textarea>
+                    <div class="method-actions"><button type="button" class="method-download" onclick="baixarLovableMetodo('gamemarket',1)">Baixar TXT</button><button type="button" class="method-copy" onclick="copiarLovableMetodo('gamemarket',1)">Copiar</button></div>
+                </div>
+                <div class="method-card">
+                    <div class="method-header"><div><h3>2 Contas</h3><span>Lovable → Game Market</span><div class="method-limit">Agrupamento de 2 contas</div></div><div class="method-number">02</div></div>
+                    <textarea id="lovableGameMarket2" placeholder="Cole quantas contas quiser. A saída será agrupada de 2 em 2."></textarea>
+                    <div class="method-actions"><button type="button" class="method-download" onclick="baixarLovableMetodo('gamemarket',2)">Baixar TXT</button><button type="button" class="method-copy" onclick="copiarLovableMetodo('gamemarket',2)">Copiar</button></div>
+                </div>
+                <div class="method-card">
+                    <div class="method-header"><div><h3>5 Contas</h3><span>Lovable → Game Market</span><div class="method-limit">Agrupamento de 5 contas</div></div><div class="method-number">03</div></div>
+                    <textarea id="lovableGameMarket5" placeholder="Cole quantas contas quiser. A saída será agrupada de 5 em 5."></textarea>
+                    <div class="method-actions"><button type="button" class="method-download" onclick="baixarLovableMetodo('gamemarket',5)">Baixar TXT</button><button type="button" class="method-copy" onclick="copiarLovableMetodo('gamemarket',5)">Copiar</button></div>
+                </div>
+                <div class="method-card">
+                    <div class="method-header"><div><h3>10 Contas</h3><span>Lovable → Game Market</span><div class="method-limit">Agrupamento de 10 contas</div></div><div class="method-number">04</div></div>
+                    <textarea id="lovableGameMarket10" placeholder="Cole quantas contas quiser. A saída será agrupada de 10 em 10."></textarea>
+                    <div class="method-actions"><button type="button" class="method-download" onclick="baixarLovableMetodo('gamemarket',10)">Baixar TXT</button><button type="button" class="method-copy" onclick="copiarLovableMetodo('gamemarket',10)">Copiar</button></div>
+                </div>
+            </div>
+
+            <!-- =================================================
+                 ELEVENLABS → GG MAX / GAME MARKET
+            ================================================== -->
+
+            <div id="elevenLabsGGMaxMethods" class="method-grid special-methods" style="display:none;">
+                <div class="method-card">
+                    <div class="method-header"><div><h3>1 Conta</h3><span>ElevenLabs → GG Max</span><div class="method-limit">Organização por unidade</div></div><div class="method-number">01</div></div>
+                    <textarea id="elevenLabsGGMax1" placeholder="Email: usuario@hotmail.com
+Senha Eleven: SENHA_ELEVEN
+Senha do Outlook: SENHA_OUTLOOK
+
+---
+
+Email: usuario2@hotmail.com
+Senha Eleven: SENHA_ELEVEN2
+Senha do Outlook: SENHA_OUTLOOK2"></textarea>
+                    <div class="method-actions"><button type="button" class="method-download" onclick="baixarElevenLabsMetodo('ggmax',1)">Baixar TXT</button><button type="button" class="method-copy" onclick="copiarElevenLabsMetodo('ggmax',1)">Copiar</button></div>
+                </div>
+                <div class="method-card">
+                    <div class="method-header"><div><h3>2 Contas</h3><span>ElevenLabs → GG Max</span><div class="method-limit">Agrupamento de 2 contas</div></div><div class="method-number">02</div></div>
+                    <textarea id="elevenLabsGGMax2" placeholder="Cole quantas contas quiser. A saída será agrupada de 2 em 2."></textarea>
+                    <div class="method-actions"><button type="button" class="method-download" onclick="baixarElevenLabsMetodo('ggmax',2)">Baixar TXT</button><button type="button" class="method-copy" onclick="copiarElevenLabsMetodo('ggmax',2)">Copiar</button></div>
+                </div>
+                <div class="method-card">
+                    <div class="method-header"><div><h3>5 Contas</h3><span>ElevenLabs → GG Max</span><div class="method-limit">Agrupamento de 5 contas</div></div><div class="method-number">03</div></div>
+                    <textarea id="elevenLabsGGMax5" placeholder="Cole quantas contas quiser. A saída será agrupada de 5 em 5."></textarea>
+                    <div class="method-actions"><button type="button" class="method-download" onclick="baixarElevenLabsMetodo('ggmax',5)">Baixar TXT</button><button type="button" class="method-copy" onclick="copiarElevenLabsMetodo('ggmax',5)">Copiar</button></div>
+                </div>
+            </div>
+
+            <div id="elevenLabsGameMarketMethods" class="method-grid special-methods" style="display:none;">
+                <div class="method-card">
+                    <div class="method-header"><div><h3>1 Conta</h3><span>ElevenLabs → Game Market</span><div class="method-limit">Organização por unidade</div></div><div class="method-number">01</div></div>
+                    <textarea id="elevenLabsGameMarket1" placeholder="Email: usuario@hotmail.com
+Senha Eleven: SENHA_ELEVEN
+Senha do Outlook: SENHA_OUTLOOK
+
+---
+
+Email: usuario2@hotmail.com
+Senha Eleven: SENHA_ELEVEN2
+Senha do Outlook: SENHA_OUTLOOK2"></textarea>
+                    <div class="method-actions"><button type="button" class="method-download" onclick="baixarElevenLabsMetodo('gamemarket',1)">Baixar TXT</button><button type="button" class="method-copy" onclick="copiarElevenLabsMetodo('gamemarket',1)">Copiar</button></div>
+                </div>
+                <div class="method-card">
+                    <div class="method-header"><div><h3>2 Contas</h3><span>ElevenLabs → Game Market</span><div class="method-limit">Agrupamento de 2 contas</div></div><div class="method-number">02</div></div>
+                    <textarea id="elevenLabsGameMarket2" placeholder="Cole quantas contas quiser. A saída será agrupada de 2 em 2."></textarea>
+                    <div class="method-actions"><button type="button" class="method-download" onclick="baixarElevenLabsMetodo('gamemarket',2)">Baixar TXT</button><button type="button" class="method-copy" onclick="copiarElevenLabsMetodo('gamemarket',2)">Copiar</button></div>
+                </div>
+                <div class="method-card">
+                    <div class="method-header"><div><h3>5 Contas</h3><span>ElevenLabs → Game Market</span><div class="method-limit">Agrupamento de 5 contas</div></div><div class="method-number">03</div></div>
+                    <textarea id="elevenLabsGameMarket5" placeholder="Cole quantas contas quiser. A saída será agrupada de 5 em 5."></textarea>
+                    <div class="method-actions"><button type="button" class="method-download" onclick="baixarElevenLabsMetodo('gamemarket',5)">Baixar TXT</button><button type="button" class="method-copy" onclick="copiarElevenLabsMetodo('gamemarket',5)">Copiar</button></div>
+                </div>
+            </div>
+
+            <!-- =================================================
+                 DISCORD → GG MAX / GAME MARKET
+            ================================================== -->
+
+            <div id="discordGGMaxMethods" class="method-grid special-methods" style="display:none;">
+                <div class="method-card">
                     <div class="method-header">
-
                         <div>
-
-                            <h3>
-                                Contas Discord
-                            </h3>
-
-                            <span>
-                                Discord → Game Market
-                            </span>
-
+                            <h3>Discord — GG Max</h3>
+                            <span>Entrada separada por ---</span>
+                            <div class="method-limit">Cada conta é entregue individualmente</div>
                         </div>
-
-                        <div class="method-number">
-                            01
-                        </div>
-
+                        <div class="method-number">01</div>
                     </div>
-
-                    <textarea
-                        id="discordGameMarketInput"
-                        placeholder="Email: usuario@exemplo.com
+                    <textarea id="discordGGMaxInput" placeholder="Email: usuario@exemplo.com
 Senha: SENHA
 
 ---
 
 Email: usuario2@exemplo.com
-Senha: SENHA2"
-                    ></textarea>
-
+Senha: SENHA2"></textarea>
                     <div class="method-actions">
-
-                        <button
-                            type="button"
-                            class="method-download"
-                            onclick="baixarDiscordMetodo('gamemarket')"
-                        >
-                            Baixar TXT
-                        </button>
-
-                        <button
-                            type="button"
-                            class="method-copy"
-                            onclick="copiarDiscordMetodo('gamemarket')"
-                        >
-                            Copiar
-                        </button>
-
+                        <button type="button" class="method-download" onclick="baixarDiscordMetodo('ggmax')">Baixar TXT</button>
+                        <button type="button" class="method-copy" onclick="copiarDiscordMetodo('ggmax')">Copiar</button>
                     </div>
-
                 </div>
-
             </div>
 
+            <div id="discordGameMarketMethods" class="method-grid special-methods" style="display:none;">
+                <div class="method-card">
+                    <div class="method-header">
+                        <div>
+                            <h3>Discord — Game Market</h3>
+                            <span>Entrada separada por --- • saída por ===</span>
+                            <div class="method-limit">Cada conta é entregue individualmente</div>
+                        </div>
+                        <div class="method-number">01</div>
+                    </div>
+                    <textarea id="discordGameMarketInput" placeholder="Email: usuario@exemplo.com
+Senha: SENHA
+
+---
+
+Email: usuario2@exemplo.com
+Senha: SENHA2"></textarea>
+                    <div class="method-actions">
+                        <button type="button" class="method-download" onclick="baixarDiscordMetodo('gamemarket')">Baixar TXT</button>
+                        <button type="button" class="method-copy" onclick="copiarDiscordMetodo('gamemarket')">Copiar</button>
+                    </div>
+                </div>
+            </div>
 
             <!-- =================================================
                  CAMPO PADRÃO
@@ -2352,22 +3064,24 @@ Senha: SENHA2"
             );
 
 
-        const discordGGMaxMethods =
-            document.getElementById(
-                "discordGGMaxMethods"
-            );
-
-
-        const discordGameMarketMethods =
-            document.getElementById(
-                "discordGameMarketMethods"
-            );
-
-
         const defaultMethodArea =
             document.getElementById(
                 "defaultMethodArea"
             );
+
+
+        const specialMethodAreas = [
+            "tiktokGGMaxMethods",
+            "tiktokGameMarketMethods",
+            "instagramGGMaxMethods",
+            "instagramGameMarketMethods",
+            "outlookGGMaxMethods",
+            "outlookGameMarketMethods",
+            "lovableGGMaxMethods",
+            "lovableGameMarketMethods",
+            "elevenLabsGGMaxMethods",
+            "elevenLabsGameMarketMethods"
+        ].map(id => document.getElementById(id));
 
 
         /* =====================================================
@@ -2409,7 +3123,7 @@ Senha: SENHA2"
             },
 
 
-            "Basify": {
+            "Basefy": {
 
                 accent:
                     "#a78bfa",
@@ -2558,10 +3272,16 @@ Senha: senha`,
             Discord: {
 
                 placeholder:
-                    "Email : senha",
+`Email: usuario@exemplo.com
+Senha: SENHA
+
+---
+
+Email: usuario2@exemplo.com
+Senha: SENHA2`,
 
                 descricao:
-                    "Email e senha separados por dois pontos."
+                    "Cole os blocos de conta separados por ---."
             },
 
 
@@ -2661,6 +3381,9 @@ Senha: senha`,
                 `${plataformaAtual} → ${destinoAtual}`;
 
 
+            aplicarTema();
+
+
             organizerTitle.textContent =
                 `Contas de ${plataformaAtual}`;
 
@@ -2696,68 +3419,203 @@ Senha: senha`,
 
 
             /* =================================================
-               MÉTODO ESPECÍFICO:
-               FACEBOOK → GG MAX
+               MÉTODOS ESPECÍFICOS
             ================================================= */
 
-            const mostrarFacebookGGMax =
-                plataformaAtual === "Facebook" &&
-                destinoAtual === "GG Max";
+            const areas = {
+                facebookGGMaxMethods,
+                facebookGameMarketMethods: document.getElementById("facebookGameMarketMethods"),
+                tiktokGGMaxMethods: document.getElementById("tiktokGGMaxMethods"),
+                tiktokGameMarketMethods: document.getElementById("tiktokGameMarketMethods"),
+                instagramGGMaxMethods: document.getElementById("instagramGGMaxMethods"),
+                instagramGameMarketMethods: document.getElementById("instagramGameMarketMethods"),
+                outlookGGMaxMethods: document.getElementById("outlookGGMaxMethods"),
+                outlookGameMarketMethods: document.getElementById("outlookGameMarketMethods"),
+                lovableGGMaxMethods: document.getElementById("lovableGGMaxMethods"),
+                lovableGameMarketMethods: document.getElementById("lovableGameMarketMethods"),
+                elevenLabsGGMaxMethods: document.getElementById("elevenLabsGGMaxMethods"),
+                elevenLabsGameMarketMethods: document.getElementById("elevenLabsGameMarketMethods"),
+                discordGGMaxMethods: document.getElementById("discordGGMaxMethods"),
+                discordGameMarketMethods: document.getElementById("discordGameMarketMethods")
+            };
 
+            Object.values(areas).forEach(area => {
+                if (area) area.style.display = "none";
+            });
 
-            const mostrarDiscordGGMax =
-                plataformaAtual === "Discord" &&
-                destinoAtual === "GG Max";
+            defaultMethodArea.style.display = "block";
 
+            let areaAtual = null;
 
-            const mostrarDiscordGameMarket =
-                plataformaAtual === "Discord" &&
-                destinoAtual === "Game Market";
+            if (plataformaAtual === "Facebook" && destinoAtual === "GG Max") {
+                areaAtual = facebookGGMaxMethods;
+            } else if (plataformaAtual === "Facebook" && destinoAtual === "Game Market") {
+                areaAtual = areas.facebookGameMarketMethods;
+            } else if (plataformaAtual === "TikTok" && destinoAtual === "GG Max") {
+                areaAtual = areas.tiktokGGMaxMethods;
+            } else if (plataformaAtual === "TikTok" && destinoAtual === "Game Market") {
+                areaAtual = areas.tiktokGameMarketMethods;
+            } else if (plataformaAtual === "Instagram" && destinoAtual === "GG Max") {
+                areaAtual = areas.instagramGGMaxMethods;
+            } else if (plataformaAtual === "Instagram" && destinoAtual === "Game Market") {
+                areaAtual = areas.instagramGameMarketMethods;
+            } else if (plataformaAtual === "Outlook" && destinoAtual === "GG Max") {
+                areaAtual = areas.outlookGGMaxMethods;
+            } else if (plataformaAtual === "Outlook" && destinoAtual === "Game Market") {
+                areaAtual = areas.outlookGameMarketMethods;
+            } else if (plataformaAtual === "Lovable" && destinoAtual === "GG Max") {
+                areaAtual = areas.lovableGGMaxMethods;
+            } else if (plataformaAtual === "Lovable" && destinoAtual === "Game Market") {
+                areaAtual = areas.lovableGameMarketMethods;
+            } else if (plataformaAtual === "ElevenLabs" && destinoAtual === "GG Max") {
+                areaAtual = areas.elevenLabsGGMaxMethods;
+            } else if (plataformaAtual === "ElevenLabs" && destinoAtual === "Game Market") {
+                areaAtual = areas.elevenLabsGameMarketMethods;
+            } else if (plataformaAtual === "Discord" && destinoAtual === "GG Max") {
+                areaAtual = areas.discordGGMaxMethods;
+            } else if (plataformaAtual === "Discord" && destinoAtual === "Game Market") {
+                areaAtual = areas.discordGameMarketMethods;
+            }
 
-
-            facebookGGMaxMethods.style.display =
-                mostrarFacebookGGMax ? "grid" : "none";
-
-
-            discordGGMaxMethods.style.display =
-                mostrarDiscordGGMax ? "grid" : "none";
-
-
-            discordGameMarketMethods.style.display =
-                mostrarDiscordGameMarket ? "grid" : "none";
-
-
-            defaultMethodArea.style.display =
-                (mostrarFacebookGGMax ||
-                 mostrarDiscordGGMax ||
-                 mostrarDiscordGameMarket)
-                    ? "none"
-                    : "block";
-
-
-            aplicarTema();
+            if (areaAtual) {
+                areaAtual.style.display = "grid";
+                defaultMethodArea.style.display = "none";
+            }
 
         }
 
 
         /* =====================================================
-           SEPARAR BLOCOS
+           FACEBOOK → GAME MARKET
+           Mesma estrutura dos métodos GG Max, com saída por ===
         ===================================================== */
 
-        function separarBlocos(texto) {
+        function formatarFacebookGameMarket(dados, tipo) {
 
-            return texto
-                .split(
-                    /\n\s*---+\s*\n/
-                )
-                .map(
-                    bloco =>
-                        bloco.trim()
-                )
-                .filter(Boolean);
+            const linhas = [
+                "🎉 Pedido entregue!",
+                "",
+                "Olá! Sua conta Facebook já está pronta para uso. 💙",
+                "",
+                "📩 Dados de acesso:"
+            ];
 
+            if (tipo === "numero") {
+                linhas.push(
+                    `📱 Número: ${dados.numero}`,
+                    `🔑 Senha: ${dados.senha}`,
+                    `🔐 Código: ${dados.doisFa}`
+                );
+            } else {
+                linhas.push(
+                    `🔐 Código: ${dados.codigo}`,
+                    `📧 Email: ${dados.email}`,
+                    `🔑 Senha: ${dados.senha}`
+                );
+            }
+
+            return linhas.join("\n");
         }
 
+
+        function processarFacebookGameMarket(tipo, texto) {
+
+            const contas = separarBlocos(texto);
+
+            if (!contas.length) {
+                return "";
+            }
+
+            return contas
+                .map(bloco => {
+                    const dados = tipo === "numero"
+                        ? parseFacebookNumero(bloco)
+                        : parseFacebookEmail(bloco);
+
+                    return formatarFacebookGameMarket(dados, tipo);
+                })
+                .join("\n\n===\n\n");
+        }
+
+
+        function obterCampoFacebookGameMarket(tipo) {
+
+            const ids = {
+                nova: "facebookGameMarketNova",
+                antiga: "facebookGameMarketAntiga",
+                numero: "facebookGameMarketNumero"
+            };
+
+            return document.getElementById(ids[tipo]);
+        }
+
+
+        async function copiarFacebookGameMarket(tipo) {
+
+            const campo = obterCampoFacebookGameMarket(tipo);
+
+            if (!campo) return;
+
+            const texto = campo.value.trim();
+
+            if (!texto) {
+                mostrarPopup("Cole os dados primeiro.", "erro");
+                return;
+            }
+
+            const resultado = processarFacebookGameMarket(tipo, texto);
+
+            if (!resultado) {
+                mostrarPopup("Nenhum dado válido encontrado.", "erro");
+                return;
+            }
+
+            try {
+                await navigator.clipboard.writeText(resultado);
+                mostrarPopup("Conteúdo copiado!", "sucesso");
+            } catch {
+                mostrarPopup("Não foi possível copiar.", "erro");
+            }
+        }
+
+
+        function baixarFacebookGameMarket(tipo) {
+
+            const campo = obterCampoFacebookGameMarket(tipo);
+
+            if (!campo) return;
+
+            const texto = campo.value.trim();
+
+            if (!texto) {
+                mostrarPopup("Cole os dados primeiro.", "erro");
+                return;
+            }
+
+            const resultado = processarFacebookGameMarket(tipo, texto);
+
+            if (!resultado) {
+                mostrarPopup("Nenhum dado válido encontrado.", "erro");
+                return;
+            }
+
+            const blob = new Blob([resultado], {
+                type: "text/plain;charset=utf-8"
+            });
+
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+
+            link.href = url;
+            link.download = `Facebook_GameMarket_${tipo}.txt`;
+
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            URL.revokeObjectURL(url);
+
+            mostrarPopup("TXT gerado com sucesso!", "sucesso");
+        }
 
         /* =====================================================
            PARSER FACEBOOK
@@ -2959,7 +3817,7 @@ Senha: senha`,
 
             const doisFa =
                 bloco.match(
-                    /(?:2fa|2FA)\s*:\s*(.*)/i
+                    /Codigo\s*:\s*(.*)/i
                 )?.[1]
                 ?.trim() || "";
 
@@ -3024,7 +3882,7 @@ Senha: senha`,
 
                         `🔑 Senha: ${dados.senha}`,
 
-                        `🔐 2FA: ${dados.doisFa}`,
+                        `🔐 Código: ${dados.doisFa}`,
 
                         "",
 
@@ -3825,6 +4683,549 @@ Senha: senha`,
         }
 
 
+
+        /* =====================================================
+           PROCESSADORES ESPECÍFICOS — TIKTOK / INSTAGRAM / OUTLOOK
+        ===================================================== */
+
+        function separarBlocosEntrada(texto) {
+            return texto
+                .split(/\n\s*---+\s*\n/)
+                .map(bloco => bloco.trim())
+                .filter(Boolean);
+        }
+
+        function extrair(bloco, regex) {
+            return bloco.match(regex)?.[1]?.trim() || "";
+        }
+
+        function parseTikTokEspecial(bloco) {
+            return {
+                codigo: extrair(bloco, /(?:Código|Codigo)\s*:\s*(.*)/i),
+                usuario: extrair(bloco, /User\s*:\s*(.*)/i),
+                email: extrair(bloco, /Email\s*:\s*(.*)/i),
+                senha: extrair(bloco, /Senha\s*:\s*(.*)/i),
+                inbox: extrair(bloco, /(?:Para acessar o inbox do email|Inbox do email)\s*:\s*(.*)/i)
+            };
+        }
+
+        function formatarTikTokEspecial(dados) {
+            const linhas = [
+                "🎉 Pedido entregue!",
+                "",
+                "Olá! Sua conta TikTok já está pronta para uso. 🖤",
+                "",
+                "📩 Dados de acesso:",
+                `👤 Usuário: ${dados.usuario}`,
+                `📧 Email: ${dados.email}`,
+                `🔑 Senha: ${dados.senha}`,
+                `🔐 Código: ${dados.codigo}`
+            ];
+            if (dados.inbox) {
+                linhas.push("", "📨 Inbox do email:", dados.inbox);
+            }
+            return linhas.join("\n");
+        }
+
+        function processarTikTokMetodo(tipo, texto) {
+            const contas = separarBlocosEntrada(texto);
+            const resultado = contas
+                .map(parseTikTokEspecial)
+                .filter(c => c.email || c.usuario || c.senha || c.codigo)
+                .map(formatarTikTokEspecial);
+            return resultado.join(tipo === "gamemarket" ? "\n\n===\n\n" : "\n\n---\n\n");
+        }
+
+        function parseInstagramEspecial(bloco) {
+            return {
+                codigo: extrair(bloco, /(?:2fa|Código 2FA|Codigo 2FA|Código|Codigo)\s*:\s*(.*)/i),
+                usuario: extrair(bloco, /Usuário\s*:\s*(.*)/i),
+                senha: extrair(bloco, /Senha\s*:\s*(.*)/i)
+            };
+        }
+
+        function formatarInstagramEspecial(dados) {
+            return [
+                "🎉 Pedido entregue!",
+                "",
+                "Olá! Sua conta Instagram já está pronta para uso. 💜",
+                "",
+                "📩 Dados de acesso:",
+                `👤 Usuário: ${dados.usuario}`,
+                `🔑 Senha: ${dados.senha}`,
+                `🔐 Código: ${dados.codigo}`,
+                "",
+                "Verifique os dados antes de utilizar a conta.",
+                ""
+            ].join("\n").trim();
+        }
+
+        function processarInstagramMetodo(tipo, texto) {
+            const contas = separarBlocosEntrada(texto)
+                .map(parseInstagramEspecial)
+                .filter(c => c.usuario || c.senha || c.codigo);
+
+            if (!contas.length) return "";
+
+            const separador =
+                tipo === "gamemarket"
+                    ? "\n\n===\n\n"
+                    : "\n\n---\n\n";
+
+            return contas.map(formatarInstagramEspecial).join(separador);
+        }
+
+        function parseOutlookEspecial(bloco) {
+            return {
+                email: extrair(bloco, /Email\s*:\s*(.*)/i),
+                senha: extrair(bloco, /Senha\s*:\s*(.*)/i)
+            };
+        }
+
+        function formatarOutlookEspecial(contas) {
+            const linhas = [
+                "🎉 Pedido entregue!",
+                "",
+                "Olá! Sua conta Outlook já está pronta para uso. 💙",
+                "",
+                "📩 Dados de acesso:"
+            ];
+            contas.forEach(conta => {
+                linhas.push(`📧 Email: ${conta.email}`, `🔑 Senha: ${conta.senha}`, "");
+            });
+            linhas.push(
+                "📌 AVISO — LEIA ATENTAMENTE!",
+                "",
+                "🌐 Acesse o e-mail somente pelo site oficial da Microsoft ou pelo Outlook.",
+                "⚠️ A Microsoft poderá solicitar, posteriormente, uma verificação adicional por motivos de segurança.",
+                "🔐 Essa verificação é um procedimento da própria Microsoft."
+            );
+            return linhas.join("\n");
+        }
+
+        function processarOutlookMetodo(tipo, quantidade, texto) {
+            const contas = separarBlocosEntrada(texto)
+                .map(parseOutlookEspecial)
+                .filter(c => c.email || c.senha);
+
+            if (!contas.length) {
+                throw new Error("Nenhuma conta válida encontrada.");
+            }
+
+            // O número do campo define apenas o tamanho do agrupamento.
+            // A quantidade total de contas pode ser arbitrária.
+            // Campo 1  -> 1 por grupo
+            // Campo 5  -> grupos de 5
+            // Campo 10 -> grupos de 10
+            if (quantidade > 1 && contas.length % quantidade !== 0) {
+                throw new Error(
+                    `Para este campo, a quantidade total deve ser múltipla de ${quantidade}. Você informou ${contas.length}.`
+                );
+            }
+
+            const grupos = [];
+
+            for (let i = 0; i < contas.length; i += quantidade) {
+                grupos.push(
+                    contas.slice(i, i + quantidade)
+                );
+            }
+
+            const separador =
+                tipo === "gamemarket"
+                    ? "\n\n===\n\n"
+                    : "\n\n---\n\n";
+
+            return grupos
+                .map(grupo => formatarOutlookEspecial(grupo))
+                .join(separador);
+        }
+
+        async function copiarResultado(texto, mensagem = "Conteúdo copiado!") {
+            await navigator.clipboard.writeText(texto);
+            mostrarPopup(mensagem, "sucesso");
+        }
+
+        function baixarResultado(texto, nome) {
+            const blob = new Blob([texto], {type: "text/plain;charset=utf-8"});
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = nome;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            URL.revokeObjectURL(url);
+            mostrarPopup("TXT gerado com sucesso!", "sucesso");
+        }
+
+        function obterCampoMetodo(id) {
+            return document.getElementById(id);
+        }
+
+        /* =====================================================
+           LOVABLE — GG MAX / GAME MARKET
+           Entrada: blocos separados por ---
+           Saída: grupos de 1, 2, 5 ou 10
+        ===================================================== */
+
+        function parseLovableEspecial(bloco) {
+            return {
+                codigo: extrair(bloco, /Codigo\s*:\s*(.*)/i),
+                email: extrair(bloco, /Email\s*:\s*(.*)/i),
+                senha: extrair(bloco, /Senha\s*:\s*(.*)/i)
+            };
+        }
+
+        function formatarLovableGrupo(contas) {
+            const linhas = [
+                "🎉 Pedido entregue!",
+                "",
+                "Olá! Sua conta já está pronta para uso. 💜",
+                "",
+                "📩 Dados de acesso:"
+            ];
+
+            contas.forEach(conta => {
+                linhas.push(
+                    `📧 Email: ${conta.email}`,
+                    `🔑 Senha: ${conta.senha}`,
+                    `🔐 Código: ${conta.codigo}`,
+                    ""
+                );
+            });
+
+            return linhas.join("\n").trim();
+        }
+
+        function processarLovableMetodo(tipo, quantidade, texto) {
+            const contas = separarBlocosEntrada(texto)
+                .map(parseLovableEspecial)
+                .filter(c => c.email || c.senha || c.codigo);
+
+            if (!contas.length) {
+                throw new Error("Nenhuma conta válida encontrada.");
+            }
+
+            if (quantidade > 1 && contas.length % quantidade !== 0) {
+                throw new Error(
+                    `Para este campo, a quantidade total deve ser múltipla de ${quantidade}. Você informou ${contas.length}.`
+                );
+            }
+
+            const grupos = [];
+            for (let i = 0; i < contas.length; i += quantidade) {
+                grupos.push(contas.slice(i, i + quantidade));
+            }
+
+            const separador = tipo === "gamemarket"
+                ? "\n\n===\n\n"
+                : "\n\n---\n\n";
+
+            return grupos.map(formatarLovableGrupo).join(separador);
+        }
+
+        async function copiarLovableMetodo(tipo, quantidade) {
+            const id = `lovable${tipo === "ggmax" ? "GGMax" : "GameMarket"}${quantidade}`;
+            const campo = obterCampoMetodo(id);
+
+            if (!campo.value.trim()) {
+                return mostrarPopup("Cole os dados primeiro.", "erro");
+            }
+
+            try {
+                const resultado = processarLovableMetodo(tipo, quantidade, campo.value);
+                await copiarResultado(resultado);
+            } catch (erro) {
+                mostrarPopup(erro.message || "Quantidade de contas inválida.", "erro");
+            }
+        }
+
+        function baixarLovableMetodo(tipo, quantidade) {
+            const id = `lovable${tipo === "ggmax" ? "GGMax" : "GameMarket"}${quantidade}`;
+            const campo = obterCampoMetodo(id);
+
+            if (!campo.value.trim()) {
+                return mostrarPopup("Cole os dados primeiro.", "erro");
+            }
+
+            try {
+                const resultado = processarLovableMetodo(tipo, quantidade, campo.value);
+                baixarResultado(resultado, `Lovable_${tipo}_${quantidade}.txt`);
+            } catch (erro) {
+                mostrarPopup(erro.message || "Quantidade de contas inválida.", "erro");
+            }
+        }
+
+        /* =====================================================
+           ELEVENLABS — GG MAX / GAME MARKET
+           Entrada: blocos separados por ---
+           Saída: grupos de 1, 2 ou 5
+        ===================================================== */
+
+        /* =====================================================
+           DISCORD → GG MAX / GAME MARKET
+        ===================================================== */
+
+        function parseDiscordEspecial(bloco) {
+            return {
+                email: extrair(bloco, /Email\s*:\s*(.*)/i),
+                senha: extrair(bloco, /Senha\s*:\s*(.*)/i)
+            };
+        }
+
+        function formatarDiscordConta(conta) {
+            return [
+                "🎉 Pedido entregue!",
+                "",
+                "Olá! Sua conta Discord já está pronta para uso. 💜",
+                "",
+                "📩 Dados de acesso:",
+                `📧 Email: ${conta.email}`,
+                `🔑 Senha: ${conta.senha}`,
+                "",
+                "🚨 ATENÇÃO — LEIA!",
+                "",
+                "✅ Faça o login normalmente.",
+                "📩 O Discord pode solicitar verificação por e-mail. Se aparecer, acesse o e-mail e confirme.",
+                "⚠️ Evite alterações logo após o primeiro acesso.",
+                "🚨 Algum problema? Me avise antes de alterar a conta.",
+                "💙 Conseguiu entrar? Me avise!"
+            ].join("\n").trim();
+        }
+
+        function processarDiscordMetodo(tipo, texto) {
+            const contas = separarBlocosEntrada(texto)
+                .map(parseDiscordEspecial)
+                .filter(conta => conta.email || conta.senha);
+
+            if (!contas.length) {
+                throw new Error("Nenhuma conta válida encontrada.");
+            }
+
+            const separador = tipo === "gamemarket"
+                ? "\n\n===\n\n"
+                : "\n\n---\n\n";
+
+            return contas
+                .map(formatarDiscordConta)
+                .join(separador);
+        }
+
+        async function copiarDiscordMetodo(tipo) {
+            const id = tipo === "ggmax"
+                ? "discordGGMaxInput"
+                : "discordGameMarketInput";
+
+            const campo = obterCampoMetodo(id);
+
+            if (!campo.value.trim()) {
+                return mostrarPopup("Cole os dados primeiro.", "erro");
+            }
+
+            try {
+                const resultado = processarDiscordMetodo(tipo, campo.value);
+                await copiarResultado(resultado);
+            } catch (erro) {
+                mostrarPopup(erro.message || "Não foi possível processar as contas.", "erro");
+            }
+        }
+
+        function baixarDiscordMetodo(tipo) {
+            const id = tipo === "ggmax"
+                ? "discordGGMaxInput"
+                : "discordGameMarketInput";
+
+            const campo = obterCampoMetodo(id);
+
+            if (!campo.value.trim()) {
+                return mostrarPopup("Cole os dados primeiro.", "erro");
+            }
+
+            try {
+                const resultado = processarDiscordMetodo(tipo, campo.value);
+                baixarResultado(resultado, `Discord_${tipo}.txt`);
+            } catch (erro) {
+                mostrarPopup(erro.message || "Não foi possível processar as contas.", "erro");
+            }
+        }
+
+        function parseElevenLabsEspecial(bloco) {
+            return {
+                email: extrair(bloco, /Email\s*:\s*(.*)/i),
+                senhaEleven: extrair(bloco, /Senha\s*Eleven\s*:\s*(.*)/i),
+                senhaOutlook: extrair(bloco, /Senha\s*do\s*Outlook\s*:\s*(.*)/i)
+            };
+        }
+
+        function formatarElevenLabsGrupo(contas, quantidade) {
+            const linhas = [
+                "🎉 Pedido entregue!",
+                "",
+                "Olá! Sua conta ElevenLabs já está pronta para uso. 💜",
+                "",
+                "📩 Dados de acesso:"
+            ];
+
+            contas.forEach(conta => {
+                linhas.push(
+                    `📧 Email: ${conta.email}`,
+                    `🔑 Senha ElevenLabs: ${conta.senhaEleven}`,
+                    `📧 Senha Outlook: ${conta.senhaOutlook}`,
+                    ""
+                );
+            });
+
+            if (quantidade > 1) {
+                linhas.push(
+                    "⚠️ ATENÇÃO, COMPRADOR!",
+                    "",
+                    "Se adquiriu mais de uma conta:",
+                    "",
+                    "🔹 Evite acessá-las simultaneamente.",
+                    "🔹 Evite VPNs e mudanças frequentes de IP.",
+                    "🔹 Aguarde 10–20 minutos antes de acessar outra conta.",
+                    "🔹 Não compartilhe as contas com terceiros.",
+                    "",
+                    "🔐 Esses cuidados ajudam a evitar alertas, bloqueios ou restrições de acesso."
+                );
+            }
+
+            return linhas.join("\n").trim();
+        }
+
+        function processarElevenLabsMetodo(tipo, quantidade, texto) {
+            const contas = separarBlocosEntrada(texto)
+                .map(parseElevenLabsEspecial)
+                .filter(c => c.email || c.senhaEleven || c.senhaOutlook);
+
+            if (!contas.length) {
+                throw new Error("Nenhuma conta válida encontrada.");
+            }
+
+            if (quantidade > 1 && contas.length % quantidade !== 0) {
+                throw new Error(
+                    `Para este campo, a quantidade total deve ser múltipla de ${quantidade}. Você informou ${contas.length}.`
+                );
+            }
+
+            const grupos = [];
+            for (let i = 0; i < contas.length; i += quantidade) {
+                grupos.push(contas.slice(i, i + quantidade));
+            }
+
+            const separador = tipo === "gamemarket"
+                ? "\n\n===\n\n"
+                : "\n\n---\n\n";
+
+            return grupos
+                .map(grupo => formatarElevenLabsGrupo(grupo, quantidade))
+                .join(separador);
+        }
+
+        async function copiarElevenLabsMetodo(tipo, quantidade) {
+            const id = `elevenLabs${tipo === "ggmax" ? "GGMax" : "GameMarket"}${quantidade}`;
+            const campo = obterCampoMetodo(id);
+
+            if (!campo.value.trim()) {
+                return mostrarPopup("Cole os dados primeiro.", "erro");
+            }
+
+            try {
+                const resultado = processarElevenLabsMetodo(tipo, quantidade, campo.value);
+                await copiarResultado(resultado);
+            } catch (erro) {
+                mostrarPopup(erro.message || "Quantidade de contas inválida.", "erro");
+            }
+        }
+
+        function baixarElevenLabsMetodo(tipo, quantidade) {
+            const id = `elevenLabs${tipo === "ggmax" ? "GGMax" : "GameMarket"}${quantidade}`;
+            const campo = obterCampoMetodo(id);
+
+            if (!campo.value.trim()) {
+                return mostrarPopup("Cole os dados primeiro.", "erro");
+            }
+
+            try {
+                const resultado = processarElevenLabsMetodo(tipo, quantidade, campo.value);
+                baixarResultado(resultado, `ElevenLabs_${tipo}_${quantidade}.txt`);
+            } catch (erro) {
+                mostrarPopup(erro.message || "Quantidade de contas inválida.", "erro");
+            }
+        }
+
+        async function copiarTikTokMetodo(tipo) {
+            const id = tipo === "ggmax" ? "tiktokGGMaxInput" : "tiktokGameMarketInput";
+            const campo = obterCampoMetodo(id);
+            if (!campo.value.trim()) return mostrarPopup("Cole os dados primeiro.", "erro");
+            try { await copiarResultado(processarTikTokMetodo(tipo, campo.value)); }
+            catch { mostrarPopup("Não foi possível copiar.", "erro"); }
+        }
+
+        function baixarTikTokMetodo(tipo) {
+            const id = tipo === "ggmax" ? "tiktokGGMaxInput" : "tiktokGameMarketInput";
+            const campo = obterCampoMetodo(id);
+            if (!campo.value.trim()) return mostrarPopup("Cole os dados primeiro.", "erro");
+            const resultado = processarTikTokMetodo(tipo, campo.value);
+            if (!resultado) return mostrarPopup("Nenhum dado válido encontrado.", "erro");
+            baixarResultado(resultado, `TikTok_${tipo}.txt`);
+        }
+
+        async function copiarInstagramMetodo(tipo) {
+            const id = tipo === "ggmax" ? "instagramGGMaxInput" : "instagramGameMarketInput";
+            const campo = obterCampoMetodo(id);
+            if (!campo.value.trim()) return mostrarPopup("Cole os dados primeiro.", "erro");
+            try { await copiarResultado(processarInstagramMetodo(tipo, campo.value)); }
+            catch { mostrarPopup("Não foi possível copiar.", "erro"); }
+        }
+
+        function baixarInstagramMetodo(tipo) {
+            const id = tipo === "ggmax" ? "instagramGGMaxInput" : "instagramGameMarketInput";
+            const campo = obterCampoMetodo(id);
+            if (!campo.value.trim()) return mostrarPopup("Cole os dados primeiro.", "erro");
+            const resultado = processarInstagramMetodo(tipo, campo.value);
+            if (!resultado) return mostrarPopup("Nenhum dado válido encontrado.", "erro");
+            baixarResultado(resultado, `Instagram_${tipo}.txt`);
+        }
+
+        async function copiarOutlookMetodo(tipo, quantidade) {
+            const id = `outlook${tipo === "ggmax" ? "GGMax" : "GameMarket"}${quantidade}`;
+            const campo = obterCampoMetodo(id);
+            if (!campo.value.trim()) return mostrarPopup("Cole os dados primeiro.", "erro");
+            try {
+                await copiarResultado(processarOutlookMetodo(tipo, quantidade, campo.value));
+            } catch (erro) {
+                mostrarPopup(erro.message || "Quantidade de contas inválida.", "erro");
+            }
+        }
+
+        function baixarOutlookMetodo(tipo, quantidade) {
+            const id = `outlook${tipo === "ggmax" ? "GGMax" : "GameMarket"}${quantidade}`;
+            const campo = obterCampoMetodo(id);
+            if (!campo.value.trim()) return mostrarPopup("Cole os dados primeiro.", "erro");
+            try {
+                const resultado = processarOutlookMetodo(tipo, quantidade, campo.value);
+                baixarResultado(resultado, `Outlook_${tipo}_${quantidade}.txt`);
+            } catch (erro) {
+                mostrarPopup(erro.message || "Quantidade de contas inválida.", "erro");
+            }
+        }
+
+        /* =====================================================
+           BASEFY — JSON name/value
+        ===================================================== */
+
+        function processarBasefy(texto) {
+            const linhas = texto.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+            const itens = [];
+            linhas.forEach(linha => {
+                const m = linha.match(/^\"?([^\"]+?)\"?\s*:\s*\"?([^\"]*)\"?$/);
+                if (m) itens.push({name: m[1].trim(), value: m[2].trim()});
+            });
+            return JSON.stringify(itens, null, 2);
+        }
+
         /* =====================================================
            DEFAULT — PROCESSADOR
         ===================================================== */
@@ -3933,217 +5334,6 @@ Senha: senha`,
 
 
         /* =====================================================
-           DISCORD → GG MAX / GAME MARKET
-        ===================================================== */
-
-        function parseDiscordEspecial(bloco) {
-
-            const email =
-                bloco.match(
-                    /Email\s*:\s*(.*)/i
-                )?.[1]
-                ?.trim() || "";
-
-
-            const senha =
-                bloco.match(
-                    /Senha\s*:\s*(.*)/i
-                )?.[1]
-                ?.trim() || "";
-
-
-            return {
-                email,
-                senha
-            };
-
-        }
-
-
-        function formatarDiscordEspecial(conta) {
-
-            return [
-                "🎉 Pedido entregue!",
-                "",
-                "Olá! Sua conta Discord já está pronta para uso. 💜",
-                "",
-                "📩 Dados de acesso:",
-                `📧 Email: ${conta.email}`,
-                `🔑 Senha: ${conta.senha}`,
-                "",
-                "🚨 ATENÇÃO — LEIA!",
-                "",
-                "✅ Faça o login normalmente.",
-                "📩 O Discord pode solicitar verificação por e-mail. Se aparecer, acesse o e-mail e confirme.",
-                "⚠️ Evite alterações logo após o primeiro acesso.",
-                "🚨 Algum problema? Me avise antes de alterar a conta.",
-                "💙 Conseguiu entrar? Me avise!"
-            ].join("\n");
-
-        }
-
-
-        function processarDiscordMetodo(tipo, texto) {
-
-            const contas =
-                separarBlocos(texto)
-                    .map(parseDiscordEspecial)
-                    .filter(conta => conta.email || conta.senha);
-
-
-            if (!contas.length) {
-                throw new Error("Nenhuma conta válida encontrada.");
-            }
-
-
-            const separador =
-                tipo === "gamemarket"
-                    ? "\n\n===\n\n"
-                    : "\n\n---\n\n";
-
-
-            return contas
-                .map(formatarDiscordEspecial)
-                .join(separador);
-
-        }
-
-
-        async function copiarDiscordMetodo(tipo) {
-
-            const id =
-                tipo === "gamemarket"
-                    ? "discordGameMarketInput"
-                    : "discordGGMaxInput";
-
-
-            const campo =
-                document.getElementById(id);
-
-
-            if (!campo.value.trim()) {
-                mostrarPopup("Cole os dados primeiro.", "erro");
-                return;
-            }
-
-
-            try {
-
-                const resultado =
-                    processarDiscordMetodo(
-                        tipo,
-                        campo.value
-                    );
-
-
-                await copiarResultadoDiscord(resultado);
-
-            }
-
-            catch (erro) {
-
-                mostrarPopup(
-                    erro.message || "Não foi possível processar as contas.",
-                    "erro"
-                );
-
-            }
-
-        }
-
-
-        async function copiarResultadoDiscord(texto) {
-
-            try {
-                await navigator.clipboard.writeText(texto);
-            }
-            catch {
-                const area = document.createElement("textarea");
-                area.value = texto;
-                document.body.appendChild(area);
-                area.select();
-                document.execCommand("copy");
-                area.remove();
-            }
-
-            mostrarPopup("Conteúdo copiado!", "sucesso");
-
-        }
-
-
-        function baixarDiscordMetodo(tipo) {
-
-            const id =
-                tipo === "gamemarket"
-                    ? "discordGameMarketInput"
-                    : "discordGGMaxInput";
-
-
-            const campo =
-                document.getElementById(id);
-
-
-            if (!campo.value.trim()) {
-                mostrarPopup("Cole os dados primeiro.", "erro");
-                return;
-            }
-
-
-            try {
-
-                const resultado =
-                    processarDiscordMetodo(
-                        tipo,
-                        campo.value
-                    );
-
-
-                const blob =
-                    new Blob(
-                        [resultado],
-                        { type: "text/plain;charset=utf-8" }
-                    );
-
-
-                const url =
-                    URL.createObjectURL(blob);
-
-
-                const link =
-                    document.createElement("a");
-
-
-                link.href = url;
-                link.download =
-                    `Discord_${tipo}.txt`;
-
-
-                document.body.appendChild(link);
-                link.click();
-                link.remove();
-                URL.revokeObjectURL(url);
-
-
-                mostrarPopup(
-                    "TXT gerado com sucesso!",
-                    "sucesso"
-                );
-
-            }
-
-            catch (erro) {
-
-                mostrarPopup(
-                    erro.message || "Não foi possível processar as contas.",
-                    "erro"
-                );
-
-            }
-
-        }
-
-
-        /* =====================================================
            PROCESSADOR GERAL
         ===================================================== */
 
@@ -4151,47 +5341,11 @@ Senha: senha`,
             texto
         ) {
 
-
-            if (
-                plataformaAtual === "Discord" &&
-                destinoAtual === "GG Max"
-            ) {
-
-                return processarDiscordMetodo(
-                    "ggmax",
-                    texto
-                );
-
+            if (destinoAtual === "Basefy") {
+                return processarBasefy(texto);
             }
 
-
-            if (
-                plataformaAtual === "Discord" &&
-                destinoAtual === "Game Market"
-            ) {
-
-                return processarDiscordMetodo(
-                    "gamemarket",
-                    texto
-                );
-
-            }
-
-
-            if (
-                destinoAtual ===
-                "Default"
-            ) {
-
-                return processarDefault(
-                    texto
-                );
-
-            }
-
-
-            return texto.trim();
-
+            return processarDefault(texto);
         }
 
 
