@@ -4456,83 +4456,65 @@ Senha: SENHA2`,
             texto
         ) {
 
-
-            const blocos =
-                texto
-                    .split(
-                        /-{5,}/
-                    )
-                    .map(
-                        bloco =>
-                            bloco.trim()
-                    )
-                    .filter(Boolean);
-
+            // Aceita exatamente o formato de entrada do Instagram Default:
+            // [ CONTA 01 ]
+            // 👤 Usuário: usuario
+            // 🔑 Senha: senha
+            // 🔐 Código 2FA: XXXX XXXX XXXX
+            //
+            // As contas podem ser separadas por qualquer linha com 5+ hífens.
+            const blocos = texto
+                .replace(/\r/g, "")
+                .split(/^\s*-{5,}\s*$/m)
+                .map(bloco => bloco.trim())
+                .filter(Boolean);
 
             const contas = [];
 
-
             blocos.forEach(bloco => {
+                const usuarioMatch = bloco.match(
+                    /(?:👤\s*)?Usuário\s*:\s*([^\n\r]+)/i
+                );
 
+                const senhaMatch = bloco.match(
+                    /(?:🔑\s*)?Senha\s*:\s*([^\n\r]+)/i
+                );
 
-                const usuario =
-                    bloco.match(
-                        /Usuário\s*:\s*(.+)/i
-                    )?.[1]
-                    ?.trim();
+                const codigoMatch = bloco.match(
+                    /(?:🔐\s*)?Código\s*2FA\s*:\s*([^\n\r]+)/i
+                );
 
-
-                const senha =
-                    bloco.match(
-                        /Senha\s*:\s*(.+)/i
-                    )?.[1]
-                    ?.trim();
-
-
-                const codigo =
-                    bloco.match(
-                        /Código\s*2FA\s*:\s*(.+)/i
-                    )?.[1]
-                    ?.trim()
-                    .replace(/\s+/g, "");
-
-
-                if (
-                    !usuario ||
-                    !senha ||
-                    !codigo
-                ) {
-
+                if (!usuarioMatch || !senhaMatch || !codigoMatch) {
                     return;
-
                 }
 
+                const usuario = usuarioMatch[1].trim();
+                const senha = senhaMatch[1].trim();
+
+                // Remove espaços entre os grupos do código 2FA.
+                // Ex.: ABCD EFGH IJKL -> ABCDEFGHIJKL
+                const codigo = codigoMatch[1]
+                    .trim()
+                    .replace(/\s+/g, "");
+
+                if (!usuario || !senha || !codigo) {
+                    return;
+                }
 
                 contas.push({
-
                     usuario,
                     senha,
                     codigo
-
                 });
-
             });
-
 
             return contas
                 .map(conta => [
-
                     `2fa: https://2fa.fb.tools/${conta.codigo}`,
-
                     `Usuário: ${conta.usuario}`,
-
                     `Senha: ${conta.senha}`
-
                 ].join("\n"))
-                .join(
-                    "\n\n---\n\n"
-                );
-
+                .join("\n\n---\n\n");
         }
 
 
