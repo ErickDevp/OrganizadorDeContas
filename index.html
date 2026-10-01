@@ -2393,7 +2393,7 @@ Senha: SENHA"
 
                     <textarea
                         id="facebookGameMarketNova"
-                        placeholder="Codigo: https://exemplo.com/codigo
+                        placeholder="Creditos: 20
 Email: usuario@exemplo.com
 Senha: SENHA
 
@@ -2421,7 +2421,7 @@ Senha: SENHA2"
 
                     <textarea
                         id="facebookGameMarketAntiga"
-                        placeholder="Codigo: https://exemplo.com/codigo
+                        placeholder="Creditos: 20
 Email: usuario@exemplo.com
 Senha: SENHA
 
@@ -2688,13 +2688,13 @@ Senha: SENHA2
             <div id="lovableGGMaxMethods" class="method-grid special-methods" style="display:none;">
                 <div class="method-card">
                     <div class="method-header"><div><h3>1 Conta</h3><span>Lovable → GG Max</span><div class="method-limit">Organização por unidade</div></div><div class="method-number">01</div></div>
-                    <textarea id="lovableGGMax1" placeholder="Codigo: https://exemplo.com/codigo
+                    <textarea id="lovableGGMax1" placeholder="Creditos: 20
 Email: usuario@exemplo.com
 Senha: SENHA
 
 ---
 
-Codigo: https://exemplo.com/codigo2
+Creditos: 20
 Email: usuario2@exemplo.com
 Senha: SENHA2"></textarea>
                     <div class="method-actions"><button type="button" class="method-download" onclick="baixarLovableMetodo('ggmax',1)">Baixar TXT</button><button type="button" class="method-copy" onclick="copiarLovableMetodo('ggmax',1)">Copiar</button></div>
@@ -2703,13 +2703,13 @@ Senha: SENHA2"></textarea>
                     <div class="method-header"><div><h3>2 Contas</h3><span>Lovable → GG Max</span><div class="method-limit">Agrupamento de 2 contas</div></div><div class="method-number">02</div></div>
                     <textarea id="lovableGGMax2" placeholder="Cole quantas contas quiser. A saída será agrupada de 2 em 2.
 
-Codigo: https://exemplo.com/codigo
+Creditos: 20
 Email: usuario@exemplo.com
 Senha: SENHA
 
 ---
 
-Codigo: https://exemplo.com/codigo2
+Creditos: 20
 Email: usuario2@exemplo.com
 Senha: SENHA2"></textarea>
                     <div class="method-actions"><button type="button" class="method-download" onclick="baixarLovableMetodo('ggmax',2)">Baixar TXT</button><button type="button" class="method-copy" onclick="copiarLovableMetodo('ggmax',2)">Copiar</button></div>
@@ -2729,13 +2729,13 @@ Senha: SENHA2"></textarea>
             <div id="lovableGameMarketMethods" class="method-grid special-methods" style="display:none;">
                 <div class="method-card">
                     <div class="method-header"><div><h3>1 Conta</h3><span>Lovable → Game Market</span><div class="method-limit">Organização por unidade</div></div><div class="method-number">01</div></div>
-                    <textarea id="lovableGameMarket1" placeholder="Codigo: https://exemplo.com/codigo
+                    <textarea id="lovableGameMarket1" placeholder="Creditos: 20
 Email: usuario@exemplo.com
 Senha: SENHA
 
 ---
 
-Codigo: https://exemplo.com/codigo2
+Creditos: 20
 Email: usuario2@exemplo.com
 Senha: SENHA2"></textarea>
                     <div class="method-actions"><button type="button" class="method-download" onclick="baixarLovableMetodo('gamemarket',1)">Baixar TXT</button><button type="button" class="method-copy" onclick="copiarLovableMetodo('gamemarket',1)">Copiar</button></div>
@@ -3226,10 +3226,12 @@ Código 2FA: codigo`,
             Lovable: {
 
                 placeholder:
-                    "Email : senha",
+`Creditos: 20
+Email: usuario@exemplo.com
+Senha: SENHA`,
 
                 descricao:
-                    "Email e senha separados por dois pontos."
+                    "Cole Créditos, Email e Senha."
             },
 
 
@@ -3520,7 +3522,7 @@ Senha: SENHA2`,
 
         function processarFacebookGameMarket(tipo, texto) {
 
-            const contas = separarBlocos(texto);
+            const contas = separarBlocosEntrada(texto);
 
             if (!contas.length) {
                 return "";
@@ -3570,11 +3572,11 @@ Senha: SENHA2`,
                 return;
             }
 
-            try {
-                await navigator.clipboard.writeText(resultado);
+            const copiado = await copiarTextoSeguro(resultado);
+            if (copiado) {
                 mostrarPopup("Conteúdo copiado!", "sucesso");
-            } catch {
-                mostrarPopup("Não foi possível copiar.", "erro");
+            } else {
+                mostrarPopup("Não foi possível copiar. Tente novamente.", "erro");
             }
         }
 
@@ -3626,7 +3628,7 @@ Senha: SENHA2`,
 
             const codigo =
                 bloco.match(
-                    /Codigo\s*:\s*(.*)/i
+                    /(?:Código|Codigo)\s*:\s*(.*)/i
                 )?.[1]
                 ?.trim() || "";
 
@@ -3666,7 +3668,7 @@ Senha: SENHA2`,
 
 
             const contas =
-                separarBlocos(
+                separarBlocosEntrada(
                     texto
                 );
 
@@ -3736,7 +3738,7 @@ Senha: SENHA2`,
 
 
             const contas =
-                separarBlocos(
+                separarBlocosEntrada(
                     texto
                 );
 
@@ -3817,7 +3819,7 @@ Senha: SENHA2`,
 
             const doisFa =
                 bloco.match(
-                    /Codigo\s*:\s*(.*)/i
+                    /(?:Código|Codigo)\s*:\s*(.*)/i
                 )?.[1]
                 ?.trim() || "";
 
@@ -3851,7 +3853,7 @@ Senha: SENHA2`,
 
 
             const contas =
-                separarBlocos(
+                separarBlocosEntrada(
                     texto
                 );
 
@@ -4040,32 +4042,11 @@ Senha: SENHA2`,
             }
 
 
-            try {
-
-
-                await navigator
-                    .clipboard
-                    .writeText(
-                        resultado
-                    );
-
-
-                mostrarPopup(
-                    "Conteúdo copiado!",
-                    "sucesso"
-                );
-
-
-            }
-
-            catch {
-
-
-                mostrarPopup(
-                    "Não foi possível copiar.",
-                    "erro"
-                );
-
+            const copiado = await copiarTextoSeguro(resultado);
+            if (copiado) {
+                mostrarPopup("Conteúdo copiado!", "sucesso");
+            } else {
+                mostrarPopup("Não foi possível copiar. Tente novamente.", "erro");
             }
 
         }
@@ -4297,31 +4278,44 @@ Senha: SENHA2`,
            DEFAULT — OUTLOOK / LOVABLE
         ===================================================== */
 
-        function organizarComCodigo(
-            texto
-        ) {
+        function parseLovableDefault(texto) {
+            /*
+             * Cada linha no formato:
+             * email : senha
+             * representa UMA conta.
+             * Também aceita blocos separados por --- ou linhas em branco.
+             * Nunca deve considerar somente a primeira conta.
+             */
+            return String(texto || "")
+                .replace(/\r\n/g, "\n")
+                .split("\n")
+                .map(linha => linha.trim())
+                .filter(Boolean)
+                .map(linha => {
+                    const separador = linha.indexOf(":");
 
+                    if (separador < 0) return null;
 
-            const contas =
-                parseEmailSenha(
-                    texto
-                );
+                    const email = linha.slice(0, separador).trim();
+                    const senha = linha.slice(separador + 1).trim();
 
+                    if (!email || !senha || !email.includes("@")) return null;
+
+                    return { email, senha };
+                })
+                .filter(Boolean);
+        }
+
+        function organizarComCodigo(texto) {
+            const contas = parseLovableDefault(texto);
 
             return contas
                 .map(conta => [
-
-                    "Codigo: ",
-
+                    "Creditos: ",
                     `Email: ${conta.email}`,
-
                     `Senha: ${conta.senha}`
-
                 ].join("\n"))
-                .join(
-                    "\n\n---\n\n"
-                );
-
+                .join("\n\n---\n\n");
         }
 
 
@@ -4672,8 +4666,9 @@ Senha: SENHA2`,
         ===================================================== */
 
         function separarBlocosEntrada(texto) {
-            return texto
-                .split(/\n\s*---+\s*\n/)
+            return String(texto || "")
+                .replace(/\r\n/g, "\n")
+                .split(/\n\s*-{3,}\s*(?:\n|$)/)
                 .map(bloco => bloco.trim())
                 .filter(Boolean);
         }
@@ -4824,9 +4819,41 @@ Senha: SENHA2`,
                 .join(separador);
         }
 
+        async function copiarTextoSeguro(texto) {
+            if (!texto) return false;
+            try {
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(texto);
+                    return true;
+                }
+            } catch (erro) {}
+            try {
+                const area = document.createElement("textarea");
+                area.value = texto;
+                area.setAttribute("readonly", "");
+                area.style.position = "fixed";
+                area.style.left = "-9999px";
+                area.style.top = "0";
+                document.body.appendChild(area);
+                area.focus();
+                area.select();
+                area.setSelectionRange(0, area.value.length);
+                const ok = document.execCommand("copy");
+                area.remove();
+                return ok;
+            } catch (erro) {
+                return false;
+            }
+        }
+
         async function copiarResultado(texto, mensagem = "Conteúdo copiado!") {
-            await navigator.clipboard.writeText(texto);
+            const ok = await copiarTextoSeguro(texto);
+            if (!ok) {
+                mostrarPopup("Não foi possível copiar. Tente novamente.", "erro");
+                return false;
+            }
             mostrarPopup(mensagem, "sucesso");
+            return true;
         }
 
         function baixarResultado(texto, nome) {
@@ -4854,7 +4881,7 @@ Senha: SENHA2`,
 
         function parseLovableEspecial(bloco) {
             return {
-                codigo: extrair(bloco, /Codigo\s*:\s*(.*)/i),
+                creditos: extrair(bloco, /Cr[eé]ditos\s*:\s*(.*)/i),
                 email: extrair(bloco, /Email\s*:\s*(.*)/i),
                 senha: extrair(bloco, /Senha\s*:\s*(.*)/i)
             };
@@ -4871,9 +4898,9 @@ Senha: SENHA2`,
 
             contas.forEach(conta => {
                 linhas.push(
+                    `💳 Créditos: ${conta.creditos}`,
                     `📧 Email: ${conta.email}`,
                     `🔑 Senha: ${conta.senha}`,
-                    `🔐 Código: ${conta.codigo}`,
                     ""
                 );
             });
@@ -4884,7 +4911,7 @@ Senha: SENHA2`,
         function processarLovableMetodo(tipo, quantidade, texto) {
             const contas = separarBlocosEntrada(texto)
                 .map(parseLovableEspecial)
-                .filter(c => c.email || c.senha || c.codigo);
+                .filter(c => c.email || c.senha || c.creditos);
 
             if (!contas.length) {
                 throw new Error("Nenhuma conta válida encontrada.");
@@ -5516,32 +5543,11 @@ Senha: SENHA2`,
             }
 
 
-            try {
-
-
-                await navigator
-                    .clipboard
-                    .writeText(
-                        resultado
-                    );
-
-
-                mostrarPopup(
-                    "Conteúdo copiado!",
-                    "sucesso"
-                );
-
-
-            }
-
-            catch {
-
-
-                mostrarPopup(
-                    "Não foi possível copiar.",
-                    "erro"
-                );
-
+            const copiado = await copiarTextoSeguro(resultado);
+            if (copiado) {
+                mostrarPopup("Conteúdo copiado!", "sucesso");
+            } else {
+                mostrarPopup("Não foi possível copiar. Tente novamente.", "erro");
             }
 
         }
