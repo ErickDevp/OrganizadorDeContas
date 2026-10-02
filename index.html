@@ -4520,143 +4520,104 @@ Senha: SENHA2`,
             texto
         ) {
 
+            const senhasTikTok = [
+                "Dr$68Qmw!T",
+                "Ho#73Nlp$F",
+                "Gb!83Xpv#W",
+                "Nk!57Zlw$R",
+                "Iv$42Tmx!C"
+            ];
 
-            const linhas =
-                texto
-                    .split(/\r?\n/)
-                    .map(
-                        linha =>
-                            linha.trim()
-                    )
-                    .filter(Boolean);
+            // Embaralha as senhas para que cada conta receba uma senha
+            // diferente e em ordem aleatória a cada processamento.
+            const senhasEmbaralhadas = [...senhasTikTok]
+                .sort(() => Math.random() - 0.5);
 
+            const linhas = texto
+                .split(/\r?\n/)
+                .map(linha => linha.trim())
+                .filter(Boolean);
+
+            let indiceSenha = 0;
 
             return linhas
                 .map(linha => {
-
 
                     let email = "";
                     let usuario = "";
                     let senha = "";
 
+                    // Aceita links Markdown como:
+                    // [email@dominio.com](mailto\\:email@dominio.com)
+                    const markdownEmail = linha.match(
+                        /^\[([^\]]+@[^\]]+)\]\(mailto\\?:[^)]+\)$/i
+                    );
 
-                    if (
-                        linha.includes("|")
-                    ) {
-
-
-                        const partes =
-                            linha
-                                .split("|")
-                                .map(
-                                    p =>
-                                        p.trim()
-                                );
-
-
-                        email =
-                            partes[0] || "";
-
-
-                        usuario =
-                            partes[1] || "";
-
-
-                        senha =
-                            partes[2] || "";
-
+                    if (markdownEmail) {
+                        email = markdownEmail[1].trim();
                     }
 
+                    else if (linha.includes("|")) {
 
-                    else if (
-                        linha.includes(":")
-                    ) {
+                        const partes = linha
+                            .split("|")
+                            .map(p => p.trim());
 
-
-                        const partes =
-                            linha.split(
-                                /\s*:\s*/
-                            );
-
-
-                        email =
-                            partes
-                                .shift()
-                                ?.trim() || "";
-
-
-                        senha =
-                            partes
-                                .join(":")
-                                .trim();
-
+                        email = partes[0] || "";
+                        usuario = partes[1] || "";
+                        senha = partes[2] || "";
                     }
 
+                    else if (linha.includes(":")) {
+
+                        const partes = linha.split(/\s*:\s*/);
+
+                        email = partes.shift()?.trim() || "";
+                        senha = partes.join(":").trim();
+                    }
 
                     else {
-
-                        email =
-                            linha;
-
+                        email = linha;
                     }
 
+                    // Se a linha contém uma senha explicitamente, mantém a senha.
+                    // Caso contrário, atribui uma das senhas aleatoriamente.
+                    if (email && !senha) {
+                        senha = senhasEmbaralhadas[
+                            indiceSenha % senhasEmbaralhadas.length
+                        ];
+                        indiceSenha++;
+                    }
 
                     if (!email) {
                         return "";
                     }
 
-
-                    const partesEmail =
-                        email.split("@");
-
-
-                    const username =
-                        partesEmail[0] || "";
-
-
-                    const dominio =
-                        partesEmail[1] || "";
-
-
-                    const inbox =
-                        dominio
-                            ? `https://${dominio}/${username}`
-                            : "";
-
+                    const partesEmail = email.split("@");
+                    const username = partesEmail[0] || "";
+                    const dominio = partesEmail[1] || "";
+                    const inbox = dominio
+                        ? `https://${dominio}/${username}`
+                        : "";
 
                     const saida = [
-
                         "Código: https://2fa.fb.tools/",
-
                         `User: ${usuario}`,
-
                         `Email: ${email}`,
-
                         `Senha: ${senha}`
-
                     ];
 
-
                     if (inbox) {
-
                         saida.push(
                             "",
                             `Para acessar o inbox do email: ${inbox}`
                         );
-
                     }
 
-
-                    return saida.join(
-                        "\n"
-                    );
-
+                    return saida.join("\n");
                 })
                 .filter(Boolean)
-                .join(
-                    "\n\n---\n\n"
-                );
-
+                .join("\n\n---\n\n");
         }
 
 
