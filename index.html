@@ -1338,26 +1338,29 @@
                 1fr 1fr;
 
             gap:
-                8px;
+                10px;
 
             margin-top:
-                10px;
+                12px;
         }
 
 
         .method-actions button {
 
+            width:
+                100%;
+
             min-height:
-                38px;
+                42px;
 
             border-radius:
                 8px;
 
             padding:
-                9px;
+                11px 15px;
 
             font-size:
-                12px;
+                13px;
 
             font-weight:
                 700;
@@ -1985,6 +1988,15 @@
                 <button
                     type="button"
                     class="platform-btn"
+                    data-platform="ChatGPT"
+                >
+                    ChatGPT
+                </button>
+
+
+                <button
+                    type="button"
+                    class="platform-btn"
                     data-platform="Twitter"
                 >
                     Twitter
@@ -2531,10 +2543,31 @@ Senha: SENHA2"></textarea>
             <div id="instagramGGMaxMethods" class="method-grid special-methods">
                 <div class="method-card">
                     <div class="method-header">
-                        <div><h3>Instagram — GG Max</h3><span>Entrada separada por ---</span></div>
+                        <div>
+                            <h3>1 Conta</h3>
+                            <span>Instagram → GG Max • Entrada separada por ---</span>
+                            <div class="method-limit">Agrupamento de 1 conta(s) • vários grupos permitidos</div>
+                        </div>
                         <div class="method-number">01</div>
                     </div>
-                    <textarea id="instagramGGMaxInput" placeholder="2fa: https://exemplo.com/codigo
+                    <textarea id="instagramGGMax1" placeholder="2fa: https://exemplo.com/codigo
+Usuário: usuario
+Senha: SENHA"></textarea>
+                    <div class="method-actions">
+                        <button type="button" class="method-download" onclick="baixarInstagramMetodo('ggmax',1)">Baixar TXT</button>
+                        <button type="button" class="method-copy" onclick="copiarInstagramMetodo('ggmax',1)">Copiar</button>
+                    </div>
+                </div>
+                <div class="method-card">
+                    <div class="method-header">
+                        <div>
+                            <h3>2 Contas</h3>
+                            <span>Instagram → GG Max • Entrada separada por ---</span>
+                            <div class="method-limit">Agrupamento de 2 conta(s) • vários grupos permitidos</div>
+                        </div>
+                        <div class="method-number">02</div>
+                    </div>
+                    <textarea id="instagramGGMax2" placeholder="2fa: https://exemplo.com/codigo
 Usuário: usuario
 Senha: SENHA
 
@@ -2544,8 +2577,100 @@ Senha: SENHA
 Usuário: usuario2
 Senha: SENHA2"></textarea>
                     <div class="method-actions">
-                        <button type="button" class="method-download" onclick="baixarInstagramMetodo('ggmax')">Baixar TXT</button>
-                        <button type="button" class="method-copy" onclick="copiarInstagramMetodo('ggmax')">Copiar</button>
+                        <button type="button" class="method-download" onclick="baixarInstagramMetodo('ggmax',2)">Baixar TXT</button>
+                        <button type="button" class="method-copy" onclick="copiarInstagramMetodo('ggmax',2)">Copiar</button>
+                    </div>
+                </div>
+                <div class="method-card">
+                    <div class="method-header">
+                        <div>
+                            <h3>3 Contas</h3>
+                            <span>Instagram → GG Max • Entrada separada por ---</span>
+                            <div class="method-limit">Agrupamento de 3 conta(s) • vários grupos permitidos</div>
+                        </div>
+                        <div class="method-number">03</div>
+                    </div>
+                    <textarea id="instagramGGMax3" placeholder="2fa: https://exemplo.com/codigo
+Usuário: usuario
+Senha: SENHA
+
+---
+
+2fa: https://exemplo.com/codigo2
+Usuário: usuario2
+Senha: SENHA2"></textarea>
+                    <div class="method-actions">
+                        <button type="button" class="method-download" onclick="baixarInstagramMetodo('ggmax',3)">Baixar TXT</button>
+                        <button type="button" class="method-copy" onclick="copiarInstagramMetodo('ggmax',3)">Copiar</button>
+                    </div>
+                </div>
+                <div class="method-card">
+                    <div class="method-header">
+                        <div>
+                            <h3>5 Contas</h3>
+                            <span>Instagram → GG Max • Entrada separada por ---</span>
+                            <div class="method-limit">Agrupamento de 5 conta(s) • vários grupos permitidos</div>
+                        </div>
+                        <div class="method-number">04</div>
+                    </div>
+                    <textarea id="instagramGGMax5" placeholder="2fa: https://exemplo.com/codigo
+Usuário: usuario
+Senha: SENHA
+
+---
+
+2fa: https://exemplo.com/codigo2
+Usuário: usuario2
+Senha: SENHA2"></textarea>
+                    <div class="method-actions">
+                        <button type="button" class="method-download" onclick="baixarInstagramMetodo('ggmax',5)">Baixar TXT</button>
+                        <button type="button" class="method-copy" onclick="copiarInstagramMetodo('ggmax',5)">Copiar</button>
+                    </div>
+                </div>
+                <div class="method-card">
+                    <div class="method-header">
+                        <div>
+                            <h3>10 Contas</h3>
+                            <span>Instagram → GG Max • Entrada separada por ---</span>
+                            <div class="method-limit">Agrupamento de 10 conta(s) • vários grupos permitidos</div>
+                        </div>
+                        <div class="method-number">05</div>
+                    </div>
+                    <textarea id="instagramGGMax10" placeholder="2fa: https://exemplo.com/codigo
+Usuário: usuario
+Senha: SENHA
+
+---
+
+2fa: https://exemplo.com/codigo2
+Usuário: usuario2
+Senha: SENHA2"></textarea>
+                    <div class="method-actions">
+                        <button type="button" class="method-download" onclick="baixarInstagramMetodo('ggmax',10)">Baixar TXT</button>
+                        <button type="button" class="method-copy" onclick="copiarInstagramMetodo('ggmax',10)">Copiar</button>
+                    </div>
+                </div>
+                <div class="method-card">
+                    <div class="method-header">
+                        <div>
+                            <h3>20 Contas</h3>
+                            <span>Instagram → GG Max • Entrada separada por ---</span>
+                            <div class="method-limit">Agrupamento de 20 conta(s) • vários grupos permitidos</div>
+                        </div>
+                        <div class="method-number">06</div>
+                    </div>
+                    <textarea id="instagramGGMax20" placeholder="2fa: https://exemplo.com/codigo
+Usuário: usuario
+Senha: SENHA
+
+---
+
+2fa: https://exemplo.com/codigo2
+Usuário: usuario2
+Senha: SENHA2"></textarea>
+                    <div class="method-actions">
+                        <button type="button" class="method-download" onclick="baixarInstagramMetodo('ggmax',20)">Baixar TXT</button>
+                        <button type="button" class="method-copy" onclick="copiarInstagramMetodo('ggmax',20)">Copiar</button>
                     </div>
                 </div>
             </div>
@@ -2556,10 +2681,31 @@ Senha: SENHA2"></textarea>
             <div id="instagramGameMarketMethods" class="method-grid special-methods">
                 <div class="method-card">
                     <div class="method-header">
-                        <div><h3>Instagram — Game Market</h3><span>Entrada separada por --- • saída por ===</span></div>
+                        <div>
+                            <h3>1 Conta</h3>
+                            <span>Instagram → Game Market • Entrada separada por --- • saída por ===</span>
+                            <div class="method-limit">Agrupamento de 1 conta(s) • vários grupos permitidos</div>
+                        </div>
                         <div class="method-number">01</div>
                     </div>
-                    <textarea id="instagramGameMarketInput" placeholder="2fa: https://exemplo.com/codigo
+                    <textarea id="instagramGameMarket1" placeholder="2fa: https://exemplo.com/codigo
+Usuário: usuario
+Senha: SENHA"></textarea>
+                    <div class="method-actions">
+                        <button type="button" class="method-download" onclick="baixarInstagramMetodo('gamemarket',1)">Baixar TXT</button>
+                        <button type="button" class="method-copy" onclick="copiarInstagramMetodo('gamemarket',1)">Copiar</button>
+                    </div>
+                </div>
+                <div class="method-card">
+                    <div class="method-header">
+                        <div>
+                            <h3>2 Contas</h3>
+                            <span>Instagram → Game Market • Entrada separada por --- • saída por ===</span>
+                            <div class="method-limit">Agrupamento de 2 conta(s) • vários grupos permitidos</div>
+                        </div>
+                        <div class="method-number">02</div>
+                    </div>
+                    <textarea id="instagramGameMarket2" placeholder="2fa: https://exemplo.com/codigo
 Usuário: usuario
 Senha: SENHA
 
@@ -2569,8 +2715,100 @@ Senha: SENHA
 Usuário: usuario2
 Senha: SENHA2"></textarea>
                     <div class="method-actions">
-                        <button type="button" class="method-download" onclick="baixarInstagramMetodo('gamemarket')">Baixar TXT</button>
-                        <button type="button" class="method-copy" onclick="copiarInstagramMetodo('gamemarket')">Copiar</button>
+                        <button type="button" class="method-download" onclick="baixarInstagramMetodo('gamemarket',2)">Baixar TXT</button>
+                        <button type="button" class="method-copy" onclick="copiarInstagramMetodo('gamemarket',2)">Copiar</button>
+                    </div>
+                </div>
+                <div class="method-card">
+                    <div class="method-header">
+                        <div>
+                            <h3>3 Contas</h3>
+                            <span>Instagram → Game Market • Entrada separada por --- • saída por ===</span>
+                            <div class="method-limit">Agrupamento de 3 conta(s) • vários grupos permitidos</div>
+                        </div>
+                        <div class="method-number">03</div>
+                    </div>
+                    <textarea id="instagramGameMarket3" placeholder="2fa: https://exemplo.com/codigo
+Usuário: usuario
+Senha: SENHA
+
+---
+
+2fa: https://exemplo.com/codigo2
+Usuário: usuario2
+Senha: SENHA2"></textarea>
+                    <div class="method-actions">
+                        <button type="button" class="method-download" onclick="baixarInstagramMetodo('gamemarket',3)">Baixar TXT</button>
+                        <button type="button" class="method-copy" onclick="copiarInstagramMetodo('gamemarket',3)">Copiar</button>
+                    </div>
+                </div>
+                <div class="method-card">
+                    <div class="method-header">
+                        <div>
+                            <h3>5 Contas</h3>
+                            <span>Instagram → Game Market • Entrada separada por --- • saída por ===</span>
+                            <div class="method-limit">Agrupamento de 5 conta(s) • vários grupos permitidos</div>
+                        </div>
+                        <div class="method-number">04</div>
+                    </div>
+                    <textarea id="instagramGameMarket5" placeholder="2fa: https://exemplo.com/codigo
+Usuário: usuario
+Senha: SENHA
+
+---
+
+2fa: https://exemplo.com/codigo2
+Usuário: usuario2
+Senha: SENHA2"></textarea>
+                    <div class="method-actions">
+                        <button type="button" class="method-download" onclick="baixarInstagramMetodo('gamemarket',5)">Baixar TXT</button>
+                        <button type="button" class="method-copy" onclick="copiarInstagramMetodo('gamemarket',5)">Copiar</button>
+                    </div>
+                </div>
+                <div class="method-card">
+                    <div class="method-header">
+                        <div>
+                            <h3>10 Contas</h3>
+                            <span>Instagram → Game Market • Entrada separada por --- • saída por ===</span>
+                            <div class="method-limit">Agrupamento de 10 conta(s) • vários grupos permitidos</div>
+                        </div>
+                        <div class="method-number">05</div>
+                    </div>
+                    <textarea id="instagramGameMarket10" placeholder="2fa: https://exemplo.com/codigo
+Usuário: usuario
+Senha: SENHA
+
+---
+
+2fa: https://exemplo.com/codigo2
+Usuário: usuario2
+Senha: SENHA2"></textarea>
+                    <div class="method-actions">
+                        <button type="button" class="method-download" onclick="baixarInstagramMetodo('gamemarket',10)">Baixar TXT</button>
+                        <button type="button" class="method-copy" onclick="copiarInstagramMetodo('gamemarket',10)">Copiar</button>
+                    </div>
+                </div>
+                <div class="method-card">
+                    <div class="method-header">
+                        <div>
+                            <h3>20 Contas</h3>
+                            <span>Instagram → Game Market • Entrada separada por --- • saída por ===</span>
+                            <div class="method-limit">Agrupamento de 20 conta(s) • vários grupos permitidos</div>
+                        </div>
+                        <div class="method-number">06</div>
+                    </div>
+                    <textarea id="instagramGameMarket20" placeholder="2fa: https://exemplo.com/codigo
+Usuário: usuario
+Senha: SENHA
+
+---
+
+2fa: https://exemplo.com/codigo2
+Usuário: usuario2
+Senha: SENHA2"></textarea>
+                    <div class="method-actions">
+                        <button type="button" class="method-download" onclick="baixarInstagramMetodo('gamemarket',20)">Baixar TXT</button>
+                        <button type="button" class="method-copy" onclick="copiarInstagramMetodo('gamemarket',20)">Copiar</button>
                     </div>
                 </div>
             </div>
@@ -2866,6 +3104,126 @@ Senha: SENHA2"></textarea>
             </div>
 
             <!-- =================================================
+                 GMAIL → GG MAX
+            ================================================== -->
+
+            <div id="gmailGGMaxMethods" class="method-grid special-methods" style="display:none;">
+                <div class="method-card">
+                    <div class="method-header">
+                        <div>
+                            <h3>Gmail — GG Max</h3>
+                            <span>Entrada separada por --- • saída por ---</span>
+                            <div class="method-limit">Pode enviar várias contas por vez</div>
+                        </div>
+                        <div class="method-number">01</div>
+                    </div>
+                    <textarea id="gmailGGMaxInput" placeholder="Email: usuario@gmail.com
+Senha: SENHA
+SubEmail: recuperacao@exemplo.com
+inbox: https://exemplo.com/inbox
+
+---
+
+Email: usuario2@gmail.com
+Senha: SENHA2
+SubEmail: recuperacao2@exemplo.com
+inbox: https://exemplo.com/inbox2"></textarea>
+                    <div class="method-actions">
+                        <button type="button" class="method-download" onclick="baixarGmailGGMax()">Baixar TXT</button>
+                        <button type="button" class="method-copy" onclick="copiarGmailGGMax()">Copiar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- =================================================
+                 CHATGPT → GG MAX / GAME MARKET
+            ================================================== -->
+
+            <div id="chatGPTGGMaxMethods" class="method-grid special-methods" style="display:none;">
+                <div class="method-card">
+                    <div class="method-header">
+                        <div>
+                            <h3>ChatGPT — GG Max</h3>
+                            <span>Links de ativação • saída por ---</span>
+                            <div class="method-limit">Pode enviar vários links por vez</div>
+                        </div>
+                        <div class="method-number">01</div>
+                    </div>
+                    <textarea id="chatGPTGGMaxInput" placeholder="[https://chatgspt.com/?bggfddfgdfg=xxxxxxxxxxxxxxxx](https://chatgspt.com/?bggfddfgdfg=xxxxxxxxxxxxxxxx)
+[https://chatgspt.com/?bggfddfgdfg=xxxxxxxxxxxxxxxx](https://chatgspt.com/?bggfddfgdfg=xxxxxxxxxxxxxxxx)"></textarea>
+                    <div class="method-actions">
+                        <button type="button" class="method-download" onclick="baixarChatGPTMetodo('ggmax')">Baixar TXT</button>
+                        <button type="button" class="method-copy" onclick="copiarChatGPTMetodo('ggmax')">Copiar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="chatGPTGameMarketMethods" class="method-grid special-methods" style="display:none;">
+                <div class="method-card">
+                    <div class="method-header">
+                        <div>
+                            <h3>ChatGPT — Game Market</h3>
+                            <span>Links de ativação • saída por ===</span>
+                            <div class="method-limit">Pode enviar vários links por vez</div>
+                        </div>
+                        <div class="method-number">01</div>
+                    </div>
+                    <textarea id="chatGPTGameMarketInput" placeholder="[https://chatgspt.com/?bggfddfgdfg=xxxxxxxxxxxxxxxx](https://chatgspt.com/?bggfddfgdfg=xxxxxxxxxxxxxxxx)
+[https://chatgspt.com/?bggfddfgdfg=xxxxxxxxxxxxxxxx](https://chatgspt.com/?bggfddfgdfg=xxxxxxxxxxxxxxxx)"></textarea>
+                    <div class="method-actions">
+                        <button type="button" class="method-download" onclick="baixarChatGPTMetodo('gamemarket')">Baixar TXT</button>
+                        <button type="button" class="method-copy" onclick="copiarChatGPTMetodo('gamemarket')">Copiar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- =================================================
+                 LOVABLE → DEFAULT — FORMATO DETALHADO
+            ================================================== -->
+            <div id="lovableDefaultDetailedMethods" class="method-grid special-methods" style="display:none;">
+                <div class="method-card">
+                    <div class="method-header">
+                        <div>
+                            <h3>Lovable — Dados detalhados</h3>
+                            <span>Login, senha, créditos e inbox</span>
+                            <div class="method-limit">Cole várias contas • uma conta por linha</div>
+                        </div>
+                        <div class="method-number">01</div>
+                    </div>
+                    <textarea id="lovableDefaultDetailedInput" placeholder="Lovable Login: usuario@exemplo.com | Lovable Pass: senha123 | Workspace: nome (workspace_id) | Plan: pro_1 | Credits: 105/105 | Expiration: data | Verified: data | Mailbox: https://exemplo.com/inbox
+
+Lovable Login: usuario2@exemplo.com | Lovable Pass: senha456 | Workspace: nome2 (workspace_id) | Plan: pro_1 | Credits: 105/105 | Expiration: data | Verified: data | Mailbox: https://exemplo.com/inbox2"></textarea>
+                    <div class="method-actions">
+                        <button type="button" class="method-download" onclick="baixarLovableDefaultDetalhado()">Baixar TXT</button>
+                        <button type="button" class="method-copy" onclick="copiarLovableDefaultDetalhado()">Copiar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- =================================================
+                 INSTAGRAM → DEFAULT — NOVO FORMATO
+            ================================================== -->
+            <div id="instagramDefaultMethods" class="method-grid special-methods" style="display:none;">
+                <div class="method-card">
+                    <div class="method-header">
+                        <div>
+                            <h3>Instagram — Novo formato</h3>
+                            <span>Usuário, senha e código 2FA</span>
+                            <div class="method-limit">Uma conta por linha • várias contas permitidas</div>
+                        </div>
+                        <div class="method-number">01</div>
+                    </div>
+                    <textarea id="instagramDefaultInput" placeholder="Usuário    Senha    Código 2FA
+adelysnn48644    HQzsk8BXz    2CSQ PWLM GNW7 EJHQ HAZG ILHS 4G7K MIVN
+manuesl782352    RCzFsbXwX    WINV FVFI 4AHE DGH7 DXXQ LNKT MTXV 55FA"></textarea>
+                    <div class="method-actions">
+                        <button type="button" class="method-download" onclick="baixarInstagramDefaultNovo()">Baixar TXT</button>
+                        <button type="button" class="method-copy" onclick="copiarInstagramDefaultNovo()">Copiar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- =================================================
                  CAMPO PADRÃO
             ================================================== -->
 
@@ -3080,7 +3438,9 @@ Senha: SENHA2"></textarea>
             "lovableGGMaxMethods",
             "lovableGameMarketMethods",
             "elevenLabsGGMaxMethods",
-            "elevenLabsGameMarketMethods"
+            "elevenLabsGameMarketMethods",
+            "chatGPTGGMaxMethods",
+            "chatGPTGameMarketMethods"
         ].map(id => document.getElementById(id));
 
 
@@ -3271,6 +3631,17 @@ Senha: senha`,
             },
 
 
+            ChatGPT: {
+
+                placeholder:
+`[https://chatgspt.com/?bggfddfgdfg=xxxxxxxxxxxxxxxx](https://chatgspt.com/?bggfddfgdfg=xxxxxxxxxxxxxxxx)
+[https://chatgspt.com/?bggfddfgdfg=xxxxxxxxxxxxxxxx](https://chatgspt.com/?bggfddfgdfg=xxxxxxxxxxxxxxxx)`,
+
+                descricao:
+                    "Cole os links de ativação. Pode enviar vários links por vez."
+            },
+
+
             Discord: {
 
                 placeholder:
@@ -3431,21 +3802,30 @@ Senha: SENHA2`,
                 tiktokGameMarketMethods: document.getElementById("tiktokGameMarketMethods"),
                 instagramGGMaxMethods: document.getElementById("instagramGGMaxMethods"),
                 instagramGameMarketMethods: document.getElementById("instagramGameMarketMethods"),
+                instagramDefaultMethods: document.getElementById("instagramDefaultMethods"),
                 outlookGGMaxMethods: document.getElementById("outlookGGMaxMethods"),
                 outlookGameMarketMethods: document.getElementById("outlookGameMarketMethods"),
                 lovableGGMaxMethods: document.getElementById("lovableGGMaxMethods"),
                 lovableGameMarketMethods: document.getElementById("lovableGameMarketMethods"),
+                lovableDefaultDetailedMethods: document.getElementById("lovableDefaultDetailedMethods"),
                 elevenLabsGGMaxMethods: document.getElementById("elevenLabsGGMaxMethods"),
                 elevenLabsGameMarketMethods: document.getElementById("elevenLabsGameMarketMethods"),
                 discordGGMaxMethods: document.getElementById("discordGGMaxMethods"),
-                discordGameMarketMethods: document.getElementById("discordGameMarketMethods")
+                discordGameMarketMethods: document.getElementById("discordGameMarketMethods"),
+                gmailGGMaxMethods: document.getElementById("gmailGGMaxMethods"),
+                chatGPTGGMaxMethods: document.getElementById("chatGPTGGMaxMethods"),
+                chatGPTGameMarketMethods: document.getElementById("chatGPTGameMarketMethods")
             };
 
             Object.values(areas).forEach(area => {
-                if (area) area.style.display = "none";
+                if (area) {
+                    area.style.display = "none";
+                    area.style.marginBottom = "";
+                }
             });
 
             defaultMethodArea.style.display = "block";
+            defaultMethodArea.style.marginBottom = "";
 
             let areaAtual = null;
 
@@ -3457,6 +3837,14 @@ Senha: SENHA2`,
                 areaAtual = areas.tiktokGGMaxMethods;
             } else if (plataformaAtual === "TikTok" && destinoAtual === "Game Market") {
                 areaAtual = areas.tiktokGameMarketMethods;
+            } else if (plataformaAtual === "Instagram" && destinoAtual === "Default") {
+                // Instagram → Default: mantém o campo padrão antigo e exibe
+                // também o novo campo, com espaçamento entre os dois.
+                areas.instagramDefaultMethods.style.display = "grid";
+                areas.instagramDefaultMethods.style.marginBottom = "15px";
+                defaultMethodArea.style.display = "block";
+                defaultMethodArea.style.marginBottom = "0";
+                areaAtual = null;
             } else if (plataformaAtual === "Instagram" && destinoAtual === "GG Max") {
                 areaAtual = areas.instagramGGMaxMethods;
             } else if (plataformaAtual === "Instagram" && destinoAtual === "Game Market") {
@@ -3465,6 +3853,12 @@ Senha: SENHA2`,
                 areaAtual = areas.outlookGGMaxMethods;
             } else if (plataformaAtual === "Outlook" && destinoAtual === "Game Market") {
                 areaAtual = areas.outlookGameMarketMethods;
+            } else if (plataformaAtual === "Lovable" && destinoAtual === "Default") {
+                areas.lovableDefaultDetailedMethods.style.display = "grid";
+                areas.lovableDefaultDetailedMethods.style.marginBottom = "15px";
+                defaultMethodArea.style.display = "block";
+                defaultMethodArea.style.marginBottom = "0";
+                areaAtual = null;
             } else if (plataformaAtual === "Lovable" && destinoAtual === "GG Max") {
                 areaAtual = areas.lovableGGMaxMethods;
             } else if (plataformaAtual === "Lovable" && destinoAtual === "Game Market") {
@@ -3477,6 +3871,12 @@ Senha: SENHA2`,
                 areaAtual = areas.discordGGMaxMethods;
             } else if (plataformaAtual === "Discord" && destinoAtual === "Game Market") {
                 areaAtual = areas.discordGameMarketMethods;
+            } else if (plataformaAtual === "Gmail" && destinoAtual === "GG Max") {
+                areaAtual = areas.gmailGGMaxMethods;
+            } else if (plataformaAtual === "ChatGPT" && destinoAtual === "GG Max") {
+                areaAtual = areas.chatGPTGGMaxMethods;
+            } else if (plataformaAtual === "ChatGPT" && destinoAtual === "Game Market") {
+                areaAtual = areas.chatGPTGameMarketMethods;
             }
 
             if (areaAtual) {
@@ -4318,6 +4718,46 @@ Senha: SENHA2`,
                 .join("\n\n---\n\n");
         }
 
+        /* =====================================================
+           LOVABLE → DEFAULT — DADOS DETALHADOS
+        ===================================================== */
+        function processarLovableDefaultDetalhado(texto) {
+            const linhas = String(texto || "").replace(/\r\n/g, "\n").split("\n").map(l => l.trim()).filter(Boolean);
+            const contas = linhas.map(linha => {
+                const extrair = (regex) => linha.match(regex)?.[1]?.trim() || "";
+                const email = extrair(/Lovable Login:\s*([^|]+)/i);
+                const senha = extrair(/Lovable Pass:\s*([^|]+)/i);
+                const creditos = extrair(/Credits:\s*([^|]+)/i);
+                const inbox = extrair(/Mailbox:\s*(https?:\/\/\S+)/i);
+                if (!email || !senha || !email.includes("@")) return null;
+                return { email, senha, creditos, inbox };
+            }).filter(Boolean);
+
+            return contas.map(conta => [
+                "📩 Dados de acesso:",
+                `💳 Créditos: ${conta.creditos}`,
+                `📧 Email: ${conta.email}`,
+                `🔑 Senha: ${conta.senha}`,
+                `📧 Inbox: ${conta.inbox}`
+            ].join("\n")).join("\n\n");
+        }
+
+        async function copiarLovableDefaultDetalhado() {
+            const campo = document.getElementById("lovableDefaultDetailedInput");
+            if (!campo || !campo.value.trim()) return mostrarPopup("Cole os dados primeiro.", "erro");
+            const resultado = processarLovableDefaultDetalhado(campo.value);
+            if (!resultado) return mostrarPopup("Nenhuma conta válida encontrada.", "erro");
+            await copiarResultado(resultado);
+        }
+
+        function baixarLovableDefaultDetalhado() {
+            const campo = document.getElementById("lovableDefaultDetailedInput");
+            if (!campo || !campo.value.trim()) return mostrarPopup("Cole os dados primeiro.", "erro");
+            const resultado = processarLovableDefaultDetalhado(campo.value);
+            if (!resultado) return mostrarPopup("Nenhuma conta válida encontrada.", "erro");
+            baixarResultado(resultado, "Lovable_Default_Detalhado.txt");
+        }
+
 
         /* =====================================================
            DEFAULT — ELEVENLABS
@@ -4439,6 +4879,81 @@ Senha: SENHA2`,
                     "\n\n---\n\n"
                 );
 
+        }
+
+
+        /* =====================================================
+           INSTAGRAM → DEFAULT — NOVO FORMATO
+           Entrada: usuário<TAB>senha<TAB>código 2FA
+           Pode receber várias contas, uma por linha.
+        ===================================================== */
+
+        function processarInstagramDefaultNovo(texto) {
+            const linhas = String(texto || "")
+                .replace(/\r/g, "")
+                .split("\n")
+                .map(linha => linha.trim())
+                .filter(Boolean);
+
+            const contas = [];
+
+            linhas.forEach(linha => {
+                const partes = linha.split(/\t+/);
+
+                if (partes.length < 3) {
+                    return;
+                }
+
+                const usuario = partes[0].trim();
+                const senha = partes[1].trim();
+                const codigo = partes.slice(2).join(" ").trim().replace(/\s+/g, "");
+
+                if (usuario && senha && codigo) {
+                    contas.push({ usuario, senha, codigo });
+                }
+            });
+
+            return contas
+                .map(conta => [
+                    `2fa: https://2fa.fb.tools/${conta.codigo}`,
+                    `Usuário: ${conta.usuario}`,
+                    `Senha: ${conta.senha}`
+                ].join("\n"))
+                .join("\n\n---\n\n");
+        }
+
+        async function copiarInstagramDefaultNovo() {
+            const campo = document.getElementById("instagramDefaultInput");
+            if (!campo || !campo.value.trim()) {
+                return mostrarPopup("Cole os dados primeiro.", "erro");
+            }
+
+            try {
+                const resultado = processarInstagramDefaultNovo(campo.value);
+                if (!resultado) {
+                    return mostrarPopup("Nenhuma conta válida encontrada.", "erro");
+                }
+                await copiarResultado(resultado);
+            } catch (erro) {
+                mostrarPopup(erro.message || "Não foi possível processar as contas.", "erro");
+            }
+        }
+
+        function baixarInstagramDefaultNovo() {
+            const campo = document.getElementById("instagramDefaultInput");
+            if (!campo || !campo.value.trim()) {
+                return mostrarPopup("Cole os dados primeiro.", "erro");
+            }
+
+            try {
+                const resultado = processarInstagramDefaultNovo(campo.value);
+                if (!resultado) {
+                    return mostrarPopup("Nenhuma conta válida encontrada.", "erro");
+                }
+                baixarResultado(resultado, "Instagram_Default.txt");
+            } catch (erro) {
+                mostrarPopup(erro.message || "Não foi possível processar as contas.", "erro");
+            }
         }
 
 
@@ -4683,35 +5198,62 @@ Senha: SENHA2`,
             };
         }
 
-        function formatarInstagramEspecial(dados) {
-            return [
+        function formatarInstagramGrupo(contas) {
+            const linhas = [
                 "🎉 Pedido entregue!",
                 "",
                 "Olá! Sua conta Instagram já está pronta para uso. 💜",
                 "",
-                "📩 Dados de acesso:",
-                `👤 Usuário: ${dados.usuario}`,
-                `🔑 Senha: ${dados.senha}`,
-                `🔐 Código: ${dados.codigo}`,
+                "📩 Dados de acesso:"
+            ];
+
+            contas.forEach(conta => {
+                linhas.push(
+                    `👤 Usuário: ${conta.usuario}`,
+                    `🔑 Senha: ${conta.senha}`,
+                    `🔐 Código: ${conta.codigo}`,
+                    ""
+                );
+            });
+
+            linhas.push(
+                "🚨 **ATENÇÃO — CONTA NOVA!**",
                 "",
-                "Verifique os dados antes de utilizar a conta.",
-                ""
-            ].join("\n").trim();
+                "📱 Primeiro acesso: **recomendado via 4G/5G**.",
+                "⏳ Aguarde **24h ou mais** antes de alterar senha, username, e-mail etc.",
+                "⚠️ Alterações imediatas podem gerar **verificações ou bloqueios de segurança**."
+            );
+
+            return linhas.join("\n").trim();
         }
 
-        function processarInstagramMetodo(tipo, texto) {
+        function processarInstagramMetodo(tipo, quantidade, texto) {
             const contas = separarBlocosEntrada(texto)
                 .map(parseInstagramEspecial)
                 .filter(c => c.usuario || c.senha || c.codigo);
 
-            if (!contas.length) return "";
+            if (!contas.length) {
+                throw new Error("Nenhuma conta válida encontrada.");
+            }
 
-            const separador =
-                tipo === "gamemarket"
-                    ? "\n\n===\n\n"
-                    : "\n\n---\n\n";
+            if (contas.length % quantidade !== 0) {
+                throw new Error(
+                    `Para este campo, a quantidade total deve ser múltipla de ${quantidade}. Você informou ${contas.length}.`
+                );
+            }
 
-            return contas.map(formatarInstagramEspecial).join(separador);
+            const grupos = [];
+            for (let i = 0; i < contas.length; i += quantidade) {
+                grupos.push(contas.slice(i, i + quantidade));
+            }
+
+            const separador = tipo === "gamemarket"
+                ? "\n\n===\n\n"
+                : "\n\n---\n\n";
+
+            return grupos
+                .map(formatarInstagramGrupo)
+                .join(separador);
         }
 
         function parseOutlookEspecial(bloco) {
@@ -5143,21 +5685,32 @@ Senha: SENHA2`,
             baixarResultado(resultado, `TikTok_${tipo}.txt`);
         }
 
-        async function copiarInstagramMetodo(tipo) {
-            const id = tipo === "ggmax" ? "instagramGGMaxInput" : "instagramGameMarketInput";
+        async function copiarInstagramMetodo(tipo, quantidade) {
+            const prefixo = tipo === "ggmax" ? "instagramGGMax" : "instagramGameMarket";
+            const id = `${prefixo}${quantidade}`;
             const campo = obterCampoMetodo(id);
             if (!campo.value.trim()) return mostrarPopup("Cole os dados primeiro.", "erro");
-            try { await copiarResultado(processarInstagramMetodo(tipo, campo.value)); }
-            catch { mostrarPopup("Não foi possível copiar.", "erro"); }
+
+            try {
+                const resultado = processarInstagramMetodo(tipo, quantidade, campo.value);
+                await copiarResultado(resultado);
+            } catch (erro) {
+                mostrarPopup(erro.message || "Quantidade de contas inválida.", "erro");
+            }
         }
 
-        function baixarInstagramMetodo(tipo) {
-            const id = tipo === "ggmax" ? "instagramGGMaxInput" : "instagramGameMarketInput";
+        function baixarInstagramMetodo(tipo, quantidade) {
+            const prefixo = tipo === "ggmax" ? "instagramGGMax" : "instagramGameMarket";
+            const id = `${prefixo}${quantidade}`;
             const campo = obterCampoMetodo(id);
             if (!campo.value.trim()) return mostrarPopup("Cole os dados primeiro.", "erro");
-            const resultado = processarInstagramMetodo(tipo, campo.value);
-            if (!resultado) return mostrarPopup("Nenhum dado válido encontrado.", "erro");
-            baixarResultado(resultado, `Instagram_${tipo}.txt`);
+
+            try {
+                const resultado = processarInstagramMetodo(tipo, quantidade, campo.value);
+                baixarResultado(resultado, `Instagram_${tipo}_${quantidade}.txt`);
+            } catch (erro) {
+                mostrarPopup(erro.message || "Quantidade de contas inválida.", "erro");
+            }
         }
 
         async function copiarOutlookMetodo(tipo, quantidade) {
@@ -5184,6 +5737,94 @@ Senha: SENHA2`,
         }
 
         /* =====================================================
+           GMAIL → GG MAX
+           Entrada: Email, Senha, SubEmail e inbox por bloco
+           Blocos separados por ---
+        ===================================================== */
+
+        function parseGmailGGMax(bloco) {
+            const extrairCampo = (regex) => {
+                const match = bloco.match(regex);
+                return match ? match[1].trim() : "";
+            };
+
+            return {
+                email: extrairCampo(/^Email\s*:\s*(.+)$/im),
+                senha: extrairCampo(/^Senha\s*:\s*(.+)$/im),
+                subEmail: extrairCampo(/^SubEmail\s*:\s*(.+)$/im),
+                inbox: extrairCampo(/^inbox\s*:\s*(.+)$/im)
+            };
+        }
+
+        function formatarGmailGGMax(conta) {
+            return [
+                "🎉 PEDIDO ENTREGUE!",
+                "",
+                "Olá! Seu acesso ao Gmail está pronto. ❤️",
+                "",
+                "📋 DADOS DE ACESSO",
+                "",
+                `📧 E-mail: ${conta.email}`,
+                `🔑 Senha: ${conta.senha}`,
+                "",
+                "🔐 DADOS DE RECUPERAÇÃO",
+                "",
+                `📧 SubEmail: ${conta.subEmail}`,
+                `📥 Inbox do SubEmail: ${conta.inbox}`,
+                "",
+                "📌 INSTRUÇÕES PARA O PRIMEIRO ACESSO",
+                "",
+                "1️⃣ Acesse o Gmail e faça login utilizando os dados acima.",
+                "2️⃣ O SubEmail informado é o e-mail utilizado para recuperação da conta.",
+                "3️⃣ Caso o Google envie algum código, aviso ou mensagem de segurança para o SubEmail, acesse o Inbox pelo link informado acima para consultar a mensagem.",
+                "4️⃣ Após conseguir acessar, evite realizar várias alterações na conta imediatamente.",
+                "",
+                "✅ Tudo pronto! Bom uso e obrigado pela compra. ❤️"
+            ].join("\n");
+        }
+
+        function processarGmailGGMax(texto) {
+            const blocos = separarBlocosEntrada(texto);
+            const contas = blocos
+                .map(parseGmailGGMax)
+                .filter(conta => conta.email || conta.senha || conta.subEmail || conta.inbox);
+
+            if (!contas.length) {
+                throw new Error("Nenhuma conta válida encontrada.");
+            }
+
+            return contas.map(formatarGmailGGMax).join("\n\n---\n\n");
+        }
+
+        async function copiarGmailGGMax() {
+            const campo = obterCampoMetodo("gmailGGMaxInput");
+            if (!campo.value.trim()) {
+                return mostrarPopup("Cole os dados primeiro.", "erro");
+            }
+
+            try {
+                await copiarResultado(processarGmailGGMax(campo.value));
+            } catch (erro) {
+                mostrarPopup(erro.message || "Não foi possível processar as contas.", "erro");
+            }
+        }
+
+        function baixarGmailGGMax() {
+            const campo = obterCampoMetodo("gmailGGMaxInput");
+            if (!campo.value.trim()) {
+                return mostrarPopup("Cole os dados primeiro.", "erro");
+            }
+
+            try {
+                const resultado = processarGmailGGMax(campo.value);
+                baixarResultado(resultado, "Gmail_GGMax.txt");
+            } catch (erro) {
+                mostrarPopup(erro.message || "Não foi possível processar as contas.", "erro");
+            }
+        }
+
+
+        /* =====================================================
            BASEFY — JSON name/value
         ===================================================== */
 
@@ -5195,6 +5836,107 @@ Senha: SENHA2`,
                 if (m) itens.push({name: m[1].trim(), value: m[2].trim()});
             });
             return JSON.stringify(itens, null, 2);
+        }
+
+        /* =====================================================
+           CHATGPT GO — GG MAX / GAME MARKET
+        ===================================================== */
+
+        function extrairLinksChatGPT(texto) {
+            return String(texto || "")
+                .replace(/\r\n/g, "\n")
+                .split(/\n+/)
+                .map(linha => linha.trim())
+                .filter(Boolean)
+                .map(linha => {
+                    const markdown = linha.match(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/i);
+                    if (markdown) return markdown[2].trim();
+                    const url = linha.match(/https?:\/\/\S+/i);
+                    return url ? url[0].replace(/[.,]+$/, "").trim() : "";
+                })
+                .filter(Boolean);
+        }
+
+        function formatarChatGPTAtivacao(link) {
+            return [
+                "🤖 CHATGPT GO — ATIVAÇÃO",
+                "",
+                "Olá! 👋",
+                "",
+                "Obrigado pela compra! 💙",
+                "",
+                "📦 Seu ativador do ChatGPT Go está abaixo:",
+                "🔗 LINK DE ATIVAÇÃO:",
+                link,
+                "",
+                "🛠️ COMO ATIVAR",
+                "",
+                "1️⃣ Acesse o link acima.",
+                "2️⃣ Faça login na sua própria conta do ChatGPT.",
+                "3️⃣ Confira as informações da oferta.",
+                "4️⃣ Siga as instruções apresentadas na tela.",
+                "5️⃣ Após concluir, verifique em Configurações → Conta/Plano se o ChatGPT Go foi ativado.",
+                "",
+                "⚠️ IMPORTANTE",
+                "",
+                "• Utilize o link somente em uma conta elegível para a promoção.",
+                "• A elegibilidade é definida pela plataforma e pode variar de acordo com a promoção.",
+                "• Não compartilhe seu link de ativação com terceiros.",
+                "• Não altere ou tente utilizar o link de forma diferente das instruções.",
+                "• Este produto não é uma conta pronta. Você recebe um link de ativação para utilizar na sua própria conta.",
+                "",
+                "⏳ DURAÇÃO: 30 dias após a ativação.",
+                "",
+                "✅ Depois de ativar, você poderá utilizar os recursos disponíveis no seu plano diretamente pelo ChatGPT.",
+                "",
+                "🚨 Caso apareça alguma mensagem de inelegibilidade, não tente várias vezes. Entre em contato conosco antes de realizar qualquer procedimento.",
+                "",
+                "🔥 Bom uso e aproveite seu ChatGPT Go!"
+            ].join("\n");
+        }
+
+        function processarChatGPTMetodo(tipo, texto) {
+            const links = extrairLinksChatGPT(texto);
+            if (!links.length) {
+                throw new Error("Nenhum link de ativação válido encontrado.");
+            }
+            const separador = tipo === "gamemarket"
+                ? "\n\n===\n\n"
+                : "\n\n---\n\n";
+            return links.map(formatarChatGPTAtivacao).join(separador);
+        }
+
+        async function copiarChatGPTMetodo(tipo) {
+            const id = tipo === "ggmax" ? "chatGPTGGMaxInput" : "chatGPTGameMarketInput";
+            const campo = obterCampoMetodo(id);
+            if (!campo || !campo.value.trim()) {
+                mostrarPopup("Cole os links primeiro.", "erro");
+                return;
+            }
+            try {
+                await copiarResultado(processarChatGPTMetodo(tipo, campo.value));
+            } catch (erro) {
+                mostrarPopup(erro.message || "Não foi possível processar os links.", "erro");
+            }
+        }
+
+        function baixarChatGPTMetodo(tipo) {
+            const id = tipo === "ggmax" ? "chatGPTGGMaxInput" : "chatGPTGameMarketInput";
+            const campo = obterCampoMetodo(id);
+            if (!campo || !campo.value.trim()) {
+                mostrarPopup("Cole os links primeiro.", "erro");
+                return;
+            }
+            try {
+                const resultado = processarChatGPTMetodo(tipo, campo.value);
+                baixarResultado(resultado, `ChatGPT_${tipo}.txt`);
+            } catch (erro) {
+                mostrarPopup(erro.message || "Não foi possível processar os links.", "erro");
+            }
+        }
+
+        function organizarChatGPTDefault(texto) {
+            return extrairLinksChatGPT(texto).join("\n");
         }
 
         /* =====================================================
@@ -5263,6 +6005,13 @@ Senha: SENHA2`,
                 case "Pinterest":
 
                     return organizarEmailSimples(
+                        texto
+                    );
+
+
+                case "ChatGPT":
+
+                    return organizarChatGPTDefault(
                         texto
                     );
 
